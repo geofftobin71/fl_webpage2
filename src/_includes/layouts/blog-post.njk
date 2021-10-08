@@ -1,0 +1,9 @@
+--- 
+layout: layouts/base.njk 
+---
+<small><time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time></small>
+<div>
+<img src="{{ featuredImage | url }}" alt="{{ featuredImage }}"></img>
+</div>
+<p>{{ content | safe }}</p>
+<a href="/blog/">&lt; Blog</a>
