@@ -37,11 +37,6 @@ module.exports = function (eleventyConfig) {
     return array.slice(0, n);
   });
 
-  // Return the smallest number argument
-  eleventyConfig.addFilter("min", (...numbers) => {
-    return Math.min.apply(null, numbers);
-  });
-
   eleventyConfig.addCollection("blog", (collection) => {
     const today = DateTime.local().set({hours:0,minutes:0,seconds:0,milliseconds:0});
     const livePosts = (p) => { 
