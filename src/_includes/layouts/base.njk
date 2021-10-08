@@ -7,7 +7,7 @@
     <h1>{{ title }}</h1>
     {{ content | safe }}
     <p>{{ site.url }}</p>
-    <p>[{{ site.node_env }}]</p>
+    <p>[{{ 'true' if site.dev else 'false' }}]</p>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
   </body>
 </html>

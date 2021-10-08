@@ -1,6 +1,8 @@
+const local_url = "http://168.138.10.72:8080";
+
 module.exports = {
-  url: process.env.URL || "http://168.138.10.72:8080",
-  node_env: process.env.NODE_ENV,
+  url: process.env.URL || local_url,
+  dev: ((process.env.URL || local_url) === local_url),
   name: "Floriade",
   tagline: "fresh & dried flowers for any occasion",
   tagline_html: "fresh&nbsp;&amp;&nbsp;dried&nbsp;flowers for&nbsp;any&nbsp;occasion",
