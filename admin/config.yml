@@ -14,6 +14,6 @@ collections:
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
-      - { label: "Date", name: "date", widget: "date", default: "" }
+      - { label: "Date", name: "date", widget: "date" }
       - { label: "Post Body", name: "body", widget: "markdown" }
-      - { label: "Featured Image", name: "featuredImage", widget: "image" }
+      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
