@@ -3,6 +3,10 @@ backend:
   branch: master
 media_folder: "src/images"
 public_folder: "/images"
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "_"
 collections:
   - name: "blog"
     label: "Blog"
