@@ -14,10 +14,12 @@ collections:
     folder: "src/blog"
     create: true
     slug: "{{slug}}"
+    media_folder: '/{{media_folder}}/blog'
+    public_folder: '/{{public_folder}}/blog'
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Date", name: "date", widget: "date" }
-      - { label: "Post Body", name: "body", widget: "markdown" }
       - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
+      - { label: "Post Body", name: "body", widget: "markdown" }
