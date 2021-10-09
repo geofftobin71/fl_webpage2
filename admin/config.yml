@@ -15,7 +15,7 @@ collections:
     create: true
     slug: "{{slug}}"
     media_folder: '/{{media_folder}}/blog'
-    public_folder: '/{{public_folder}}/blog'
+    public_folder: '{{public_folder}}/blog'
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Title", name: "title", widget: "string" }
