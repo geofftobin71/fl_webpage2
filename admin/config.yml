@@ -23,3 +23,36 @@ collections:
       - { label: "Date", name: "date", widget: "datetime", date_format: true, time_format: false }
       - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
       - { label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text'] }
+  - label: "Globals"
+    name: "globals"
+    files:
+      - label: "Site Data"
+        name: "site_data"
+        delete: false
+        file: "src/_data/site_data.json"
+        fields:
+          - {label: "SEO Meta Description", name: "description", widget: "string"}
+          - {label: "Header Image", name: "header_image", widget: "image"}
+          - {label: "Phone", name: "phone", widget: "string"}
+          - {label: "Address", name: "address", widget: "string"}
+          - {label: "Suburb", name: "address_locality", widget: "string"}
+          - {label: "Region", name: "address_region", widget: "string"}
+          - {label: "Postcode", name: "address_postcode", widget: "string"}
+      - label: "Theme Settings"
+        name: "theme"
+        delete: false
+        file: "src/_data/tokens.json"
+        fields:
+          - label: "Colors"
+            name: "colors"
+            widget: "object"
+            fields:
+              - {label: "Light", name: "colorLight", widget: "color" }
+              - {label: "Dark", name: "colorDark", widget: "color" }
+              - {label: "Alt", name: "colorAlt", widget: "color" }
+              - {label: "Primary", name: "colorPrimary", widget: "color" }
+              - {label: "Shade1", name: "colorShade1", widget: "color" }
+              - {label: "Shade2", name: "colorShade2", widget: "color" }
+              - {label: "Shade3", name: "colorShade3", widget: "color" }
+              - {label: "Button", name: "colorButton", widget: "color" }
+              - {label: "Autofill", name: "colorAutofill", widget: "color" }
