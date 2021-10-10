@@ -1,13 +1,82 @@
-<html>
+{% block pre %}{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>{{ title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+    {% include "partials/meta-info.njk" %}
+    {% if sitemap.ignore %}
+    <meta name="robots" content="noindex" />
+    {% endif %}
+    {% include "partials/favicon.njk" %}
+
+    {% set css %}
+    {#
+    {% include "css/reset.css" %}
+    {% include "css/modular-scale.css" %}
+    {% include "css/theme.njk" %}
+    {% include "css/layout.css" %}
+    {% include "css/input.css" %}
+    {% include "css/hamburger-menu.css" %}
+    #}
+    {% endset %}
+
+    <style>
+    {{ css | cssmin | safe }}
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+    {% block head %}
+    {% endblock %}
+
+    <noscript><style>.req-js,[data-src]{display:none !important}.slider{-ms-overflow-style:auto !important;scrollbar-width:thin !important}.slider::-webkit-scrollbar{visibility:visible !important;height:8px}.slider::-webkit-scrollbar-track{background:rgba(0,0,0,0.1);border-radius:8px}.slider::-webkit-scrollbar-thumb{border-radius:8px;background:var(--color-shade2)}</style></noscript>
+
   </head>
 
-  <body>
-    <h1>{{ title }}</h1>
-    {{ content | safe }}
-    <p>{{ site.url }}</p>
-    <p>[{{ 'true' if site.dev else 'false' }}]</p>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+  <body tabindex="1">
+    <div id="top"></div>
+    {% block content %}
+      {{ content | safe }}
+    {% endblock %}
+
+    {% block foot %}
+      {# {% include "partials/hamburger-menu.njk" %} #}
+      {% set js %}
+      {#
+      {% include "js/lazy-images.js" %}
+      {% include "js/smoothscroll.min.js" %}
+		    window.cookieconsent.initialise({
+		        "palette": {
+		              "popup": {
+		                      "background": "#3D4844",
+		                      "text": "#DDE2DD"
+		                    },
+		              "button": {
+		                      "background": "#DDE2DD",
+		                      "text": "#3D4844"
+		                    }
+		            },
+		        "theme": "classic",
+		        "content": {
+		              "message": "We use cookies to improve your browsing experience on our website, and to analyze our website traffic.",
+		              "dismiss": "Accept",
+		              "link": "Read our Cookie Policy",
+                  "href": "{{ site.url }}/cookie-policy/"
+		            }
+		    });
+        #}
+      {% endset %}
+
+      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false" defer></script>
+      <script src="https://js.stripe.com/v3/" defer></script>
+      <script>
+        {{ js | jsmin | safe }}
+      </script>
+    {% endblock %}
+
   </body>
 </html>

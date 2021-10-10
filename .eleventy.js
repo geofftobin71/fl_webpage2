@@ -1,11 +1,28 @@
-const fs = require("fs");
 const { Settings, DateTime } = require("luxon"); 
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const sitemap = require("@quasibit/eleventy-plugin-sitemap");
+const svgContents = require("eleventy-plugin-svg-contents");
+const htmlmin = require("html-minifier");
+const CleanCSS = require("clean-css");
+const UglifyJS = require("uglify-js");
+const fs = require("fs");
+const site = require('./src/_data/site.js');
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
 module.exports = function (eleventyConfig) {
 
   eleventyConfig.setDataDeepMerge(true);
+
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+  eleventyConfig.addPlugin(svgContents);
+
+  eleventyConfig.addPlugin(sitemap, {
+    sitemap: {
+      hostname: site.url,
+    },
+  });
 
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.ico" : "/"});
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.png" : "/"});
@@ -14,7 +31,38 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.webmanifest" : "/"});
   eleventyConfig.addPassthroughCopy("./src/fonts");
   eleventyConfig.addPassthroughCopy("./src/images");
+  eleventyConfig.addPassthroughCopy("./src/icons");
   eleventyConfig.addPassthroughCopy("./admin");
+
+  eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
+    if((!site.dev) && outputPath.endsWith(".html")) {
+      let minified = htmlmin.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true
+      });
+      return minified;
+    }
+
+    return content;
+  });
+
+  eleventyConfig.addFilter("cssmin", (code) => {
+    if(site.dev) { return code; }
+
+    return new CleanCSS({}).minify(code).styles;
+  });
+
+  eleventyConfig.addFilter("jsmin", (code) => {
+    if(site.dev) { return code; }
+
+    let minified = UglifyJS.minify(code);
+    if( minified.error ) {
+      console.log("UglifyJS error: ", minified.error);
+      return code;
+    }
+    return minified.code;
+  });
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj).toFormat("dd LLL yyyy");

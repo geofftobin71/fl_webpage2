@@ -11,6 +11,12 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
-    "netlify-cli": "^6.10.3"
+    "@11ty/eleventy-navigation": "^0.3.2",
+    "@quasibit/eleventy-plugin-sitemap": "^2.1.4",
+    "clean-css": "^5.2.1",
+    "eleventy-plugin-svg-contents": "^0.7.0",
+    "html-minifier": "^4.0.0",
+    "netlify-cli": "^6.10.3",
+    "uglify-js": "^3.14.2"
   }
 }
