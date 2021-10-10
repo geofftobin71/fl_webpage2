@@ -3,7 +3,7 @@ backend:
   branch: master
 media_folder: "src/images"
 public_folder: "/images"
-logo_url: "https://floriade.co.nz/images/floriade-word-60.png"
+logo_url:
 slug:
   encoding: "ascii"
   clean_accents: true
