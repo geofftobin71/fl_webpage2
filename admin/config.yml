@@ -3,7 +3,7 @@ backend:
   branch: master
 media_folder: "src/images"
 public_folder: "/images"
-logo_url: "https://floriade.co.nz/images/floriade-logo.png"
+logo_url: "https://floriade.co.nz/images/floriade-word-60.png"
 slug:
   encoding: "ascii"
   clean_accents: true
@@ -20,7 +20,7 @@ collections:
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
       - { label: "Date", name: "date", widget: "datetime", date_format: true, time_format: false }
       - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
       - { label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text'] }
@@ -34,7 +34,7 @@ collections:
         editor:
           preview: false
         fields:
-          - {label: "SEO Meta Description", name: "description", widget: "string"}
+          - {label: "SEO Meta Description", name: "description", widget: "text"}
           - {label: "Header Image", name: "header_image", widget: "image"}
           - {label: "Phone", name: "phone", widget: "string"}
           - {label: "Address", name: "address", widget: "string"}
