@@ -3,6 +3,7 @@ backend:
   branch: master
 media_folder: "src/images"
 public_folder: "/images"
+logo_url: "https://floriade.co.nz/images/floriade-logo.png"
 slug:
   encoding: "ascii"
   clean_accents: true
@@ -30,6 +31,8 @@ collections:
         name: "site_data"
         delete: false
         file: "src/_data/site_data.json"
+        editor:
+          preview: false
         fields:
           - {label: "SEO Meta Description", name: "description", widget: "string"}
           - {label: "Header Image", name: "header_image", widget: "image"}
@@ -42,6 +45,8 @@ collections:
         name: "theme"
         delete: false
         file: "src/_data/tokens.json"
+        editor:
+          preview: false
         fields:
           - label: "Colors"
             name: "colors"
