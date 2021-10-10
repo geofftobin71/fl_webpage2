@@ -3,27 +3,11 @@ backend:
   branch: master
 media_folder: "src/images"
 public_folder: "/images"
-logo_url:
 slug:
   encoding: "ascii"
   clean_accents: true
   sanitize_replacement: "-"
 collections:
-  - name: "blog"
-    label: "Blog"
-    label_singular: "Blog Post"
-    folder: "src/blog"
-    create: true
-    slug: "{{slug}}"
-    media_folder: '/{{media_folder}}/blog'
-    public_folder: '{{public_folder}}/blog'
-    fields:
-      - { label: "Draft", name: "draft", widget: "boolean", default: true }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Date", name: "date", widget: "datetime", date_format: true, time_format: false }
-      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
-      - { label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text'] }
   - label: "Globals"
     name: "globals"
     files:
@@ -61,3 +45,18 @@ collections:
               - {label: "Shade3", name: "colorShade3", widget: "color" }
               - {label: "Button", name: "colorButton", widget: "color" }
               - {label: "Autofill", name: "colorAutofill", widget: "color" }
+  - name: "blog"
+    label: "Blog"
+    label_singular: "Blog Post"
+    folder: "src/blog"
+    create: true
+    slug: "{{slug}}"
+    media_folder: '/{{media_folder}}/blog'
+    public_folder: '{{public_folder}}/blog'
+    fields:
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: true, time_format: false }
+      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
+      - { label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text'] }
