@@ -5,6 +5,7 @@ const svgContents = require("eleventy-plugin-svg-contents");
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
 const UglifyJS = require("uglify-js");
+const jsonminify = require("jsonminify");
 const markdown = require("markdown-it")({ html: true }).disable('code');
 const fs = require("fs");
 const site = require('./src/_data/site.js');
@@ -105,6 +106,12 @@ module.exports = function (eleventyConfig) {
     return minified.code;
   });
 
+  eleventyConfig.addFilter("jsonmin", (code) => {
+    if(site.dev) { return code; }
+
+    return jsonminify(code);
+  });
+
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj).toFormat("dd LLL yyyy");
   });
@@ -137,6 +144,16 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("iconButton", (svg) => {
     return (svg) ? svg.replace('<svg ', '<svg class="icon-button-icon" aria-hidden="true" focusable="false" ') : '';
   });
+
+  // Convert uppercase to hyphen-lowercase : fooBar => foo-bar
+  eleventyConfig.addFilter("hyphenate", (word) => {
+    function upperToHyphenLower(match, offset, string) {
+      return (offset > 0 ? '-' : '') + match.toLowerCase();
+    }
+    return word.replace(/[A-Z]/g, upperToHyphenLower);
+  });
+
+  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
   eleventyConfig.addAsyncShortcode("markdown", async (content) => {
     const md = await markdown.render(content);

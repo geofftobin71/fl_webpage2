@@ -26,5 +26,6 @@ module.exports = {
   google_page: "https://local.google.com/place?id=ChIJ6z8ye22vOG0R13q7-zASRmY&use=srp&hl=en",
   google_review: "https://search.google.com/local/writereview?placeid=ChIJ6z8ye22vOG0R13q7-zASRmY",
   google_maps: "https://goo.gl/maps/jGdMssVmNamjZXA4A",
+  twic_url: "https://ay65paiy.twic.pics",
   transgif: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
 };
