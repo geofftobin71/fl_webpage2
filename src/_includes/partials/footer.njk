@@ -1,8 +1,12 @@
-<style>.three-columns{display:grid;grid-template-columns:1fr;}@media screen and (min-width: 750px){.three-columns{grid-template-columns:1fr 1fr 1fr;}.three-columns > div:nth-child(3){order:2;}.three-columns > div:nth-child(2){order:3;} }</style>
+<style>.three-columns{display:grid;grid-template-columns:1fr;}@media screen and (min-width: 750px){.three-columns{grid-template-columns:1fr 1fr 1fr;}.three-columns > div:nth-child(3){order:2;}.three-columns > div:nth-child(2){order:3;} }
+section > * + * {
+  margin-top:2em;
+}
+</style>
 
-<footer class="bg-alt font-size--1" style="margin-top:auto;--section-padding:2em">
+<footer class="bg-alt font-size--1" style="margin-top:auto">
   <hr>
-  <section class="wrapper page-wrapper">
+  <section class="wrapper page-wrapper" style="padding-top:2em;padding-bottom:2em">
     <div class="horizontal center middle" style="width:48px;margin:0 auto">
       <button title="Scroll to Top" aria-label="Scroll to Top" class="color-primary req-js" style="cursor:pointer;width:24px" onclick="(function(){document.querySelector('#top').scrollIntoView({behavior:'smooth'});})();return false;" >{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</button>
       <noscript><a href="#top" class="nofocus" role="button" tabindex="0" title="Scroll to Top" aria-label="Scroll to Top" style="width:24px"><img src="/icons/chevron-up.png" alt=""></a></noscript>

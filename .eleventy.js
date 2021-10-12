@@ -9,6 +9,8 @@ const jsonminify = require("jsonminify");
 const markdown = require("markdown-it")({ html: true }).disable('code');
 const fs = require("fs");
 const site = require('./src/_data/site.js');
+const slugify = require("@sindresorhus/slugify");
+const countableSlugify = slugify.counter();
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
@@ -89,6 +91,10 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
+  eleventyConfig.addFilter("slugify", function (str) {
+    return slugify(str);
+  });
+
   eleventyConfig.addFilter("cssmin", (code) => {
     if(site.dev) { return code; }
 
@@ -110,6 +116,15 @@ module.exports = function (eleventyConfig) {
     if(site.dev) { return code; }
 
     return jsonminify(code);
+  });
+
+  eleventyConfig.addFilter("addNbsp", (str) => {
+    if (!str) {
+      return;
+    }
+    let title = str.replace(/((.*)\s(.*))$/g, "$2&nbsp;$3");
+    title = title.replace(/"(.*)"/g, '\\"$1\\"');
+    return title;
   });
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {

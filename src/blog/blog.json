@@ -1,4 +1,5 @@
 {
   "layout": "layouts/blog-post.njk",
-  "metaType": "article"
+  "metaType": "article",
+  "permalink": "/blog/{{ title | slugify }}_{{ date | htmlDateString }}/"
 }
