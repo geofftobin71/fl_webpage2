@@ -265,6 +265,12 @@ blockquote footer:before {
 
 /* ----- Site Menu ----- */
 
+.site-menu {
+  position:-webkit-sticky;
+  position:sticky;
+  top:0;
+}
+
 .site-menu ul {
   display:flex;
   align-items:center;
@@ -306,7 +312,7 @@ blockquote footer:before {
 }
 
 .header .content {
-  padding:5vmin 3vmin;
+  padding:10vmin 7.5vmin 10vmin 5vmin;
   height:100%;
   display:flex;
   align-items:center;
@@ -337,7 +343,7 @@ blockquote footer:before {
 
 @media screen and (orientation:portrait) and (max-width:750px) {
   .header .content {
-    padding:0 1rem 1rem 1rem;
+    padding:0 2rem 2.5rem 1rem;
   }
   .header h1 {
     width:100vw;
@@ -379,7 +385,7 @@ blockquote footer:before {
 /* ----- Background Image ----- */
 
 .background {
-  --brightness:66%;
+  --brightness:60%;
   overflow:hidden;
   position:absolute;
   top:0;
@@ -625,11 +631,11 @@ section + .checkerboard {
 @media screen and (orientation:landscape) and (min-width:1500px) {
   /*
   .checkerboard {
-    max-width:1500px;
-    margin-left:auto;
-    margin-right:auto;
+  max-width:1500px;
+  margin-left:auto;
+  margin-right:auto;
   }
-  */
+   */
 
   .checkerboard + .checkerboard {
     border-top:1px solid var(--color-shade3);

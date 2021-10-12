@@ -168,6 +168,16 @@ module.exports = function (eleventyConfig) {
     return word.replace(/[A-Z]/g, upperToHyphenLower);
   });
 
+  eleventyConfig.addFilter("removeEmpty", (array) => {
+    let filtered = [];
+    for (let i = 0; i < array.length; ++i) {
+      if(array[i].key.length) { 
+        filtered[filtered.length] = array[i]; 
+      }
+    }
+    return filtered;
+  });
+
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
   eleventyConfig.addAsyncShortcode("markdown", async (content) => {

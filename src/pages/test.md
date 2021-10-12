@@ -1,6 +1,6 @@
 ---
 title: Test
-layout: layouts/test.njk
+layout: layouts/page.njk
 page_sections:
 - template: A
   text: |-

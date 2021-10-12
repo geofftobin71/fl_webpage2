@@ -1,0 +1,26 @@
+{% if banner_message.message %}
+  <aside class="banner-message bigfonts">
+    {% markdown banner_message.message %}
+  </aside>
+{% endif %}
+<header id="header" class="header">
+  <figure class="background">
+    {% set image_id = (header_image) or (site.header_image) %}
+    <picture style="background-image:url()">
+    <img src="{{ image_id }}" style="background-image:url()" alt="" loading="eager" decoding="async" />
+    </picture>
+  </figure>
+  <div class="content">
+    <figure class="logo">
+      <a href="{{ '/' | url }}" tabindex="-1">
+        <img src="{{ '/icons/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
+      </a>
+    </figure>
+    <h1>{{ (header_title or title) | lower | addNbsp | safe }}</h1>
+  </div>
+</header>
+<div class="site-menu text-shadow" style="background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
+  <nav class="wrapper page-wrapper">
+    {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
+  </nav>
+</div>

@@ -1,6 +1,7 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
+  {% include "partials/header.njk" %}
   <main>
   {% asyncAll section in page_sections %}
     {% set template = 'partials/' + section.template + '.njk' %}
