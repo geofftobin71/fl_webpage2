@@ -1,0 +1,12 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <main>
+  {% asyncAll section in page_sections %}
+    {% set template = 'partials/' + section.template + '.njk' %}
+    {% include template %}
+  {% endall %}
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}
+
