@@ -7,6 +7,7 @@ const CleanCSS = require("clean-css");
 const UglifyJS = require("uglify-js");
 const jsonminify = require("jsonminify");
 const markdown = require("markdown-it")({ html: true }).disable('code');
+const fetch = require('node-fetch');
 const fs = require("fs");
 const site = require('./src/_data/site.js');
 const slugify = require("@sindresorhus/slugify");
@@ -106,7 +107,7 @@ module.exports = function (eleventyConfig) {
 
     let minified = UglifyJS.minify(code);
     if( minified.error ) {
-      console.log("UglifyJS error: ", minified.error);
+      console.error("UglifyJS error: ", minified.error);
       return code;
     }
     return minified.code;
@@ -176,6 +177,30 @@ module.exports = function (eleventyConfig) {
       }
     }
     return filtered;
+  });
+
+  eleventyConfig.addNunjucksShortcode("twic", function(args) {
+    if(args.sizes) {
+      return args.sizes.map(function(size) {
+        return `${site.twic_url}${args.path}?twic=v1/resize-max=${size}${args.params} ${size}w`;
+      }).join(',');
+    } else {
+      return `${site.twic_url}${args.path}?twic=v1${args.params}`;
+    }
+  });
+
+  eleventyConfig.addNunjucksAsyncShortcode("lqip", async function(args) {
+    let lqip_path = `${site.twic_url}${args.path}?twic=v1${args.params}/output=preview`;
+    return fetch(lqip_path)
+      .then(res => res.text())
+      .then(data => {
+        let buff = Buffer.from(data);
+        return ("data:image/svg+xml;base64," + buff.toString('base64'));
+      })
+      .catch(err => {
+        console.error("LQIP error: ", err);
+        return (lqip_path);
+      });
   });
 
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);

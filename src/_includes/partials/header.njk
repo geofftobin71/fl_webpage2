@@ -5,9 +5,12 @@
 {% endif %}
 <header id="header" class="header">
   <figure class="background">
-    {% set image_id = (header_image) or (site.header_image) %}
-    <picture style="background-image:url()">
-    <img src="{{ image_id }}" style="background-image:url()" alt="" loading="eager" decoding="async" />
+    {% set image_id = header_image or site.header_image %}
+    <picture>
+      <source srcset="{% twic path=image_id, params='/focus=auto/cover=4:1', sizes=image_sizes %}" sizes="100vw" media="(min-aspect-ratio: 155/100)">
+      <source srcset="{% twic path=image_id, params='/focus=auto/cover=3:1', sizes=image_sizes %}" sizes="100vw" media="(min-aspect-ratio: 1/1)">
+      <source srcset="{% twic path=image_id, params='/focus=auto/cover=2:1', sizes=image_sizes %}" sizes="100vw">
+      <img src="{% twic path=image_id, params='/resize=1024/focus=auto/cover=3:1' %}" style="background-image:url({% lqip path=image_id, params='/focus=auto/cover=3:1' %})" alt="" />
     </picture>
   </figure>
   <div class="content">

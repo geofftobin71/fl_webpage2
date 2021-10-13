@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist/*",
-    "build": "eleventy",
+    "dev": "eleventy",
     "serve": "eleventy --serve"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
     "jsonminify": "^0.4.1",
     "markdown-it": "^12.2.0",
     "netlify-cli": "^6.10.3",
+    "node-fetch": "^2.6.1",
     "uglify-js": "^3.14.2"
   }
 }
