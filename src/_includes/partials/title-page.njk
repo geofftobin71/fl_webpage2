@@ -1,0 +1,34 @@
+<style>#bg-video{object-fit:cover;object-position:center center;width:100vw;height:100vh;z-index:-1;}#title-page{position:absolute;top:0;left:0;width:100%;height:100vh;background-color:rgba(0,0,0,0.33);}#title-logo{width:66vmin;max-width:500px;}@supports(background:-webkit-named-image(i)){ #bg-video,#title-page{height:-webkit-fill-available;} }.visually-hidden{clip:rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px;} #more{width:48px;margin:0 auto 1em auto;place-self:end}@media screen and (orientation:landscape) and (max-width:950px){ #more{margin-bottom:0.5em} }
+.site-menu a:link { color:var(--color-shade1); }
+.site-menu a:visited { color:var(--color-shade1); }
+.site-menu a:hover { color:var(--color-shade3); }
+.site-menu a:active { color:var(--color-shade3); }
+</style>
+<video playsinline preload="none" muted loop class="req-js" poster="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" id="bg-video" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)">
+  <source src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.mp4" type="video/mp4">
+  <img class="cover" src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" alt="">
+</video>
+<noscript><div class="height100vh"><img class="bg cover" src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)" alt=""></div></noscript>
+<div id="title-page" class="canvas center text-center">
+  <div class="vertical center">
+    <figure id="title-logo">
+      <img src="{{ '/icons/floriade-logo-white.svg' | url }}" alt="Floriade logo" loading="eager" decoding="async" />
+    </figure>
+    <h1 class="visually-hidden">{{ site.name | safe }}</h1>
+    <p class="color-light font-secondary font-size-1" style="margin-top:1em">{{ site.tagline_html | safe }}</p>
+  </div>
+  <div id="more" class="horizontal center middle color-light">
+    <span title="Scroll to Content" aria-label="Scroll to Content" class="req-js" style="cursor:pointer;width:24px" onclick="(function(){document.querySelector('#main').scrollIntoView({behavior:'smooth'});})();return false;" >{{ '/src/svg/chevron-down.svg' | svgContents | safe }}</span>
+    <noscript><a href="#main" class="nofocus" title="Scroll to Content" aria-label="Scroll to Content" style="width:24px"><img src="/icons/chevron-down.png" alt=""></a></noscript>
+  </div>
+</div>
+<div id="main"></div>
+{% if banner_message.message %}
+  <aside class="banner-message bigfonts">
+    {% markdown banner_message.message %}
+  </aside>
+{% endif %}
+<nav class="site-menu wrapper page-wrapper" style="width:100vw;padding-top:1em;padding-bottom:1em">
+  {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
+</nav>
+<hr>
