@@ -17,8 +17,9 @@
     {% include "css/modular-scale.css" %}
     {% include "css/theme.njk" %}
     {% include "css/layout.css" %}
-    {#
     {% include "css/input.css" %}
+    {% include "css/cookieconsent.min.css" %}
+    {#
     {% include "css/hamburger-menu.css" %}
     #}
     {% endset %}
@@ -26,8 +27,6 @@
     <style>
     {{ css | cssmin | safe }}
     </style>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 
     {% block head %}
     {% endblock %}
@@ -45,32 +44,12 @@
     {% block foot %}
       {# {% include "partials/hamburger-menu.njk" %} #}
       {% set js %}
-      {#
-		    window.cookieconsent.initialise({
-		        "palette": {
-		              "popup": {
-		                      "background": "#3D4844",
-		                      "text": "#DDE2DD"
-		                    },
-		              "button": {
-		                      "background": "#DDE2DD",
-		                      "text": "#3D4844"
-		                    }
-		            },
-		        "theme": "classic",
-		        "content": {
-		              "message": "We use cookies to improve your browsing experience on our website, and to analyze our website traffic.",
-		              "dismiss": "Accept",
-		              "link": "Read our Cookie Policy",
-                  "href": "{{ site.url }}/cookie-policy/"
-		            }
-		    });
-        #}
+      {% include "js/init_cookieconsent.njk" %}
       {% endset %}
 
-      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
-      <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false" defer></script>
-      <script src="https://js.stripe.com/v3/" defer></script>
+      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
+      <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+      <script src="https://js.stripe.com/v3/" async></script>
       <script>
         {{ js | jsmin | safe }}
       </script>

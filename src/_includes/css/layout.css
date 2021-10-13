@@ -269,6 +269,7 @@ blockquote footer:before {
   position:-webkit-sticky;
   position:sticky;
   top:0;
+  z-index:9;
 }
 
 .site-menu ul {
@@ -321,7 +322,7 @@ blockquote footer:before {
 }
 
 .header .logo {
-  z-index:2;
+  z-index:3;
 }
 
 .logo img {
