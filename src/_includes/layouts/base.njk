@@ -18,7 +18,6 @@
     {% include "css/theme.njk" %}
     {% include "css/layout.css" %}
     {% include "css/input.css" %}
-    {% include "css/cookieconsent.min.css" %}
     {#
     {% include "css/hamburger-menu.css" %}
     #}
@@ -26,6 +25,7 @@
 
     <style>
     {{ css | cssmin | safe }}
+    {% include "css/cookieconsent.min.css" %}
     </style>
 
     {% block head %}
@@ -47,8 +47,8 @@
       {% include "js/init_cookieconsent.njk" %}
       {% endset %}
 
+      <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false" async></script>
       <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
-      <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
       {# <script src="https://js.stripe.com/v3/" async></script> #}
       <script>
         {{ js | jsmin | safe }}

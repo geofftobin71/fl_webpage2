@@ -1,3 +1,4 @@
+window.addEventListener("load",function(){
 window.cookieconsent.initialise({
   "palette": {
     "popup": {
@@ -9,11 +10,12 @@ window.cookieconsent.initialise({
       "text": "#3D4844"
     }
   },
-  "theme": "classic",
+  "position": "bottom",
   "content": {
-    "message": "We use cookies to improve your browsing experience on our website, and to analyze our website traffic.",
-    "dismiss": "Accept",
+    "message": "We use cookies to ensure you get the best experience on our website.",
+    "dismiss": "Got it",
     "link": "Read our Cookie Policy",
     "href": "{{ site.url }}/cookie-policy/"
   }
 });
+},false);

@@ -4,15 +4,21 @@
 .site-menu a:hover { color:var(--color-shade3); }
 .site-menu a:active { color:var(--color-shade3); }
 </style>
+{#
 <video playsinline preload="none" muted loop class="req-js" poster="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" id="bg-video" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)">
   <source src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.mp4" type="video/mp4">
   <img class="cover" src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" alt="">
 </video>
-<noscript><div class="height100vh"><img class="bg cover" src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)" alt=""></div></noscript>
+<noscript><figure class="height100vh"><img class="bg cover" src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)" alt=""></figure></noscript>
+
+<!-- Enable script in layouts/home -->
+#}
+<figure class="height100vh"><img class="bg cover" src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)" alt=""></figure>
+
 <div id="title-page" class="canvas center text-center">
   <div class="vertical center">
     <figure id="title-logo">
-      <img src="{{ '/icons/floriade-logo-white.svg' | url }}" alt="Floriade logo" loading="eager" decoding="async" />
+      <img src="{{ '/icons/floriade-logo-white.svg' | url }}" alt="Floriade logo" width="1206" height="1016" loading="eager" decoding="async" />
     </figure>
     <h1 class="visually-hidden">{{ site.name | safe }}</h1>
     <p class="color-light font-secondary font-size-1" style="margin-top:1em">{{ site.tagline_html | safe }}</p>
