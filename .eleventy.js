@@ -180,17 +180,21 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addNunjucksShortcode("twic", function(args) {
+    let path = (args.path) ? args.path : '';
+    let params = (args.params) ? args.params : '';
     if(args.sizes) {
       return args.sizes.map(function(size) {
-        return `${site.twic_url}${args.path}?twic=v1/resize-max=${size}${args.params} ${size}w`;
+        return `${site.twic_url}${path}?twic=v1/resize-max=${size}${params} ${size}w`;
       }).join(',');
     } else {
-      return `${site.twic_url}${args.path}?twic=v1${args.params}`;
+      return `${site.twic_url}${path}?twic=v1${params}`;
     }
   });
 
   eleventyConfig.addNunjucksAsyncShortcode("lqip", async function(args) {
-    let lqip_path = `${site.twic_url}${args.path}?twic=v1${args.params}/output=preview`;
+    let path = (args.path) ? args.path : '';
+    let params = (args.params) ? args.params : '';
+    let lqip_path = `${site.twic_url}${path}?twic=v1${params}/output=preview`;
     return fetch(lqip_path)
       .then(res => res.text())
       .then(data => {

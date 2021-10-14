@@ -119,9 +119,10 @@ blockquote footer:before {
 
 .grecaptcha-badge {display:none;}
 
-.cc-window {
-  font-size:var(--step--1)!important;
-  padding:1em!important;
+.cc-window,
+.cc-window.cc-floating {
+  font-size:var(--step--1);
+  padding:1em;
 }
 
 .width100 {

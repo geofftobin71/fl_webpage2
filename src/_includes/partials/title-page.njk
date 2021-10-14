@@ -1,4 +1,4 @@
-<style>#bg-video{object-fit:cover;object-position:center center;width:100vw;height:100vh;z-index:-1;}#title-page{position:absolute;top:0;left:0;width:100%;height:100vh;background-color:rgba(0,0,0,0.33);}#title-logo{width:66vmin;max-width:500px;}@supports(background:-webkit-named-image(i)){ #bg-video,#title-page{height:-webkit-fill-available;} }.visually-hidden{clip:rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px;} #more{width:48px;margin:0 auto 1em auto;place-self:end}@media screen and (orientation:landscape) and (max-width:950px){ #more{margin-bottom:0.5em} }
+<style>#bg-video{object-fit:cover;object-position:center center;width:100vw;height:100vh;z-index:-1;filter:brightness(60%);}#title-page{position:absolute;top:0;left:0;width:100%;height:100vh;}#title-logo{width:66vmin;max-width:500px;}@supports(background:-webkit-named-image(i)){ #bg-video,#title-page{height:-webkit-fill-available;} }.visually-hidden{clip:rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px;} #more{width:48px;margin:0 auto 1em auto;place-self:end}@media screen and (orientation:landscape) and (max-width:950px){ #more{margin-bottom:0.5em} }
 .site-menu a:link { color:var(--color-shade1); }
 .site-menu a:visited { color:var(--color-shade1); }
 .site-menu a:hover { color:var(--color-shade3); }
@@ -13,7 +13,10 @@
 
 <!-- Enable script in layouts/home -->
 #}
-<figure class="height100vh"><img class="bg cover" src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)" alt=""></figure>
+<figure class="height100vh" style="filter:brightness(60%)">
+  {% set image_id = header_image or site.header_image %}
+  <img class="bg cover" srcset="{% twic path=image_id, sizes=image_sizes %}" sizes="100vw" src="{% twic path=image_id %}" style="background-image:url({% lqip path=image_id %})" alt="" />
+</figure>
 
 <div id="title-page" class="canvas center text-center">
   <div class="vertical center">

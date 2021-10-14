@@ -24,8 +24,8 @@
     {% endset %}
 
     <style>
-    {{ css | cssmin | safe }}
     {% include "css/cookieconsent.min.css" %}
+    {{ css | cssmin | safe }}
     </style>
 
     {% block head %}
