@@ -362,10 +362,10 @@ blockquote footer:before {
   font-family:var(--font-family-alt);
   color:var(--color-light);
   background-color:var(--color-shade1);
-  border:3px solid var(--color-shade3);
-  padding:1.5rem 1rem;
+  border:2px solid var(--color-shade3);
+  padding:0.5em;
   position:relative;
-  z-index:2;
+  z-index:9;
   box-shadow:0 0 15px 5px rgba(0, 0, 0, 0.4);
 }
 
@@ -379,8 +379,9 @@ blockquote footer:before {
   font-family:var(--font-family-alt);
   color:var(--error-color);
   background-color:var(--error-background);
-  border:3px solid var(--error-color);
-  padding:1.5rem 1rem;
+  border:2px solid var(--error-color);
+  padding:0.5em;
+  z-index:9;
   box-shadow:0 0 15px 5px rgba(0, 0, 0, 0.4);
 }
 

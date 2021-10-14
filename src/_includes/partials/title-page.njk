@@ -3,7 +3,13 @@
 .site-menu a:visited { color:var(--color-shade1); }
 .site-menu a:hover { color:var(--color-shade3); }
 .site-menu a:active { color:var(--color-shade3); }
+.banner-message{position:absolute;top:0;left:0;right:0;}
 </style>
+{% if banner_message.message %}
+  <aside class="banner-message">
+    {% markdown banner_message.message %}
+  </aside>
+{% endif %}
 {#
 <video playsinline preload="none" muted loop class="req-js" poster="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" id="bg-video" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)">
   <source src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.mp4" type="video/mp4">
@@ -32,11 +38,6 @@
   </div>
 </div>
 <div id="main"></div>
-{% if banner_message.message %}
-  <aside class="banner-message bigfonts">
-    {% markdown banner_message.message %}
-  </aside>
-{% endif %}
 <nav class="site-menu wrapper page-wrapper" style="width:100vw;padding-top:1em;padding-bottom:1em">
   {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
 </nav>

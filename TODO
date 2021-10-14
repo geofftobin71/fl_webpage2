@@ -1,11 +1,9 @@
 Fix:
-footer order
 Policy pages
 Mailchimp Signup form (OLD!)
 
 Check:
 Color contrast
 noscript scrollbar styles
-Twitter author
 target="_blank" and rel="noopener" on external links
 markdown | safe ( filter )
