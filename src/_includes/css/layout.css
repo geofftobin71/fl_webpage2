@@ -16,6 +16,10 @@
   }
 }
 
+figure {
+  overflow: hidden;
+}
+
 img, picture, figure, video {
   background-size:cover;
   background-position:center center;
@@ -712,7 +716,7 @@ section + .checkerboard {
 .aspect3x4 { --n:4; --d:3; }
 .aspect9x16 { --n:16; --d:9; }
 
-.aspect > figure {
+.aspect > * {
   overflow:hidden;
   position:absolute;
   top:0;

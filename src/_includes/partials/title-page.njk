@@ -21,7 +21,7 @@
 #}
 <figure class="height100vh" style="filter:brightness(60%)">
   {% set image_id = header_image or site.header_image %}
-  <img class="bg cover" srcset="{% twic path=image_id, sizes=image_sizes %}" sizes="100vw" src="{% twic path=image_id %}" style="background-image:url({% lqip path=image_id %})" alt="" />
+  <img class="bg cover" srcset="{% twic path=image_id, sizes=image_sizes %}" sizes="100vmax" src="{% twic path=image_id %}" style="background-image:url({% lqip path=image_id %})" alt="" />
 </figure>
 
 <div id="title-page" class="canvas center text-center">

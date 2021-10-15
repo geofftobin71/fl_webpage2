@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const { Settings, DateTime } = require("luxon"); 
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
@@ -6,10 +8,10 @@ const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
 const UglifyJS = require("uglify-js");
 const jsonminify = require("jsonminify");
-const markdown = require("markdown-it")({ html: true }).disable('code');
-const fetch = require('node-fetch');
+const markdown = require("markdown-it")({ html: true }).disable("code");
+const fetch = require("node-fetch");
 const fs = require("fs");
-const site = require('./src/_data/site.js');
+const site = require("./src/_data/site.js");
 const slugify = require("@sindresorhus/slugify");
 const countableSlugify = slugify.counter();
 
@@ -133,8 +135,8 @@ module.exports = function (eleventyConfig) {
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-  eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-    return DateTime.fromJSDate(dateObj).toFormat('yyyy-LL-dd');
+  eleventyConfig.addFilter("htmlDateString", (dateObj) => {
+    return DateTime.fromJSDate(dateObj).toFormat("yyyy-LL-dd");
   });
 
   // Get the first `n` elements of a collection.
@@ -179,9 +181,19 @@ module.exports = function (eleventyConfig) {
     return filtered;
   });
 
+  eleventyConfig.addFilter("urldecode", (string) => {
+    return decodeURIComponent(string);
+  });
+
+  eleventyConfig.addFilter("sortISO8601", (array) => {
+    return array.sort((a, b) => {
+      return (a.timestamp < b.timestamp) ? -1 : ((a.timestamp > b.timestamp) ? 1 : 0);
+    });
+  });
+
   eleventyConfig.addNunjucksShortcode("twic", function(args) {
-    let path = (args.path) ? args.path : '';
-    let params = (args.params) ? args.params : '';
+    let path = (args.path) ? args.path : "";
+    let params = (args.params) ? args.params : "";
     if(args.sizes) {
       return args.sizes.map(function(size) {
         return `${site.twic_url}${path}?twic=v1/resize-max=${size}${params} ${size}w`;
@@ -192,14 +204,42 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addNunjucksAsyncShortcode("lqip", async function(args) {
-    let path = (args.path) ? args.path : '';
-    let params = (args.params) ? args.params : '';
+    let path = (args.path) ? args.path : "";
+    let params = (args.params) ? args.params : "";
     let lqip_path = `${site.twic_url}${path}?twic=v1${params}/output=preview`;
     return fetch(lqip_path)
       .then(res => res.text())
       .then(data => {
         let buff = Buffer.from(data);
-        return ("data:image/svg+xml;base64," + buff.toString('base64'));
+        return ("data:image/svg+xml;base64," + buff.toString("base64"));
+      })
+      .catch(err => {
+        console.error("LQIP error: ", err);
+        return (lqip_path);
+      });
+  });
+
+  eleventyConfig.addNunjucksShortcode("insta_twic", function(args) {
+    let path = (args.path) ? args.path : "";
+    let params = (args.params) ? args.params : "";
+    if(args.sizes) {
+      return args.sizes.map(function(size) {
+        return path.replace(site.instagram_url, site.twic_url + "/instagram").replace("?", "?twic=v1/resize-max=" + size + params + "&").concat(" " + size + "w");
+      }).join(',');
+    } else {
+      return path.replace(site.instagram_url, site.twic_url + "/instagram").replace("?", "?twic=v1" + params + "&");
+    }
+  });
+
+  eleventyConfig.addNunjucksAsyncShortcode("insta_lqip", async function(args) {
+    let path = (args.path) ? args.path : "";
+    let params = (args.params) ? args.params : "";
+    let lqip_path = path.replace(site.instagram_url, site.twic_url + "/instagram").replace("?", "?twic=v1" + params + "/output=preview&");
+    return fetch(lqip_path)
+      .then(res => res.text())
+      .then(data => {
+        let buff = Buffer.from(data);
+        return ("data:image/svg+xml;base64," + buff.toString("base64"));
       })
       .catch(err => {
         console.error("LQIP error: ", err);
@@ -239,7 +279,7 @@ module.exports = function (eleventyConfig) {
       ready: (err, bs) => {
 
         bs.addMiddleware("*", (req, res) => {
-          const content_404 = fs.readFileSync('dist/404.html');
+          const content_404 = fs.readFileSync("dist/404.html");
           // Provides the 404 content without redirect.
           res.write(content_404);
           // Add 404 http status code in request header.
@@ -252,9 +292,9 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
-    markdownTemplateEngine: 'njk',
-    dataTemplateEngine: 'njk',
-    htmlTemplateEngine: 'njk',
+    markdownTemplateEngine: "njk",
+    dataTemplateEngine: "njk",
+    htmlTemplateEngine: "njk",
     dir: {
       input: "src",
       output: "dist"

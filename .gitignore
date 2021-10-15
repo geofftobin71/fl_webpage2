@@ -1,6 +1,7 @@
 .env
 node_modules/
 dist/
+_cache/
 package-lock.json
 
 # Local Netlify folder

@@ -47,10 +47,12 @@
       {% include "js/init_cookieconsent.njk" %}
       {% endset %}
 
-      <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false" async></script>
-      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
-      {# <script src="https://js.stripe.com/v3/" async></script> #}
+      <script async src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+      <script async src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      <script async defer src="{{ site.twic_url }}/?v1"></script>
+      {# <script async src="https://js.stripe.com/v3/"></script> #}
       <script>
+      {% include "js/smoothscroll.min.js" %}
         {{ js | jsmin | safe }}
       </script>
     {% endblock %}
