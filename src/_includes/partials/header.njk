@@ -22,7 +22,7 @@
     <h1>{{ (header_title or title) | lower | addNbsp | safe }}</h1>
   </div>
 </header>
-<div class="site-menu text-shadow" style="background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
+<div class="site-menu">
   <nav class="wrapper page-wrapper">
     {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
   </nav>

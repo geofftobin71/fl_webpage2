@@ -191,6 +191,29 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  eleventyConfig.addFilter("splitHours", (hours, index) => {
+    return hours.split('-')[index].trim();
+  });
+
+  eleventyConfig.addFilter("twentyFour", (time, ampm = 'pm') => {
+    let pm = (ampm == 'pm');
+
+    if(time.trim().slice(-2).toLowerCase() == 'am') { pm = false; }
+    if(time.trim().slice(-2).toLowerCase() == 'pm') { pm = true; }
+
+    const bits = time.split(/[^0-9]/);
+
+    let hour_num = ((bits.length > 0) && (bits[0])) ? parseInt(bits[0]) : 0;
+    hour_num += ((hour_num < 12) && (pm) ? 12 : 0);
+
+    let minute_num = ((bits.length > 1) && (bits[1])) ? parseInt(bits[1]) : 0;
+
+    const hour = ('00' + hour_num).slice(-2);
+    const minute = ('00' + minute_num).slice(-2);
+
+    return hour + ':' + minute;
+  });
+
   eleventyConfig.addNunjucksShortcode("twic", function(args) {
     let path = (args.path) ? args.path : "";
     let params = (args.params) ? args.params : "";
@@ -224,17 +247,17 @@ module.exports = function (eleventyConfig) {
     let params = (args.params) ? args.params : "";
     if(args.sizes) {
       return args.sizes.map(function(size) {
-        return path.replace(site.instagram_url, site.twic_url + "/instagram").replace("?", "?twic=v1/resize-max=" + size + params + "&").concat(" " + size + "w");
+        return path.replace(site.match_url, site.twic_url + "/instagram").replace("?", "?twic=v1/resize-max=" + size + params + "&").concat(" " + size + "w");
       }).join(',');
     } else {
-      return path.replace(site.instagram_url, site.twic_url + "/instagram").replace("?", "?twic=v1" + params + "&");
+      return path.replace(site.match_url, site.twic_url + "/instagram").replace("?", "?twic=v1" + params + "&");
     }
   });
 
   eleventyConfig.addNunjucksAsyncShortcode("insta_lqip", async function(args) {
     let path = (args.path) ? args.path : "";
     let params = (args.params) ? args.params : "";
-    let lqip_path = path.replace(site.instagram_url, site.twic_url + "/instagram").replace("?", "?twic=v1" + params + "/output=preview&");
+    let lqip_path = path.replace(site.match_url, site.twic_url + "/instagram").replace("?", "?twic=v1" + params + "/output=preview&");
     return fetch(lqip_path)
       .then(res => res.text())
       .then(data => {
