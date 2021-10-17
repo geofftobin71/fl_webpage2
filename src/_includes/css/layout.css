@@ -10,11 +10,13 @@
   --info-background:#CCEECC;
 }
 
+/*
 @media screen and (min-width:1200px) {
   :root {
     --measure:75ch;
   }
 }
+*/
 
 figure {
   overflow: hidden;
@@ -594,7 +596,6 @@ article > * + * {
 .checkerboard .content article h2,
 .checkerboard .content article h3,
 .checkerboard .content article h4 {
-  transform:translateX(0);
   text-align:center;
 }
 

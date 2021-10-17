@@ -17,11 +17,9 @@ const countableSlugify = slugify.counter();
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
-/*
 markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
-  const srcfilename = tokens[idx].attrs[0][1];
+  const image_path = tokens[idx].attrs[0][1];
   const title_txt = (tokens[idx].attrs[2]) ? tokens[idx].attrs[2][1] : null;
-  const public_id = srcfilename.replace('https://res.cloudinary.com/floriade/image/upload', '').replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'');
 
   let caption = '';
   if(title_txt) {
@@ -30,30 +28,9 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
 
-  if(alt == ' alt=""') {
-    alt = ' alt="Flowers by Floriade"';
-  }
-
-  let transforms = ",c_fill,ar_1,q_auto,f_auto,g_auto:subject/";
-  let src = site.cloudinary_url + '/w_900' + transforms + public_id;
-
-  let srcset = ' data-srcset="';
-  let first = true;
-  image_sizes.forEach(size => {
-    if(!first) { srcset += ','; }
-    srcset += site.cloudinary_url + '/w_' + size + transforms + public_id + ' ' + size + 'w';
-    first = false;
-  });
-  srcset += '"';
-
-  let sizes = ' sizes="(min-width:1200px) 75ch, (min-width:65ch) 65ch, 100vw"';
-
-  let lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto:subject,e_blur:200/" + public_id;
-
-  return '<figure><noscript><img class="round shadow" width="1200" height="1200"' + alt + ' src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" /></noscript><img class="round shadow" width="1200" height="1200"' + alt + ' src="' + site.transgif + '"' + srcset + sizes + 'data-src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" />'
+  return '<figure class="border-red" style="position:relative;width:120%;margin-left:-10%"><noscript><img class="round shadow"' + alt + ' src="' + image_path + '" /></noscript><img class="req-js round shadow" style="background-size:contain"' + alt + ' src="' + site.transgif + '" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-background="url(image:' + image_path + ')" data-twic-background-transform="output=preview" />'
     + caption + '</figure>';
 }
-*/
 
 module.exports = function (eleventyConfig) {
 

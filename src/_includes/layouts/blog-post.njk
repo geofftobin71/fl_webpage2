@@ -2,7 +2,11 @@
 layout: layouts/base.njk 
 ---
 {% include "partials/header.njk" %}
-<small><time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time></small>
-<p>{{ content | safe }}</p>
+<section>
+  <article class="bg-alt wrapper text-wrapper" style="padding-top:2em;padding-bottom:2em">
+    {{ content | safe }}
+    <div class="text-right"><small><time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time></small></div>
+  </article>
+</section>
 <a href="/blog/">&lt; Blog</a>
 {% include "partials/footer.njk" %}
