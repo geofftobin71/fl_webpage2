@@ -54,6 +54,23 @@ collections:
               - {label: "Shade3", name: "colorShade3", widget: "color"}
               - {label: "Button", name: "colorButton", widget: "color"}
               - {label: "Autofill", name: "colorAutofill", widget: "color"}
+  - label: "Shop Hours"
+    name: "shop_hours"
+    files:
+      - label: "Regular Shop Hours"
+        name: "regular_shop_hours"
+        delete: false
+        file: "src/_data/regular_shop_hours.json"
+        editor:
+          preview: false
+        fields:
+          - label: "Monday"
+            name: "monday"
+            widget: "object"
+            fields:
+              - {label: "Opens at", name: "opens_at", widget: "datetime", format, "HH:mm", date_format: false, time_format, "h:mma"}
+              - {label: "Closes at", name: "closes_at", widget: "datetime", format, "HH:mm", date_format: false, time_format, "h:mma"}
+              - {label: "Closed", name: "closed", widget: "boolean"}
   - label: "Lists"
     name: "lists"
     files:

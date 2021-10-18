@@ -377,12 +377,20 @@ blockquote footer:before {
   font-family:var(--font-family-alt);
   color:var(--color-light);
   background-color:var(--color-shade1);
-  border:2px solid var(--color-shade3);
+  border-top:2px solid var(--color-shade3);
+  border-bottom:2px solid var(--color-shade3);
   padding:0.5em;
   position:relative;
   z-index:9;
   box-shadow:0 0 15px 5px rgba(0, 0, 0, 0.4);
 }
+
+.banner-message strong {
+  color:var(--color-shade3);
+  font-size:120%;
+}
+
+.banner-message a { text-decoration:underline; }
 
 .banner-message a:link { color:var(--color-alt); }
 .banner-message a:visited { color:var(--color-alt); }

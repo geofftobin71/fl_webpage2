@@ -7,13 +7,13 @@ header_image: /images/blog/weddings_00189_1920.jpg
 ---
 ## Hello, here is the body of the post
 
-Consectetur rerum pariatur officiis doloremque veniam Esse quas aliquam culpa quos fugiat. Aperiam cupiditate unde soluta tenetur nemo? Nemo ratione eius ullam totam sit Voluptatum id dolor sequi nostrum quaerat in inventore? Dolore laboriosam eius suscipit quibusdam aut Quos fugiat impedit nulla hic error. Numquam vel sapiente ad laboriosam veritatis.
+**Consectetur rerum pariatur** officiis doloremque veniam Esse quas aliquam culpa quos fugiat. Aperiam cupiditate unde soluta tenetur nemo? Nemo ratione eius ullam totam sit Voluptatum id dolor sequi nostrum quaerat in inventore? Dolore laboriosam eius suscipit quibusdam aut Quos fugiat impedit nulla hic error. Numquam vel sapiente ad laboriosam veritatis.
 
 Adipisicing nam labore amet est natus esse. Eligendi quas tempora dicta qui nobis Neque eum voluptas necessitatibus veniam fuga. Perspiciatis sint explicabo nulla temporibus sequi repellendus officiis voluptate. Debitis distinctio amet voluptate at natus. Quis voluptate expedita placeat quis repellendus placeat Saepe vitae soluta eaque ipsum error. Dolores suscipit corporis
 
 Adipisicing nostrum ipsum autem porro illum, fugiat odio? Cupiditate veniam inventore repudiandae accusamus vero Illo consequuntur laboriosam atque aliquid eum? Quo elit officia et maxime numquam eum, sequi optio alias ducimus Sed odit quia aliquam sit rem! Dignissimos optio perspiciatis natus repudiandae impedit? Unde maiores laborum cum enim aperiam placeat
 
-> Amet dolor laboriosam ut alias asperiores. Ratione quibusdam eum deleniti eligendi dignissimos. 
+> Amet dolor **laboriosam** ut alias asperiores. Ratione quibusdam eum deleniti eligendi dignissimos. 
 
 Consectetur rerum pariatur officiis doloremque veniam Esse quas aliquam culpa quos fugiat. Aperiam cupiditate unde soluta tenetur nemo? Nemo ratione eius ullam totam sit Voluptatum id dolor sequi nostrum quaerat in inventore? Dolore laboriosam eius suscipit quibusdam aut Quos fugiat impedit nulla hic error. Numquam vel sapiente ad laboriosam veritatis.
 
