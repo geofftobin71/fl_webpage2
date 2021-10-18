@@ -49,7 +49,23 @@ collections:
   - label: "Lists"
     name: "lists"
     files:
+      - label: "FAQ"
+        label_singular: "FAQ"
+        name: "faq"
+        delete: false
+        file: "src/_data/faq.json"
+        editor:
+          preview: false
+        fields:
+          - label: "FAQ"
+            name: "faq"
+            widget: "list"
+            summary: '{{fields.question}}'
+            fields:
+              - {label: "Question", name: "question", widget: "string" }
+              - {label: "Answer", name: "answer", widget: "text" }
       - label: "Reviews"
+        label_singular: "Review"
         name: "reviews"
         delete: false
         file: "src/_data/reviews.json"
