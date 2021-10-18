@@ -1,9 +1,37 @@
 {
-  "monday": { "opens_at": "", "closes_at": "", "closed": false },
-  "tuesday": { "opens_at": "", "closes_at": "", "closed": false },
-  "wednesday": { "opens_at": "", "closes_at": "", "closed": false },
-  "thursday": { "opens_at": "", "closes_at": "", "closed": false },
-  "friday": { "opens_at": "", "closes_at": "", "closed": false },
-  "saturday": { "opens_at": "", "closes_at": "", "closed": false },
-  "sunday": { "opens_at": "", "closes_at": "", "closed": true }
+  "monday": {
+    "opens_at": "09:30",
+    "closes_at": "14:30",
+    "closed": false
+  },
+  "tuesday": {
+    "opens_at": "",
+    "closes_at": "",
+    "closed": false
+  },
+  "wednesday": {
+    "opens_at": "",
+    "closes_at": "",
+    "closed": false
+  },
+  "thursday": {
+    "opens_at": "",
+    "closes_at": "",
+    "closed": false
+  },
+  "friday": {
+    "opens_at": "",
+    "closes_at": "",
+    "closed": false
+  },
+  "saturday": {
+    "opens_at": "",
+    "closes_at": "",
+    "closed": false
+  },
+  "sunday": {
+    "opens_at": "",
+    "closes_at": "",
+    "closed": true
+  }
 }
