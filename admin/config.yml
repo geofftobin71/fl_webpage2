@@ -68,8 +68,8 @@ collections:
             name: "monday"
             widget: "object"
             fields:
-              - {label: "Opens at", name: "opens_at", widget: "datetime", format, "HH:mm", date_format: false, time_format, "h:mma"}
-              - {label: "Closes at", name: "closes_at", widget: "datetime", format, "HH:mm", date_format: false, time_format, "h:mma"}
+              - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
               - {label: "Closed", name: "closed", widget: "boolean"}
   - label: "Lists"
     name: "lists"
