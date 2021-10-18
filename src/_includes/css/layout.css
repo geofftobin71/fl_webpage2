@@ -283,7 +283,7 @@ blockquote footer:before {
 /* ----- Site Menu ----- */
 
 .site-menu {
-  background:rgba(0,0,0,0.5);
+  background:rgba(61,72,68,0.6);
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
   position:-webkit-sticky;

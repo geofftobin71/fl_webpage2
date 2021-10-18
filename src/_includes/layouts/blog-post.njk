@@ -12,7 +12,7 @@ layout: layouts/base.njk
 {%- set prevPost = collections.blog | getNextCollectionItem(page) %}
 {%- set nextPost = collections.blog | getPreviousCollectionItem(page) %}
 {%- if nextPost or prevPost %}
-<style>.page-links{max-width:1500px;margin:0 auto;padding:1em;display:flex;width:100%}.page-links a{max-width:50%;display:flex;align-items:center;}.page-links .prev{width:var(--step-0);margin-right:0.5em;flex-shrink:0;}.page-links .next{width:var(--step-0);margin-left:0.5em;flex-shrink:0;}</style>
+<style>.page-links{background-color:rgba(0,0,0,0.05);max-width:1500px;margin:0 auto;padding:1em;display:flex;width:100%}.page-links a{max-width:50%;display:flex;align-items:center;}.page-links .prev{width:var(--step-0);margin-right:0.5em;flex-shrink:0;}.page-links .next{width:var(--step-0);margin-left:0.5em;flex-shrink:0;}</style>
 <hr>
 <nav class="page-links font-secondary">
   {% if prevPost.url %}
