@@ -1,8 +1,8 @@
 ---
 draft: false
-title: My second post
-description: The second post on the Eleventy + Netlify CMS from scratch blog
-date: 2020-10-09
+title: My third post
+description: The third post on the Eleventy + Netlify CMS from scratch blog
+date: 2020-10-11
 header_image: /images/floriade-dried-flower-room-00001.jpg
 ---
 

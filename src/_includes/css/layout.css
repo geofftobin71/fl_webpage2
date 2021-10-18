@@ -48,6 +48,11 @@ blockquote {
   border-radius:var(--box-border-radius, 0.4rem);
   border-width:var(--box-border-width, 1px);
   text-align:center;
+  box-shadow:0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.bg-alt blockquote {
+  background-color:var(--color-light);
 }
 
 @media screen and (min-width:450px) {
@@ -531,6 +536,25 @@ article > * + * {
     padding-left:var(--step-0);
     padding-right:var(--step-0);
   }
+}
+
+/* ----- Blog Post ----- */
+
+@media screen and (min-width:800px) {
+  .blog-post figure {
+    position:relative;
+    width:120%;
+    margin-left:-10%;
+  }
+}
+
+.blog-post figure img {
+  width:100%;
+  height:100%;
+  margin:0 auto;
+  max-height:65ch;
+  object-fit:contain;
+  background-size:contain;
 }
 
 /* ----- Buttons ----- */

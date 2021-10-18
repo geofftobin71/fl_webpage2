@@ -28,7 +28,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
 
-  return '<figure class="border-red" style="position:relative;width:120%;margin-left:-10%"><noscript><img class="round shadow"' + alt + ' src="' + image_path + '" /></noscript><img class="req-js round shadow" style="background-size:contain"' + alt + ' src="' + site.transgif + '" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-background="url(image:' + image_path + ')" data-twic-background-transform="output=preview" />'
+  return '<figure><noscript><img ' + alt + ' src="' + site.twic_url + image_path + '" /></noscript><img class="req-js"' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/output=preview" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-bot="contain=750x750" />'
     + caption + '</figure>';
 }
 
@@ -263,6 +263,7 @@ module.exports = function (eleventyConfig) {
 
     let coll = collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
 
+    /*
     for(let i = 0; i < coll.length ; i++) {
       const prevPost = coll[i - 1];
       const nextPost = coll[i + 1];
@@ -270,6 +271,7 @@ module.exports = function (eleventyConfig) {
       coll[i].data["prevPost"] = prevPost;
       coll[i].data["nextPost"] = nextPost;
     }
+    */
 
     return coll;
   });
