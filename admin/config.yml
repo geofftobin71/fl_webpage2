@@ -71,6 +71,48 @@ collections:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
               - {label: "Closed", name: "closed", widget: "boolean"}
+          - label: "Tuesday"
+            name: "tuesday"
+            widget: "object"
+            fields:
+              - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closed", name: "closed", widget: "boolean"}
+          - label: "Wednesday"
+            name: "wednesday"
+            widget: "object"
+            fields:
+              - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closed", name: "closed", widget: "boolean"}
+          - label: "Thursday"
+            name: "thursday"
+            widget: "object"
+            fields:
+              - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closed", name: "closed", widget: "boolean"}
+          - label: "Friday"
+            name: "friday"
+            widget: "object"
+            fields:
+              - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closed", name: "closed", widget: "boolean"}
+          - label: "Saturday"
+            name: "saturday"
+            widget: "object"
+            fields:
+              - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closed", name: "closed", widget: "boolean"}
+          - label: "Sunday"
+            name: "sunday"
+            widget: "object"
+            fields:
+              - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closed", name: "closed", widget: "boolean"}
   - label: "Lists"
     name: "lists"
     files:

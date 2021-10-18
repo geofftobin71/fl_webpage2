@@ -5,28 +5,28 @@
     "closed": false
   },
   "tuesday": {
-    "opens_at": "",
-    "closes_at": "",
+    "opens_at": "09:30",
+    "closes_at": "14:30",
     "closed": false
   },
   "wednesday": {
-    "opens_at": "",
-    "closes_at": "",
+    "opens_at": "09:30",
+    "closes_at": "14:30",
     "closed": false
   },
   "thursday": {
-    "opens_at": "",
-    "closes_at": "",
+    "opens_at": "09:30",
+    "closes_at": "14:30",
     "closed": false
   },
   "friday": {
-    "opens_at": "",
-    "closes_at": "",
+    "opens_at": "09:30",
+    "closes_at": "14:30",
     "closed": false
   },
   "saturday": {
-    "opens_at": "",
-    "closes_at": "",
+    "opens_at": "10:00",
+    "closes_at": "13:00",
     "closed": false
   },
   "sunday": {
