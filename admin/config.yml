@@ -56,14 +56,14 @@ collections:
         editor:
           preview: false
         fields:
-          label: "Reviews"
-          name: "reviews"
-          widget: "list"
-          summary: '{{fields.review}} - {{fields.name}}'
-          fields:
-            - {label: "Review", name: "review", widget: "text" }
-            - {label: "Author", name: "name", widget: "string" }
-            - {label: "Wedding", name: "wedding", widget: "boolean" }
+          - label: "Reviews"
+            name: "reviews"
+            widget: "list"
+            summary: '{{fields.review}} - {{fields.name}}'
+            fields:
+              - {label: "Review", name: "review", widget: "text" }
+              - {label: "Author", name: "name", widget: "string" }
+              - {label: "Wedding", name: "wedding", widget: "boolean" }
   - name: "blog"
     label: "Blog"
     label_singular: "Blog Post"
