@@ -12,6 +12,14 @@ collections:
   - label: "Globals"
     name: "globals"
     files:
+      - label: "Banner Message"
+        name: "banner_message"
+        delete: false
+        file: "src/_data/banner_message.json"
+        editor:
+          preview: false
+        fields:
+          - {label: "Message", name: "message", widget: "markdown", buttons: ['bold', 'italic', 'link'], editor_components: [], modes: ['rich_text'], minimal: true}
       - label: "Site Data"
         name: "site_data"
         delete: false
@@ -37,15 +45,15 @@ collections:
             name: "colors"
             widget: "object"
             fields:
-              - {label: "Light", name: "colorLight", widget: "color" }
-              - {label: "Dark", name: "colorDark", widget: "color" }
-              - {label: "Alt", name: "colorAlt", widget: "color" }
-              - {label: "Primary", name: "colorPrimary", widget: "color" }
-              - {label: "Shade1", name: "colorShade1", widget: "color" }
-              - {label: "Shade2", name: "colorShade2", widget: "color" }
-              - {label: "Shade3", name: "colorShade3", widget: "color" }
-              - {label: "Button", name: "colorButton", widget: "color" }
-              - {label: "Autofill", name: "colorAutofill", widget: "color" }
+              - {label: "Light", name: "colorLight", widget: "color"}
+              - {label: "Dark", name: "colorDark", widget: "color"}
+              - {label: "Alt", name: "colorAlt", widget: "color"}
+              - {label: "Primary", name: "colorPrimary", widget: "color"}
+              - {label: "Shade1", name: "colorShade1", widget: "color"}
+              - {label: "Shade2", name: "colorShade2", widget: "color"}
+              - {label: "Shade3", name: "colorShade3", widget: "color"}
+              - {label: "Button", name: "colorButton", widget: "color"}
+              - {label: "Autofill", name: "colorAutofill", widget: "color"}
   - label: "Lists"
     name: "lists"
     files:
@@ -62,8 +70,8 @@ collections:
             widget: "list"
             summary: '{{fields.question}}'
             fields:
-              - {label: "Question", name: "question", widget: "string" }
-              - {label: "Answer", name: "answer", widget: "text" }
+              - {label: "Question", name: "question", widget: "string"}
+              - {label: "Answer", name: "answer", widget: "text"}
       - label: "Photographers"
         name: "photographers"
         delete: false
@@ -78,8 +86,8 @@ collections:
             widget: "list"
             summary: '{{fields.name}}'
             fields:
-              - {label: "Name", name: "name", widget: "string" }
-              - {label: "Web Page", name: "webpage", widget: "string" }
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Web Page", name: "webpage", widget: "string"}
       - label: "Reviews"
         name: "reviews"
         delete: false
@@ -93,9 +101,9 @@ collections:
             widget: "list"
             summary: '{{fields.review}} - {{fields.name}}'
             fields:
-              - {label: "Review", name: "review", widget: "text" }
-              - {label: "Author", name: "name", widget: "string" }
-              - {label: "Wedding", name: "wedding", widget: "boolean" }
+              - {label: "Review", name: "review", widget: "text"}
+              - {label: "Author", name: "name", widget: "string"}
+              - {label: "Wedding", name: "wedding", widget: "boolean"}
   - name: "blog"
     label: "Blog"
     label_singular: "Blog Post"
@@ -105,9 +113,9 @@ collections:
     media_folder: '/{{media_folder}}/blog'
     public_folder: '{{public_folder}}/blog'
     fields:
-      - { label: "Draft", name: "draft", widget: "boolean", default: true }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Date", name: "date", widget: "datetime", date_format: true, time_format: false }
-      - { label: "Header Image", name: "header_mage", widget: "image", required: false }
-      - { label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text'] }
+      - {label: "Draft", name: "draft", widget: "boolean", default: true}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Date", name: "date", widget: "datetime", date_format: true, time_format: false}
+      - {label: "Header Image", name: "header_mage", widget: "image", required: false}
+      - {label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text']}
