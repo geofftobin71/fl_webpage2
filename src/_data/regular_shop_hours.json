@@ -1,9 +1,9 @@
 {
-  "monday": { "", "", false },
-  "tuesday": { "", "", false },
-  "wednesday": { "", "", false },
-  "thursday": { "", "", false },
-  "friday": { "", "", false },
-  "saturday": { "", "", false },
-  "sunday": { "", "", true }
+  "monday": { "opens_at": "", "closes_at": "", "closed": false },
+  "tuesday": { "opens_at": "", "closes_at": "", "closed": false },
+  "wednesday": { "opens_at": "", "closes_at": "", "closed": false },
+  "thursday": { "opens_at": "", "closes_at": "", "closed": false },
+  "friday": { "opens_at": "", "closes_at": "", "closed": false },
+  "saturday": { "opens_at": "", "closes_at": "", "closed": false },
+  "sunday": { "opens_at": "", "closes_at": "", "closed": true }
 }
