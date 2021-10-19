@@ -124,7 +124,7 @@ collections:
             label_singular: "Date"
             name: "special_shop_hours"
             widget: "list"
-            summary: '{{fields.date}} {{fields.opens_at}} {{fields.closes_at}} {{fields.closed}}'
+            summary: "{{fields.date}} : {{fields.opens_at | date('h:mma')}} {{fields.closes_at | date('h:mma')}} {{fields.closed ? 'Closed' : ''}}"
             fields:
               - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
