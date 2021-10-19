@@ -19,7 +19,7 @@
         <img src="{{ '/icons/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
       </a>
     </figure>
-    <h1>{{ (header_title or title) | lower | addNbsp | safe }}</h1>
+    <h1>{{ (header_title or title) | pronoun | addNbsp | safe }}</h1>
   </div>
 </header>
 <div class="site-menu">

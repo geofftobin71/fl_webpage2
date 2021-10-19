@@ -158,8 +158,8 @@ module.exports = function (eleventyConfig) {
     return filtered;
   });
 
-  eleventyConfig.addFilter("urldecode", (string) => {
-    return decodeURIComponent(string);
+  eleventyConfig.addFilter("pronoun", (string) => {
+    return string.replaceAll(/\si\s/ig, "<span style='text-transform:uppercase'> I </span>");
   });
 
   eleventyConfig.addFilter("sortISO8601", (array) => {
@@ -262,6 +262,8 @@ module.exports = function (eleventyConfig) {
     }
 
     let coll = collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
+
+    console.log(coll);
 
     /*
     for(let i = 0; i < coll.length ; i++) {

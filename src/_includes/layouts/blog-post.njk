@@ -12,26 +12,28 @@ layout: layouts/base.njk
 {%- set prevPost = collections.blog | getNextCollectionItem(page) %}
 {%- set nextPost = collections.blog | getPreviousCollectionItem(page) %}
 {%- if nextPost or prevPost %}
-<style>.page-links{background-color:rgba(0,0,0,0.05);max-width:1500px;margin:0 auto;padding:1em;display:flex;width:100%}.page-links a{max-width:50%;display:flex;align-items:center;}.page-links .prev{width:var(--step-0);margin-right:0.5em;flex-shrink:0;}.page-links .next{width:var(--step-0);margin-left:0.5em;flex-shrink:0;}</style>
+<style>.page-links{max-width:1500px;margin:0 auto;padding:1em;display:flex;width:100%}.page-links a{max-width:50%;display:flex;align-items:center;}.page-links .prev{width:var(--step-0);margin-right:0.5em;flex-shrink:0;}.page-links .next{width:var(--step-0);margin-left:0.5em;flex-shrink:0;}</style>
 <hr>
-<nav class="page-links font-secondary">
-  {% if prevPost.url %}
-    <a href="{{ prevPost.url | url }}" aria-label="Previous" style="margin-right:auto">
-      <span class="prev">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
-      <p class="text-lowercase">{{ prevPost.data.title | addNbsp | safe }}</p>
-    </a>
-  {% else %}
-    <p>&nbsp;</p>
-  {% endif %}
-  {% if nextPost.url %}
-    <a href="{{ nextPost.url | url }}" aria-label="Next" style="margin-left:auto">
-      <p class="text-right text-lowercase">{{ nextPost.data.title | addNbsp | safe }}</p>
-      <span class="next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
-    </a>
-  {% else %}
-    <p>&nbsp;</p>
-  {% endif %}
-</nav>
+<div style="background-color:rgba(0,0,0,0.05)">
+  <nav class="page-links font-secondary">
+    {% if prevPost.url %}
+      <a href="{{ prevPost.url | url }}" aria-label="Previous" style="margin-right:auto">
+        <span class="prev">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
+        <p class="text-lowercase">{{ prevPost.data.title | pronoun | addNbsp | safe }}</p>
+      </a>
+    {% else %}
+      <p>&nbsp;</p>
+    {% endif %}
+    {% if nextPost.url %}
+      <a href="{{ nextPost.url | url }}" aria-label="Next" style="margin-left:auto">
+        <p class="text-right text-lowercase">{{ nextPost.data.title | pronoun | addNbsp | safe }}</p>
+        <span class="next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
+      </a>
+    {% else %}
+      <p>&nbsp;</p>
+    {% endif %}
+  </nav>
+</div>
 {%- endif %}
 {%- endif %}
 {% include "partials/footer.njk" %}

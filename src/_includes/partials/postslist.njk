@@ -1,15 +1,15 @@
-<ul>
+<ul class="postlist vertical flow">
   {% for post in postslist %}
     <li>
-      <strong>
-        <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-      </strong>
-      -
-      <span>
+      <h2 class="heading">
+        <a href="{{ post.url | url }}">{{ post.data.title | pronoun | safe }}</a>
+      </h2>
+      <div class="text-center">
+        <p>
         {{ post.data.description }}
-      </span>
-      -
-      <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+        </p>
+        <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+      </div>
     </li>
   {% endfor %}
 </ul>
