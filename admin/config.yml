@@ -138,12 +138,14 @@ collections:
             label_singular: "Date"
             name: "special_shop_hours"
             widget: "list"
-            summary: "{{fields.date}} : {{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}}"
+            summary: "{{fields.date}} : {{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.no_delivery | ternary('No Delivery','')}} {{fields.no_pickup | ternary('No Pickup','')}}"
             fields:
               - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", default: false, required: false}
+              - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
+              - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
   - label: "Lists"
     name: "lists"
     files:
