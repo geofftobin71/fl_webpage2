@@ -67,6 +67,7 @@ collections:
           - label: "Monday"
             name: "monday"
             widget: "object"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed')}}"
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
@@ -74,6 +75,7 @@ collections:
           - label: "Tuesday"
             name: "tuesday"
             widget: "object"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed')}}"
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
@@ -81,6 +83,7 @@ collections:
           - label: "Wednesday"
             name: "wednesday"
             widget: "object"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed')}}"
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
@@ -88,6 +91,7 @@ collections:
           - label: "Thursday"
             name: "thursday"
             widget: "object"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed')}}"
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
@@ -95,6 +99,7 @@ collections:
           - label: "Friday"
             name: "friday"
             widget: "object"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed')}}"
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
@@ -102,6 +107,7 @@ collections:
           - label: "Saturday"
             name: "saturday"
             widget: "object"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed')}}"
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
@@ -109,6 +115,7 @@ collections:
           - label: "Sunday"
             name: "sunday"
             widget: "object"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed')}}"
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
@@ -124,7 +131,7 @@ collections:
             label_singular: "Date"
             name: "special_shop_hours"
             widget: "list"
-            summary: "{{fields.date}} : {{fields.opens_at | date('h:mma')}} {{fields.closes_at | date('h:mma')}} {{fields.closed ? 'Closed' : ''}}"
+            summary: "{{fields.date}} : {{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed')}}"
             fields:
               - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", required: false}
