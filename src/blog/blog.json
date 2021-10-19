@@ -1,5 +1,5 @@
 {
   "layout": "layouts/blog-post.njk",
   "metaType": "article",
-  "permalink": "/blog/{{ title | slugify }}/"
+  "permalink": "/blog/{{ title | slugify }}{{ page.fileSlug | slugSuffix }}/"
 }

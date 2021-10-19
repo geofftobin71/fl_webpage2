@@ -2,10 +2,22 @@
   {% set monday = now_nz.startOf('week') %}
   {% set days = [ monday, monday.plus({days:1}), monday.plus({days:2}), monday.plus({days:3}), monday.plus({days:4}), monday.plus({days:5}), monday.plus({days:6}) ] %}
   {% for day in days %}
-    {% if ( day.toFormat("dd LLL yyyy") in shop_closed_dates ) and ( shop_hours[ day.weekdayLong | lower ] | lower != "closed" ) %}
-      <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;Closed {{ day.toFormat("dd LLL yyyy") }}</td></tr>
+    {% set rsh = regular_shop_hours[ day.weekdayLong | lower ] %}
+    {% set ssh = special_shop_hours.special_shop_hours | findSpecialDay(day.toFormat("yyyy-LL-dd")) %}
+    {% if rsh.closed %}
+      <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;Closed</td></tr>
     {% else %}
-      <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ shop_hours[ day.weekdayLong | lower ] }}</td></tr>
+      {% if ssh %}
+        {% if ssh.closed %}
+          <tr><td>{{ day.weekdayLong }}&nbsp;</td><td><i><b>&nbsp;Closed {{ day.toFormat("dd LLL") }}</b></i></td></tr>
+        {% elseif (ssh.opens_at | length) and (ssh.closes_at | length) %}
+          <tr><td>{{ day.weekdayLong }}&nbsp;</td><td><i><b>&nbsp;{{ ssh.opens_at | twelveHourTime | lower }} - {{ ssh.closes_at | twelveHourTime | lower }}</b></i></td></tr>
+        {% else %}
+          <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ rsh.opens_at | twelveHourTime | lower }} - {{ rsh.closes_at | twelveHourTime | lower }}</td></tr>
+        {% endif %}
+      {% else %}
+        <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ rsh.opens_at | twelveHourTime | lower }} - {{ rsh.closes_at | twelveHourTime | lower }}</td></tr>
+      {% endif %}
     {% endif %}
   {% endfor %}
 </table>

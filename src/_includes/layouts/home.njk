@@ -31,13 +31,13 @@
     },
     "hasMap": "{{ site.google_maps }}",
     "openingHoursSpecification": [
-      {%- for day, hours in shop_hours -%}
+      {%- for day, rsh in regular_shop_hours -%}
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": "{{ day | capitalize }}"
-          {%- if (hours | lower) != 'closed' -%}
-          ,"opens": "{{ hours | splitHours(0) | twentyFour('am') }}",
-          "closes": "{{ hours | splitHours(1) | twentyFour('pm') }}"
+          {%- if rsh.closed === false -%}
+          ,"opens": "{{ rsh.opens_at | twelveHourTime | lower }}",
+          "closes": "{{ rsh.closes_at | twelveHourTime | lower }}"
           {%- endif -%}
         }{{ ',' if not loop.last }}
       {%- endfor -%}

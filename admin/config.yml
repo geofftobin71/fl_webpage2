@@ -113,6 +113,23 @@ collections:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
               - {label: "Closed", name: "closed", widget: "boolean"}
+      - label: "Special Shop Hours"
+        name: "special_shop_hours"
+        delete: false
+        file: "src/_data/special_shop_hours.json"
+        editor:
+          preview: false
+        fields:
+          - label: "Special Shop Hours"
+            label_singular: "Date"
+            name: "special_shop_hours"
+            widget: "list"
+            summary: '{{fields.date}} {{fields.opens_at}} {{fields.closes_at}} {{fields.closed}}'
+            fields:
+              - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
+              - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma"}
+              - {label: "Closed", name: "closed", widget: "boolean"}
   - label: "Lists"
     name: "lists"
     files:
@@ -175,6 +192,6 @@ collections:
       - {label: "Draft", name: "draft", widget: "boolean", default: true}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "Do MMM YYYY", time_format: false}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
       - {label: "Header Image", name: "header_image", widget: "image", required: false}
       - {label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text']}

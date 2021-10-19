@@ -75,6 +75,15 @@ module.exports = function (eleventyConfig) {
     return slugify(str);
   });
 
+  eleventyConfig.addFilter("slugSuffix", (string) => {
+    let number = string.split('-').pop();
+    if(isNaN(number)) {
+      return '';
+    } else {
+      return '-' + number;
+    }
+  });
+
   eleventyConfig.addFilter("cssmin", (code) => {
     if(site.dev) { return code; }
 
@@ -166,6 +175,14 @@ module.exports = function (eleventyConfig) {
     return array.sort((a, b) => {
       return (a.timestamp < b.timestamp) ? -1 : ((a.timestamp > b.timestamp) ? 1 : 0);
     });
+  });
+
+  eleventyConfig.addFilter("twelveHourTime", (string) => {
+    return DateTime.fromFormat(string, "HH:mm").toFormat("h:mma");
+  });
+
+  eleventyConfig.addFilter("findSpecialDay", (array, date) => {
+    return array.find(element => element.date === date);
   });
 
   eleventyConfig.addFilter("splitHours", (hours, index) => {
@@ -262,18 +279,6 @@ module.exports = function (eleventyConfig) {
     }
 
     let coll = collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
-
-    console.log(coll);
-
-    /*
-    for(let i = 0; i < coll.length ; i++) {
-      const prevPost = coll[i - 1];
-      const nextPost = coll[i + 1];
-
-      coll[i].data["prevPost"] = prevPost;
-      coll[i].data["nextPost"] = nextPost;
-    }
-    */
 
     return coll;
   });
