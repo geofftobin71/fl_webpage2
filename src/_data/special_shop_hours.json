@@ -1,11 +1,13 @@
 {
   "special_shop_hours": [
     {
-      "date": "2021-10-23"
+      "date": "2021-10-21",
+      "opens_at": "11:30",
+      "closes_at": "16:30"
     },
     {
       "date": "2021-10-22",
-      "opens_at": "11:45",
+      "opens_at": "12:00",
       "closes_at": "17:00",
       "closed": false
     },
