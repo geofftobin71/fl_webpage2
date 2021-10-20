@@ -185,27 +185,30 @@ module.exports = function (eleventyConfig) {
     return array.find(element => element.date === date);
   });
 
-  eleventyConfig.addFilter("splitHours", (hours, index) => {
-    return hours.split('-')[index].trim();
+  eleventyConfig.addFilter("shuffle", (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
   });
 
-  eleventyConfig.addFilter("twentyFour", (time, ampm = 'pm') => {
-    let pm = (ampm == 'pm');
+  eleventyConfig.addFilter("removeLongReviews", (array, limit) => {
+    let filtered = [];
+    for (let i = 0; i < array.length; ++i) {
+      if(array[i].review.length <= limit) { filtered[filtered.length] = array[i]; }
+    }
+    return filtered;
+  });
 
-    if(time.trim().slice(-2).toLowerCase() == 'am') { pm = false; }
-    if(time.trim().slice(-2).toLowerCase() == 'pm') { pm = true; }
-
-    const bits = time.split(/[^0-9]/);
-
-    let hour_num = ((bits.length > 0) && (bits[0])) ? parseInt(bits[0]) : 0;
-    hour_num += ((hour_num < 12) && (pm) ? 12 : 0);
-
-    let minute_num = ((bits.length > 1) && (bits[1])) ? parseInt(bits[1]) : 0;
-
-    const hour = ('00' + hour_num).slice(-2);
-    const minute = ('00' + minute_num).slice(-2);
-
-    return hour + ':' + minute;
+  eleventyConfig.addFilter("filterWeddingReviews", (array, wedding) => {
+    let filtered = [];
+    for (let i = 0; i < array.length; ++i) {
+      if(array[i].wedding == wedding) { filtered[filtered.length] = array[i]; }
+    }
+    return filtered;
   });
 
   eleventyConfig.addNunjucksShortcode("twic", function(args) {

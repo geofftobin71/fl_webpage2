@@ -1,0 +1,74 @@
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+  {{ super() }}
+  {% set css %}
+  #reviews ul > * + * {
+    margin-top: var(--step-4);
+  }
+  #reviews > ul > li {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform: translate3d(0,0,0);
+    opacity: 1;
+    transition: transform 750ms ease, opacity 750ms linear;
+  }
+  #reviews > ul > li.hidden {
+    transform: translate3d(0,200px,0);
+    opacity: 0.01;
+  }
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
+{% block content %}
+  {% include "partials/header.njk" %}
+  <main>
+  <section>
+    <div class="horizontal center"><a href="{{ site.google_review }}" class="button" role="button" target="_blank" rel="noopener">Leave a Review</a></div>
+    <div id="reviews" style="--section-padding:2em">
+      <ul class="vertical center">
+        {% set ic = 0 %}
+        {% for item in reviews.reviews | shuffle -%}
+          <li class="review width100">
+            <blockquote class="wrapper text-wrapper flow" style="--flow-space:var(--step-2)">
+              <p>{{ item.review }}</p>
+              <footer>{{ item.name }}</footer>
+            </blockquote>
+          </li>
+        {% endfor -%}
+      </ul>
+    </div>
+  </section>
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}
+
+{% block foot %}
+  {{ super() }}
+  {% set js %}
+  const reviews = document.querySelectorAll(".review");
+  const reviews_options = { root: null, threshold: 0.25, rootMargin: "0px" };
+  const reviews_observer = new IntersectionObserver((entries, reviews_observer) => {
+  entries.forEach(entry => {
+  if(!entry.isIntersecting) {
+  entry.target.classList.add("hidden");
+  return;
+  }
+  entry.target.classList.remove("hidden");
+  reviews_observer.unobserve(entry.target);
+  });
+  }, reviews_options);
+
+  reviews.forEach(review => {
+  reviews_observer.observe(review);
+  });
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}
