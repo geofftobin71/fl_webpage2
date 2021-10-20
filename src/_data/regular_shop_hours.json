@@ -32,6 +32,8 @@
   "sunday": {
     "opens_at": "",
     "closes_at": "",
-    "closed": true
+    "closed": true,
+    "no_delivery": true,
+    "no_pickup": true
   }
 }
