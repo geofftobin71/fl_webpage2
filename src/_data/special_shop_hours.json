@@ -16,14 +16,6 @@
       "opens_at": "",
       "closes_at": "",
       "closed": true
-    },
-    {
-      "closed": false,
-      "no_delivery": false,
-      "no_pickup": false,
-      "date": "2021-10-20",
-      "opens_at": "12:56",
-      "closes_at": "12:56"
     }
   ]
 }
