@@ -38,7 +38,7 @@
 </noscript>
 <script src="https://www.google.com/recaptcha/api.js?render={{ process.env.RECAPTCHA_SITE_KEY }}" async defer></script>
 {% set js %}
-{% include "js/contact-form-handler.js" %}
+{# {% include "js/contact-form-handler.js" %} #}
 {% endset %}
 <script>
   {{ js | jsmin | safe }}
