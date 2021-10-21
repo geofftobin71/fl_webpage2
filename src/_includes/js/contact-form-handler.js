@@ -23,9 +23,9 @@ function contactFormHandler() {
 
     const inputs = contact_form.querySelectorAll("input,textarea");
     for(let i = 0; i < inputs.length; i++) {
-      if(window.getComputedStyle(inputs[i]).display !== "none") {
+      if((window.getComputedStyle(inputs[i]).display !== "none") and (inputs[i].name !== "password")) {
         if(inputs[i].value.trim().length === 0) {
-          showError(inputs[i].dataset.error || "Error");
+          showError(inputs[i].dataset.error || "Form Error");
           enableContactForm();
           return false;
         }
