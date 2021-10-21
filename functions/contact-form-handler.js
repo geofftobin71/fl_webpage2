@@ -9,6 +9,8 @@ exports.handler = (event, context, callback) => {
     body = parse(event.body)
   }
 
+  console.log(body);
+
   // Bail if email is missing
   if (!body.email) {
     return callback(null, {

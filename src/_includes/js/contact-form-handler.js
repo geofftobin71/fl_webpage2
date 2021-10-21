@@ -3,8 +3,15 @@ document.addEventListener("DOMContentLoaded",function(){contactFormHandler();},f
 function contactFormHandler() {
 
   const contact_form = document.getElementById("contact-form");
-  const email_input = contact_form.querySelector("#email");
   const recaptcha_site_key = document.getElementById("recaptcha-site-key");
+
+  const name_input = contact_form.querySelector("#name");
+  const email_input = contact_form.querySelector("#email");
+  const message_input = contact_form.querySelector("#message");
+
+  name_input.onfocus = hideError();
+  email_input.onfocus = hideError();
+  message_input.onfocus = hideError();
 
   contact_form.addEventListener("submit", event => {
 
