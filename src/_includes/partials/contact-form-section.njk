@@ -1,6 +1,6 @@
 <div class="wrapper" style="--wrapper-width:600px">
 <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
-<form id="contact-form" class="width100 flow req-js" action="{{ '/.netlify/functions/contact-form-handler' | url }}" method="post">
+<form id="contact-form" class="width100 flow" action="{{ '/.netlify/functions/contact-form-handler' | url }}" method="post">
   <div>
     <label for="name"><h4 class="heading">Name</h4></label>
     <input required class="input" id="name" name="name" type="text" autocomplete="name" data-error="Name is required" placeholder="Your Name">
@@ -33,12 +33,6 @@
     <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
   </div>
 </form>
-<noscript>
-  <div class="text-center flow" style="margin-top:1em">
-    <p><a href="{{ site.mailto_obf | safe }}?subject={{ section.email_subject or 'Flowers Enquiry' }}" title="Send us a message" aria-label="Send us a message">{{ site.email_obf | safe }}</a></p>
-    <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
-  </div>
-</noscript>
 <script src="https://www.google.com/recaptcha/api.js?render={{ env.RECAPTCHA_SITE_KEY }}" async defer></script>
 {% set js %}
 {% include "js/contact-form-handler.js" %}
