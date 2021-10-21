@@ -13,8 +13,8 @@
           <img src="{{ '/icons/floriade-logo-dark.png' | url }}" style="opacity:0.66" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
         </figure>
       </a>
-      <h1 style="margin-top:0">{{ (header_title or title) | addNbsp | lower }}</h1>
-      {% if subheading %}<h2>{{ subheading | addNbsp | lower }}</h2>{% endif %}
+      <h1 style="margin-top:0">{{ (header_title or title) | addNbsp | lower | safe }}</h1>
+      {% if subheading %}<h2>{{ subheading | addNbsp | lower | safe }}</h2>{% endif %}
       {% if text %}<p id="p" class="text-center">{{ text | safe }}</p>{% endif %}
       {{ content | safe }}
       <a class="button" href="/">Return to Homepage</a>

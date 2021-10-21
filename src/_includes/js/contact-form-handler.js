@@ -35,8 +35,20 @@ function contactFormHandler() {
     grecaptcha.ready(function() {
       grecaptcha.execute(recaptcha_site_key.value, {action: "contactform"}).then(function(token) {
         document.getElementById("gRecaptchaResponse").value = token;
-        contact_form.submit();
-        finishContactForm();
+
+        fetch('/.netlify/functions/contact-form-handler', {
+          method: 'post',
+          body: JSON.stringify({
+            name: name_input.value,
+            email: email_input.value,
+            message: message_input.value
+          })
+        }).then(function(response) {
+          return response.json()
+        }).then(function(data) {
+          console.log('data from function', data)
+          finishContactForm();
+        });
       });
     });
   },false);
