@@ -44,9 +44,10 @@ function contactFormHandler() {
             message: message_input.value
           })
         }).then(function(response) {
+          console.log(response)
           return response.json()
         }).then(function(data) {
-          console.log('data from function', data)
+          // console.log('data from function', data)
           finishContactForm();
         });
       });
