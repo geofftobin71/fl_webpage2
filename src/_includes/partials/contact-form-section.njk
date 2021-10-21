@@ -3,19 +3,19 @@
 <form id="contact-form" class="width100 flow req-js" action="{{ '/.netlify/functions/contact-form-handler' | url }}" method="post">
   <div>
     <label for="name"><h4 class="heading">Name</h4></label>
-    <input class="input" id="name" name="name" type="text" autocomplete="name" data-error="Name is required" placeholder="Your Name">
+    <input required class="input" id="name" name="name" type="text" autocomplete="name" data-error="Name is required" placeholder="Your Name">
   </div>
-  <div hidden class="visually-hidden" aria-hidden="true">
-    <label for="lastname"><h4 class="heading">Last Name</h4></label>
-    <input class="input" id="lastname" name="lastname" type="text" placeholder="Last Name">
+  <div hidden class="noviz" aria-hidden="true">
+    <label for="password"><h4 class="heading">Password</h4></label>
+    <input tabindex="-1" class="input" id="password" name="password" type="text" autocomplete="false" placeholder="Password">
   </div>
   <div>
     <label for="email"><h4 class="heading">Email</h4></label>
-    <input class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" data-error="Email is required" placeholder="Your Email address">
+    <input required class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" data-error="Email is required" placeholder="Your Email address">
   </div>
   <div>
     <label for="message"><h4 class="heading">Message</h4></label>
-    <textarea class="input" id="message" name="message" data-error="Message is required" placeholder="{{ section.message or 'How can we help you?' }}" rows="6"></textarea>
+    <textarea required class="input" id="message" name="message" data-error="Message is required" placeholder="{{ section.message or 'How can we help you?' }}" rows="6"></textarea>
   </div>
   <input id="subject" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
   <input id="heading" name="heading" type="hidden" value="{{ section.email_heading or 'Thankyou for contacting Floriade.' }}">
