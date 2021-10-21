@@ -17,13 +17,13 @@
   <input id="subject" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
   <input id="heading" name="heading" type="hidden" value="{{ section.email_heading or 'Thankyou for contacting Floriade.' }}">
   <input id="banner" name="banner" type="hidden" value="{{ image_id }}">
-  <input id="recaptcha-site-key" name="recaptcha-site-key" type="hidden" value="{{ process.env.RECAPTCHA_SITE_KEY }}">
+  <input id="recaptcha-site-key" name="recaptcha-site-key" type="hidden" value="{{ env.RECAPTCHA_SITE_KEY }}">
   <input id="gRecaptchaResponse" name="g-recaptcha-response" type="hidden">
 
   <div class="vertical center flow">
     <button id="submit-button" class="button" type="submit">
       <span id="email-icon">{{ '/src/svg/envelope-o.svg' | svgContents | iconTextButton | safe }}</span>
-      <span id="spinner-icon" style="margin-right:0.5em;display:inline-block">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
+      <span id="spinner-icon" style="margin-right:0.5em;display:none">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
       <p id="submit-text">Send</p>
     </button>
     <p class="font-size--2 text-center">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
@@ -36,7 +36,7 @@
     <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
   </div>
 </noscript>
-<script src="https://www.google.com/recaptcha/api.js?render={{ process.env.RECAPTCHA_SITE_KEY }}" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?render={{ env.RECAPTCHA_SITE_KEY }}" async defer></script>
 {% set js %}
 {# {% include "js/contact-form-handler.js" %} #}
 {% endset %}
