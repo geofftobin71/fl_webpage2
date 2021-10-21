@@ -26,9 +26,10 @@
     <button id="submit-button" class="button" type="submit">
       <span id="email-icon">{{ '/src/svg/envelope-o.svg' | svgContents | iconTextButton | safe }}</span>
       <span id="spinner-icon" style="margin-right:0.5em;display:none">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
+      <span id="ok-icon" style="display:none">{{ '/src/svg/thumbs-o-up.svg' | svgContents | iconTextButton | safe }}</span>
       <p id="submit-text">Send</p>
     </button>
-    <p class="font-size--2 text-center">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
+    <p class="req-js font-size--2 text-center">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
     <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
   </div>
 </form>
@@ -40,7 +41,7 @@
 </noscript>
 <script src="https://www.google.com/recaptcha/api.js?render={{ env.RECAPTCHA_SITE_KEY }}" async defer></script>
 {% set js %}
-{# {% include "js/contact-form-handler.js" %} #}
+{% include "js/contact-form-handler.js" %}
 {% endset %}
 <script>
   {{ js | jsmin | safe }}

@@ -9,6 +9,8 @@ function contactFormHandler() {
   const email_input = contact_form.querySelector("#email");
   const message_input = contact_form.querySelector("#message");
 
+  disableContactForm();
+
   name_input.onfocus = hideError();
   email_input.onfocus = hideError();
   message_input.onfocus = hideError();
@@ -34,6 +36,7 @@ function contactFormHandler() {
       grecaptcha.execute(recaptcha_site_key.value, {action: "contactform"}).then(function(token) {
         document.getElementById("gRecaptchaResponse").value = token;
         contact_form.submit();
+        finishContactForm();
       });
     });
   },false);
@@ -47,9 +50,6 @@ function showError(message) {
     error_msg.innerText = message;
     error_msg.style.visibility = "visible";
   }
-
-  const info = document.getElementById("info");
-  if(info) { info.style.display = "none"; }
 }
 
 function hideError() {
@@ -62,6 +62,7 @@ function hideError() {
 function enableContactForm() {
   document.getElementById("submit-button").disabled = false;
   document.getElementById("spinner-icon").style.display = "none";
+  document.getElementById("ok-icon").style.display = "none";
   document.getElementById("email-icon").style.display = "inline-block";
   document.getElementById("submit-text").innerText = "Send";
 }
@@ -69,7 +70,16 @@ function enableContactForm() {
 function disableContactForm() {
   document.getElementById("submit-button").disabled = true;
   document.getElementById("spinner-icon").style.display = "inline-block";
+  document.getElementById("ok-icon").style.display = "none";
   document.getElementById("email-icon").style.display = "none";
   document.getElementById("submit-text").innerText = "Sending";
+}
+
+function finishContactForm() {
+  document.getElementById("submit-button").disabled = true;
+  document.getElementById("spinner-icon").style.display = "none";
+  document.getElementById("ok-icon").style.display = "inline-block";
+  document.getElementById("email-icon").style.display = "none";
+  document.getElementById("submit-text").innerText = "Message Sent";
 }
 
