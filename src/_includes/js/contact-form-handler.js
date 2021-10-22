@@ -8,6 +8,10 @@ function contactFormHandler() {
   const name_input = contact_form.querySelector("#name");
   const email_input = contact_form.querySelector("#email");
   const message_input = contact_form.querySelector("#message");
+  const password_input = contact_form.querySelector("#password");
+  const subject_input = contact_form.querySelector("#subject");
+  const heading_input = contact_form.querySelector("#heading");
+  const gRecaptchaResponse_input = contact_form.querySelector("#gRecaptchaResponse");
 
   disableContactForm();
 
@@ -43,7 +47,11 @@ function contactFormHandler() {
           body: JSON.stringify({
             name: name_input.value,
             email: email_input.value,
-            message: message_input.value
+            message: message_input.value,
+            password: password_input.value,
+            subject: subject_input.value,
+            heading: heading_input.value,
+            gRecaptchaResponse: gRecaptchaResponse_input.value
           })
         }).then(function(response) {
           ok = response.ok;
