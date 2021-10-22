@@ -47,7 +47,8 @@ function contactFormHandler() {
           if(response.ok) {
             return response.json();
           } else {
-            throw new Error(response.json());
+            const error = await response.json();
+            throw new Error(error);
           }
         }).then(function(data) {
           finishContactForm();
