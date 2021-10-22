@@ -47,6 +47,7 @@ function contactFormHandler() {
           if(response.ok) {
             return response.json();
           } else {
+            console.log(response.json());
             throw new Error(response.json().error);
           }
         }).then(function(data) {
