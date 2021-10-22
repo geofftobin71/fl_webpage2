@@ -42,13 +42,17 @@ function contactFormHandler() {
             name: name_input.value,
             email: email_input.value,
             message: message_input.value
-          })
+          });
         }).then(function(response) {
-          console.log(response)
-          return response.json()
+          if(response.ok) {
+            return response.json();
+          } else {
+            throw new Error(respose.json().error);
+          }
         }).then(function(data) {
-          // console.log('data from function', data)
           finishContactForm();
+        }).catch(function(error) {
+          showError(error);
         });
       });
     });
