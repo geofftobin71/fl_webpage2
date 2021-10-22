@@ -36,6 +36,8 @@ function contactFormHandler() {
       grecaptcha.execute(recaptcha_site_key.value, {action: "contactform"}).then(function(token) {
         document.getElementById("gRecaptchaResponse").value = token;
 
+        let ok = false;
+
         fetch('/.netlify/functions/contact-form-handler', {
           method: 'post',
           body: JSON.stringify({
@@ -44,17 +46,16 @@ function contactFormHandler() {
             message: message_input.value
           })
         }).then(function(response) {
-          if(response.ok) {
-            return response.json();
-          } else {
-            const error = await response.json();
-            throw new Error(error);
-          }
+          ok = response.ok;
+          return response.json();
         }).then(function(data) {
-          finishContactForm();
-        }).catch(function(error) {
-          console.log(error);
-          showError(error);
+          if(ok) {
+            finishContactForm();
+          } else {
+            console.log(data);
+          }
+        }).catch(function(err) {
+          console.error(err);
         });
       });
     });
