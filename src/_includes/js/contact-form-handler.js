@@ -42,12 +42,12 @@ function contactFormHandler() {
             name: name_input.value,
             email: email_input.value,
             message: message_input.value
-          });
+          })
         }).then(function(response) {
           if(response.ok) {
             return response.json();
           } else {
-            throw new Error(respose.json().error)
+            throw new Error(respose.json().error);
           }
         }).then(function(data) {
           finishContactForm();
