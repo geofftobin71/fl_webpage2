@@ -47,12 +47,12 @@ function contactFormHandler() {
           if(response.ok) {
             return response.json();
           } else {
-            console.log(response.json());
-            throw new Error(response.json().error);
+            throw new Error(response.json());
           }
         }).then(function(data) {
           finishContactForm();
         }).catch(function(error) {
+          console.log(error);
           showError(error);
         });
       });
