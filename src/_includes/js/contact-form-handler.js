@@ -51,8 +51,11 @@ function contactFormHandler() {
         }).then(function(data) {
           if(ok) {
             finishContactForm();
+            return true;
           } else {
-            console.log(data);
+            showError(data.error);
+            enableContactForm();
+            return false;
           }
         }).catch(function(err) {
           console.error(err);
