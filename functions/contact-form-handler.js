@@ -12,7 +12,7 @@ exports.handler = (event, context, callback) => {
   // console.log(body);
 
   // Bail if name is missing
-  if(!body.name) {
+  if(body.name) {
     if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
       // Do redirect for non JS enabled browsers
       return callback(null, {
