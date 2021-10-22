@@ -9,7 +9,7 @@ exports.handler = (event, context, callback) => {
     body = parse(event.body)
   }
 
-  // console.log(body);
+  console.log(body);
 
   // Bail if name is missing
   if(!body.name) {
@@ -85,7 +85,7 @@ exports.handler = (event, context, callback) => {
     })
   }
 
-  // Do my email subscription logic
+  // fetch('https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($recaptcha_secret) . '&response=' . urlencode($g_recaptcha_response) . '&remoteip=' . urlencode($remote_ip))
 
   if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
     // Do redirect for non JS enabled browsers
