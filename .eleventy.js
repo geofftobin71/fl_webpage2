@@ -138,7 +138,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("urldecode", (string) => {
-    return decodeURIComponent(string);
+    return decodeURIComponent(string.replace(/\+/g, ' '));
   });
 
   eleventyConfig.addFilter("iconTextButton", (svg) => {

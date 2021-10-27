@@ -1,6 +1,14 @@
 const { parse } = require("querystring")
 
 exports.handler = (event, context, callback) => {
+
+  if(event.httpMethod !== 'POST' || !event.body) {
+    return callback(null, {
+      statusCode: 400,
+      body: JSON.stringify({ status: 'Bad Request' })
+    });
+  }
+
   let body = {}
 
   try {
@@ -9,10 +17,14 @@ exports.handler = (event, context, callback) => {
     body = parse(event.body)
   }
 
-  console.log(body);
+  // console.log(body);
+
+  const name = body.name.trim();
+  const email = body.email.trim();
+  const message = body.message.trim();
 
   // Bail if name is missing
-  if(!body.name) {
+  if(!name) {
     if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
       // Do redirect for non JS enabled browsers
       return callback(null, {
@@ -34,7 +46,7 @@ exports.handler = (event, context, callback) => {
   }
 
   // Bail if email is missing
-  if(!body.email) {
+  if(!email) {
     if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
       // Do redirect for non JS enabled browsers
       return callback(null, {
@@ -56,7 +68,7 @@ exports.handler = (event, context, callback) => {
   }
 
   // Bail if message is missing
-  if(!body.message) {
+  if(!message) {
     if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
       // Do redirect for non JS enabled browsers
       return callback(null, {
@@ -80,30 +92,36 @@ exports.handler = (event, context, callback) => {
   // Bail if password is filled in (honeypot)
   if(body.password) {
     return callback(null, {
-      statusCode: 400,
+      statusCode: 200,
       body: JSON.stringify({})
     })
   }
 
-  // fetch('https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($recaptcha_secret) . '&response=' . urlencode($g_recaptcha_response) . '&remoteip=' . urlencode($remote_ip))
+  fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse)
+    .then(data => {
+      console.log(data);
 
-  if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
-    // Do redirect for non JS enabled browsers
-    return callback(null, {
-      statusCode: 302,
-      headers: {
-        Location: '/thankyou-for-contacting-floriade/',
-        'Cache-Control': 'no-cache',
-      },
-      body: JSON.stringify({})
-    })
-  }
+      if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
+        // Do redirect for non JS enabled browsers
+        return callback(null, {
+          statusCode: 302,
+          headers: {
+            Location: '/thankyou-for-contacting-floriade/',
+            'Cache-Control': 'no-cache',
+          },
+          body: JSON.stringify({})
+        })
+      }
 
-  // Return data to AJAX request
-  return callback(null, {
-    statusCode: 200,
-    body: JSON.stringify({
-      messageSent: true
+      // Return data to AJAX request
+      return callback(null, {
+        statusCode: 200,
+        body: JSON.stringify({
+          messageSent: true
+        })
+      })
     })
-  })
+  .catch(err => {
+    console.error(err);
+  });
 }

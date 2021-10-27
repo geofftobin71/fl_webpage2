@@ -2,3 +2,5 @@ README.md
 node_modules/
 dist/
 functions/
+_cache/
+_ref/
