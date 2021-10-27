@@ -98,7 +98,7 @@ exports.handler = (event, context, callback) => {
     })
   }
 
-  fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse)
+  fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: "post" })
     .then(res => res.json())
       .then(json => {
       console.log(json);
