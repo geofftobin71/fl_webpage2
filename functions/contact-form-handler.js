@@ -100,7 +100,7 @@ exports.handler = (event, context, callback) => {
 
   fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse)
     .then(res => res.json())
-      .then(json) {
+      .then(json => {
       console.log(json);
 
       if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
