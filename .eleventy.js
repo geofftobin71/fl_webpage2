@@ -59,7 +59,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./admin");
 
   eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
-    if((!site.dev) && outputPath.endsWith(".html")) {
+    if((!site.dev) && outputPath && outputPath.endsWith(".html")) {
       let minified = htmlmin.minify(content, {
         useShortDoctype: true,
         removeComments: true,
