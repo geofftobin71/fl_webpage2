@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const juice = require('juice');
+const fs = require('fs');
 
 exports.handler = (event, context, callback) => {
 
@@ -65,7 +66,7 @@ exports.handler = (event, context, callback) => {
 
       if((json.success) && (json.action === 'contactform') && (Number(json.score) > 0.5)) {
 
-        const html_template = require('./contact-thankyou.html');
+        const html_template = fs.readFileSync('./contact-thankyou.html');
 
         let html_body = html_template;
         html_body = html_body.replace('%email_heading%', body.heading);
