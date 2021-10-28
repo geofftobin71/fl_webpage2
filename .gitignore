@@ -1,6 +1,7 @@
 .env
 node_modules/
 dist/
+email/
 _cache/
 package-lock.json
 

@@ -2,5 +2,6 @@ README.md
 node_modules/
 dist/
 functions/
+email/
 _cache/
 _ref/
