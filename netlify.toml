@@ -1,2 +1,2 @@
 [functions."contact-form-handler"]
-  included_files = ["contact-thankyou.html"]
+  included_files = ["email/contact-thankyou.html"]

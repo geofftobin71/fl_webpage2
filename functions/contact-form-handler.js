@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const juice = require('juice');
 const fs = require('fs');
-const path = require('path');
 
 exports.handler = (event, context, callback) => {
 
@@ -67,7 +66,7 @@ exports.handler = (event, context, callback) => {
 
       if((json.success) && (json.action === 'contactform') && (Number(json.score) > 0.5)) {
 
-        const html_template = fs.readFileSync(path.resolve(process.env.LAMBDA_TASK_ROOT, 'contact-thankyou.html'), 'utf8');
+        const html_template = fs.readFileSync('email/contact-thankyou.html', 'utf8');
 
         let html_body = html_template;
         html_body = html_body.replace('%email_heading%', body.heading);
