@@ -2,6 +2,15 @@ const fetch = require('node-fetch');
 const juice = require('juice');
 const fs = require('fs');
 
+function escape(htmlStr) {
+  return htmlStr.replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");        
+
+}
+
 exports.handler = (event, context, callback) => {
 
   if(event.httpMethod !== 'POST' || !event.body) {
@@ -17,9 +26,9 @@ exports.handler = (event, context, callback) => {
 
   // console.log(body);
 
-  const name = encodeURIComponent(body.name.trim());
-  const email = encodeURIComponent(body.email.trim());
-  const message = encodeURIComponent(body.message.trim());
+  const name = escape(body.name.trim());
+  const email = escape(body.email.trim());
+  const message = escape(body.message.trim());
 
   // Bail if name is missing
   if(!name) {
