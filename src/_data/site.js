@@ -4,6 +4,7 @@ const site_data = require("./site_data.json");
 
 module.exports = {
   url: process.env.URL || local_url,
+  short_url: (process.env.URL || local_url).replace(/^https?:\/\//,''),
   dev: ((process.env.URL || local_url) === local_url),
   name: "Floriade",
   tagline: "fresh & dried flowers for any occasion",

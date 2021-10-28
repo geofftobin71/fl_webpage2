@@ -5,13 +5,11 @@ const Mailgen = require('mailgen');
 // Configure mailgen by setting a theme and your product info
 var mailGenerator = new Mailgen({
   theme: {
-    path: path.resolve('theme.ejs')
+    path: path.resolve('email_template.html')
   },
   product: {
     name: 'Floriade',
-    link: 'https://floriade.co.nz/',
-    logo: 'https://floriade.co.nz/icons/floriade-icon-round-240.png',
-    logoHeight: '120px'
+    link: 'https://floriade.co.nz/'
   }
 });
 
@@ -21,6 +19,11 @@ var email = {
     title: 'Floriade Receipt',
     name: 'John Appleseed',
     intro: 'Your order has been processed successfully.',
+    dictionary: {
+      "delivery_option": "pickup",
+      "delivery_name": "Wilma Flintstone",
+      "delivery_address": "88 Darlington Rd"
+    },
     table: {
       data: [
         {
@@ -63,7 +66,7 @@ var emailText = mailGenerator.generatePlaintext(email);
 
 // Optionally, preview the generated HTML e-mail by writing it to a local file
 require('fs').writeFileSync('preview.html', emailBody, 'utf8');
-// require('fs').writeFileSync('preview.txt', emailText, 'utf8');
+require('fs').writeFileSync('preview.txt', emailText, 'utf8');
 
 /*
 var transporter = nodemailer.createTransport({

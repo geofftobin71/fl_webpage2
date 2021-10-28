@@ -1,7 +1,5 @@
 Fix:
-Floriade word in email footer
-Shortpixel local images
-Contact form section Action
+deprecate non-js contact-form-handler
 markdown headings pronoun filter
 remove A.njk and B.njk from partials
 Policy pages

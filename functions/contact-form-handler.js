@@ -1,5 +1,6 @@
-const { parse } = require("querystring")
 const fetch = require("node-fetch");
+const fs = require("fs");
+const juice = require('juice');
 
 exports.handler = (event, context, callback) => {
 
@@ -12,11 +13,7 @@ exports.handler = (event, context, callback) => {
 
   let body = {}
 
-  try {
-    body = JSON.parse(event.body)
-  } catch (e) {
-    body = parse(event.body)
-  }
+  body = JSON.parse(event.body)
 
   // console.log(body);
 
@@ -26,68 +23,32 @@ exports.handler = (event, context, callback) => {
 
   // Bail if name is missing
   if(!name) {
-    if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
-      // Do redirect for non JS enabled browsers
-      return callback(null, {
-        statusCode: 302,
-        headers: {
-          Location: '/contact-form-error/',
-          'Cache-Control': 'no-cache',
-        },
-        body: JSON.stringify({})
+    return callback(null, {
+      statusCode: 400,
+      body: JSON.stringify({
+        error: 'missing name'
       })
-    } else {
-      return callback(null, {
-        statusCode: 400,
-        body: JSON.stringify({
-          error: 'missing name'
-        })
-      })
-    }
+    })
   }
 
   // Bail if email is missing
   if(!email) {
-    if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
-      // Do redirect for non JS enabled browsers
-      return callback(null, {
-        statusCode: 302,
-        headers: {
-          Location: '/contact-form-error/',
-          'Cache-Control': 'no-cache',
-        },
-        body: JSON.stringify({})
+    return callback(null, {
+      statusCode: 400,
+      body: JSON.stringify({
+        error: 'missing email'
       })
-    } else {
-      return callback(null, {
-        statusCode: 400,
-        body: JSON.stringify({
-          error: 'missing email'
-        })
-      })
-    }
+    })
   }
 
   // Bail if message is missing
   if(!message) {
-    if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
-      // Do redirect for non JS enabled browsers
-      return callback(null, {
-        statusCode: 302,
-        headers: {
-          Location: '/contact-form-error/',
-          'Cache-Control': 'no-cache',
-        },
-        body: JSON.stringify({})
+    return callback(null, {
+      statusCode: 400,
+      body: JSON.stringify({
+        error: 'missing message'
       })
-    } else {
-      return callback(null, {
-        statusCode: 400,
-        body: JSON.stringify({
-          error: 'missing message'
-        })
-      })
-    }
+    })
   }
 
   // Bail if password is filled in (honeypot)
@@ -101,22 +62,17 @@ exports.handler = (event, context, callback) => {
   fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: "post" })
     .then(res => res.json())
     .then(json => {
-      console.log(json);
+      // console.log(json);
 
       if((json.success) && (json.action === 'contactform') && (Number(json.score) > 0.5)) {
-        if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
-          // Do redirect for non JS enabled browsers
-          return callback(null, {
-            statusCode: 302,
-            headers: {
-              Location: '/thankyou-for-contacting-floriade/',
-              'Cache-Control': 'no-cache',
-            },
-            body: JSON.stringify({})
-          })
-        }
 
-        // Return data to AJAX request
+        let html_body = fs.readFileSync("contact-thankyou.html");
+        html_body = html_body.replace("%email_heading%", body.heading);
+        html_body = html_body.replace("%name%", name);
+        html_body = juice(html_body);
+
+        console.log(html_body);
+
         return callback(null, {
           statusCode: 200,
           body: JSON.stringify({
@@ -124,24 +80,12 @@ exports.handler = (event, context, callback) => {
           })
         })
       } else {
-        if(event.headers['content-type'] === 'application/x-www-form-urlencoded') {
-          // Do redirect for non JS enabled browsers
-          return callback(null, {
-            statusCode: 302,
-            headers: {
-              Location: '/contact-form-error/',
-              'Cache-Control': 'no-cache',
-            },
-            body: JSON.stringify({})
+        return callback(null, {
+          statusCode: 400,
+          body: JSON.stringify({
+            error: 'recaptcha failed'
           })
-        } else {
-          return callback(null, {
-            statusCode: 400,
-            body: JSON.stringify({
-              error: 'recaptcha failed'
-            })
-          })
-        }
+        })
       }
     })
     .catch(err => {

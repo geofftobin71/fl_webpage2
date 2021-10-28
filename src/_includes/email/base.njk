@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="https://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+    <meta name="x-apple-disable-message-reformatting">
+    <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge" /><!--<![endif]-->
+    <title></title>
+    <!--[if mso]>
+      <style type="text/css">
+      table {border-collapse:collapse;border-spacing:0;Margin:0;}
+      div, td {padding:0;}
+      div {Margin:0 !important;}
+      </style>
+      <noscript>
+      <xml>
+      <o:OfficeDocumentSettings>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+      </xml>
+      </noscript>
+    <![endif]-->
+  </head>
+  <style>
+body {
+  Margin:0;
+  padding:0;
+  word-spacing:normal;
+  color:#333333;
+  font-size:16px;
+  background-color:#E2E8E2;
+}
+h1 {
+  color:#3D4844;
+  Margin:0;
+  font-family:Arial,sans-serif;
+  font-size:26px;
+  line-height:32px;
+  text-align:center;
+}
+h2 {
+  color:#3D4844;
+  Margin:0;
+  font-family:Arial,sans-serif;
+  font-size:22px;
+  line-height:28px;
+  text-align:center;
+}
+p {
+  Margin:0;
+  text-align:left;
+  font-family:Arial,sans-serif;
+  font-size:18px;
+  line-height:24px;
+}
+h2 + p {
+  padding-top:18px;
+}
+p + p {
+  padding-top:18px;
+}
+#page {
+  -webkit-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+  color:#333333;
+  background-color:#E2E8E2;
+}
+.outer {
+  width:96%;
+  max-width:660px;
+  Margin:20px auto;
+}
+.section {
+  padding:10px;
+}
+.column {
+  width:100%;
+  max-width:240px;
+  display:inline-block;
+  vertical-align:top;
+}
+.column > div {
+  padding:10px;
+}
+.column p {
+  font-family:Arial,sans-serif;
+  font-size:14px;
+  line-height:18px;
+  text-align:center;
+}
+.column a {
+  color:#5E6A65;
+  text-decoration:none;
+}
+  </style>
+  <body>
+    <div id="page" role="article" aria-roledescription="email" lang="en">
+      <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+        <tr>
+          <td align="center">
+            <!--[if mso]>
+              <table role="presentation" align="center" style="width:660px;">
+              <tr>
+              <td style="padding:20px 0;">
+            <![endif]-->
+            <div class="outer">
+
+              {% include "email/header.njk" %}
+
+            </div>
+            <!--[if mso]>
+              </td>
+              </tr>
+              </table>
+            <![endif]-->
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <!--[if mso]>
+              <table role="presentation" align="center" style="background-color:#FFFFFF;width:660px;">
+              <tr>
+              <td style="padding:20px 0;">
+            <![endif]-->
+            <div class="outer" style="background-color:#FFFFFF">
+
+              {{ content | safe }}
+
+            </div>
+            <!--[if mso]>
+              </td>
+              </tr>
+              </table>
+            <![endif]-->
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <!--[if mso]>
+              <table role="presentation" align="center" style="width:660px;">
+              <tr>
+              <td style="padding:20px 0;">
+            <![endif]-->
+            <div class="outer">
+
+              {% include "email/footer.njk" %}
+
+            </div>
+            <!--[if mso]>
+              </td>
+              </tr>
+              </table>
+            <![endif]-->
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

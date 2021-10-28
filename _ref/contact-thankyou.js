@@ -4,7 +4,7 @@ const Mailgen = require('mailgen');
 
 var mailGenerator = new Mailgen({
   theme: {
-    path: path.resolve('contact-thankyou.ejs')
+    path: path.resolve('email_template.html')
   },
   product: {
     name: 'Floriade',
