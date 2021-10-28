@@ -1,7 +1,8 @@
+Next:
+Plain txt email footer
+nodemailer
 Fix:
-deprecate non-js contact-form-handler
 markdown headings pronoun filter
-remove A.njk and B.njk from partials
 Policy pages
 Mailchimp Signup form (OLD!)
 Image widget link to Photographers

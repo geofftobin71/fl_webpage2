@@ -1,3 +1,4 @@
+const nodemailer = require("nodemailer");
 const fetch = require('node-fetch');
 const juice = require('juice');
 const fs = require('fs');
@@ -8,7 +9,6 @@ function escape(htmlStr) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");        
-
 }
 
 exports.handler = (event, context, callback) => {
@@ -20,9 +20,7 @@ exports.handler = (event, context, callback) => {
     });
   }
 
-  let body = {}
-
-  body = JSON.parse(event.body)
+  let body = JSON.parse(event.body)
 
   // console.log(body);
 
@@ -78,12 +76,12 @@ exports.handler = (event, context, callback) => {
         const html_template = fs.readFileSync('email/contact-thankyou.html', 'utf8');
 
         let html_body = html_template;
-        html_body = html_body.replace('%email_heading%', body.heading);
+        html_body = html_body.replace('%email_heading%', escape(body.heading));
         html_body = html_body.replace('%name%', escape(name));
         html_body = html_body.replace('%message%', escape(message));
         html_body = juice(html_body);
 
-        console.log(html_body);
+        // console.log(html_body);
 
         const txt_template = fs.readFileSync('email/contact-thankyou.txt', 'utf8');
 
@@ -93,14 +91,45 @@ exports.handler = (event, context, callback) => {
         txt_body = txt_body.replace('%message%', message);
         txt_body = juice(txt_body);
 
-        console.log(txt_body);
+        // console.log(txt_body);
 
-        return callback(null, {
-          statusCode: 200,
-          body: JSON.stringify({
-            messageSent: true
+        var transporter = nodemailer.createTransport({
+          host: "smtp.mailtrap.io",
+          port: 2525,
+          auth: {
+            user: "ba2cc93943e6dc",
+            pass: "01a7c7d695af91"
+          }
+        });
+
+        transporter.sendMail({
+          from: 'no-reply@mailgen.js',
+          to: email,
+          subject: body.subject,
+          html: html_body,
+          text: txt_body,
+        }, function (err) {
+          if(err) {
+            console.error(err);
+
+            return callback(null, {
+              statusCode: 400,
+              body: JSON.stringify({
+                error: err
+              })
+            })
+          }
+
+          console.log('Message sent successfully.');
+
+          return callback(null, {
+            statusCode: 200,
+            body: JSON.stringify({
+              messageSent: true
+            })
           })
-        })
+        });
+
       } else {
         return callback(null, {
           statusCode: 400,

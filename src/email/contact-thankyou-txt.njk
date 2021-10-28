@@ -4,6 +4,7 @@ permalinkBypassOutputDir: true
 sitemap:
   ignore: true
 ---
+
 %email_heading%
 
 Hi %name%,
@@ -15,3 +16,18 @@ Annwyn Tobin
 ------------
 
 %message%
+
+------------
+
+{{ site.name | safe }}
+{{ site.tagline | safe }}
+
+{{ site.address | safe }}
+{{ site.address_locality | safe }},
+{{ site.address_region | safe }}, {{ site.address_postcode | safe }}
+New Zealand
+
+{{ site.short_url | safe }}
+
+{{ site.phone | safe }}
+
