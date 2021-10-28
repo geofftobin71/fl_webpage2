@@ -17,9 +17,9 @@ exports.handler = (event, context, callback) => {
 
   // console.log(body);
 
-  const name = body.name.trim();
-  const email = body.email.trim();
-  const message = body.message.trim();
+  const name = encodeURIComponent(body.name.trim());
+  const email = encodeURIComponent(body.email.trim());
+  const message = encodeURIComponent(body.message.trim());
 
   // Bail if name is missing
   if(!name) {
@@ -71,6 +71,7 @@ exports.handler = (event, context, callback) => {
         let html_body = html_template;
         html_body = html_body.replace('%email_heading%', body.heading);
         html_body = html_body.replace('%name%', name);
+        html_body = html_body.replace('%email%', email);
         html_body = html_body.replace('%message%', message);
         html_body = juice(html_body);
 
