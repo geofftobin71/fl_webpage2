@@ -67,7 +67,7 @@ exports.handler = (event, context, callback) => {
 
       if((json.success) && (json.action === 'contactform') && (Number(json.score) > 0.5)) {
 
-        const html_template = fs.readFileSync(require.resolve('contact-thankyou.html'), 'utf8');
+        const html_template = fs.readFileSync(path.resolve(process.env.LAMBDA_TASK_ROOT, 'contact-thankyou.html'), 'utf8');
 
         let html_body = html_template;
         html_body = html_body.replace('%email_heading%', body.heading);
