@@ -1,6 +1,6 @@
-const fetch = require("node-fetch");
-const fs = require("fs");
+const fetch = require('node-fetch');
 const juice = require('juice');
+const html_template = require('./contact_thankyou.html');
 
 exports.handler = (event, context, callback) => {
 
@@ -59,16 +59,16 @@ exports.handler = (event, context, callback) => {
     })
   }
 
-  fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: "post" })
+  fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: 'post' })
     .then(res => res.json())
     .then(json => {
       // console.log(json);
 
       if((json.success) && (json.action === 'contactform') && (Number(json.score) > 0.5)) {
 
-        let html_body = fs.readFileSync("contact-thankyou.html");
-        html_body = html_body.replace("%email_heading%", body.heading);
-        html_body = html_body.replace("%name%", name);
+        let html_body = html_template;
+        html_body = html_body.replace('%email_heading%', body.heading);
+        html_body = html_body.replace('%name%', name);
         html_body = juice(html_body);
 
         console.log(html_body);
