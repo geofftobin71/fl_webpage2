@@ -103,8 +103,8 @@ exports.handler = (event, context, callback) => {
         });
 
         transporter.sendMail({
-          from: 'no-reply@mailgen.js',
-          to: email,
+          from: '"Floriade" <no-reply@mailgen.js>',
+          to: `"${name}" <${email}>`,
           subject: body.subject,
           html: html_body,
           text: txt_body,
