@@ -1,7 +1,6 @@
 ---
 layout: email/base.njk
 permalink: email/contact-thankyou.html
-permalinkBypassOutputDir: true
 sitemap:
   ignore: true
 ---
@@ -9,14 +8,17 @@ sitemap:
   <tr>
     <td style="padding:40px 10px">
       <h2>Hi %name%,</h2>
-      <p>%email%</p>
       <p>We have received your message and will endeavour to respond to your enquiry as soon as possible.</p>
       <p>Kind regards<br>Annwyn Tobin</p>
     </td>
   </tr>
-  {% include "email/divider.njk" %}
   <tr>
-    <td style="padding:40px 10px">
+    <td style="padding:0 10px">
+  {% include "email/divider.njk" %}
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:0 10px 40px 10px">
       <p style="white-space:pre-wrap;background-color:#F4F4F4;padding:10px;font-size:16px;line-height:20px">%message%</p>
     </td>
   </tr>

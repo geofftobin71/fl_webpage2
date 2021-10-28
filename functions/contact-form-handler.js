@@ -26,9 +26,9 @@ exports.handler = (event, context, callback) => {
 
   // console.log(body);
 
-  const name = escape(body.name.trim());
-  const email = escape(body.email.trim());
-  const message = escape(body.message.trim());
+  const name = body.name.trim();
+  const email = body.email.trim();
+  const message = body.message.trim();
 
   // Bail if name is missing
   if(!name) {
@@ -79,12 +79,21 @@ exports.handler = (event, context, callback) => {
 
         let html_body = html_template;
         html_body = html_body.replace('%email_heading%', body.heading);
-        html_body = html_body.replace('%name%', name);
-        html_body = html_body.replace('%email%', email);
-        html_body = html_body.replace('%message%', message);
+        html_body = html_body.replace('%name%', escape(name));
+        html_body = html_body.replace('%message%', escape(message));
         html_body = juice(html_body);
 
         console.log(html_body);
+
+        const txt_template = fs.readFileSync('email/contact-thankyou.txt', 'utf8');
+
+        let txt_body = txt_template;
+        txt_body = txt_body.replace('%email_heading%', body.heading);
+        txt_body = txt_body.replace('%name%', escape(name));
+        txt_body = txt_body.replace('%message%', escape(message));
+        txt_body = juice(txt_body);
+
+        console.log(txt_body);
 
         return callback(null, {
           statusCode: 200,
