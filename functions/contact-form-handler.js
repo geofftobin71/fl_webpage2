@@ -89,8 +89,8 @@ exports.handler = (event, context, callback) => {
 
         let txt_body = txt_template;
         txt_body = txt_body.replace('%email_heading%', body.heading);
-        txt_body = txt_body.replace('%name%', escape(name));
-        txt_body = txt_body.replace('%message%', escape(message));
+        txt_body = txt_body.replace('%name%', name);
+        txt_body = txt_body.replace('%message%', message);
         txt_body = juice(txt_body);
 
         console.log(txt_body);
