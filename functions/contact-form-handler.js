@@ -71,6 +71,7 @@ exports.handler = (event, context, callback) => {
         let html_body = html_template;
         html_body = html_body.replace('%email_heading%', body.heading);
         html_body = html_body.replace('%name%', name);
+        html_body = html_body.replace('%message%', message);
         html_body = juice(html_body);
 
         console.log(html_body);
