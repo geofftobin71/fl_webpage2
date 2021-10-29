@@ -120,7 +120,7 @@ exports.handler = (event, context, callback) => {
             })
           }
 
-          console.log('Message sent successfully.');
+          // console.log('Message sent successfully.');
 
           return callback(null, {
             statusCode: 200,

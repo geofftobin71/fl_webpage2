@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "dev": "eleventy",
-    "serve": "eleventy --serve"
+    "serve": "eleventy --serve",
+    "debug": "DEBUG=Eleventy* eleventy"
   },
   "keywords": [],
   "author": "",

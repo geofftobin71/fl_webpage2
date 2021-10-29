@@ -1,13 +1,13 @@
 Next:
-Plain txt email footer
-nodemailer
 Fix:
+T & C / privacy / cookie policy all on one line
 markdown headings pronoun filter
 Policy pages
 Mailchimp Signup form (OLD!)
 Image widget link to Photographers
 Contact layout enable google maps
 Date subheading in Blog header
+Change nodemailer settings from mailtrap to floriade (functions)
 
 Check:
 Color contrast
