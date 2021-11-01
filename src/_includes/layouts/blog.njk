@@ -1,0 +1,11 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  {% include "partials/header.njk" %}
+  <main>
+  {% set postslist = collections.blog %}
+  {% include "partials/postslist.njk" %}
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}
+
