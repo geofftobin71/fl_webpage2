@@ -18,6 +18,7 @@ page_sections:
 
 
       We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
+    alternate_background_color: true
   - type: text-section
     text: >-
       Floriade is Wellington’s **dried flowers** specialist. We create large
@@ -29,4 +30,8 @@ page_sections:
 
 
       Drying flowers is a great way to prolong the life of flowers and create something sculptural, textural and beautiful. We have a custom-built flower drying machine that allows us to provide the highest quality dried flowers.
+    button:
+      text: Learn More
+      link: https://floriade.co.nz
+      new_page: true
 ---
