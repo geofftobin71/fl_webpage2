@@ -1,5 +1,6 @@
 README.md
 node_modules/
+admin/
 dist/
 functions/
 email/

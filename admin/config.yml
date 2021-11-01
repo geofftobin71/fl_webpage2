@@ -65,9 +65,9 @@ collections:
                 collapsed: true
                 widget: "object"
                 fields:
-                  - { label: "Text", name: "text", widget: "string", required: false }
-                  - { label: "Link", name: "link", widget: "string", required: false }
-                  - { label: "New Page", name: "new_page", widget: "boolean", default: false, required: false }
+                  - { label: "Text", name: "text", widget: "string", default: "", required: false }
+                  - { label: "Link", name: "link", widget: "string", default: "", required: false }
+                  - { label: "New Window", name: "new_page", widget: "boolean", default: false, required: false }
           - label: "Instagram Gallery Section"
             name: "instagram-gallery-section"
             widget: "object"
