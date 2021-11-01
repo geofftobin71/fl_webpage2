@@ -50,11 +50,11 @@ collections:
             name: "page_sections"
             widget: "list"
             types:
-              label: "Text Section"
-              name: "text-section"
-              widget: "object"
-              fields:
-                - {label: "Text", name: "text", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], modes: ['rich_text']}
+              - label: "Text Section"
+                name: "text-section"
+                widget: "object"
+                fields:
+                  - {label: "Text", name: "text", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], modes: ['rich_text']}
   - label: "Shop Hours"
     name: "shop_hours"
     delete: false
