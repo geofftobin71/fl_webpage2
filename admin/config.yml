@@ -210,6 +210,14 @@ collections:
               - {label: "Review", name: "review", widget: "text"}
               - {label: "Author", name: "name", widget: "string"}
               - {label: "Wedding", name: "wedding", widget: "boolean"}
+  - name: "pages"
+    label: "Pages"
+    label_singular: "Page"
+    folder: "src/pages"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Header Image", name: "header_image", widget: "image", required: false}
   - name: "blog"
     label: "Blog"
     label_singular: "Blog Post"
