@@ -1,4 +1,5 @@
 ---
+page_type: builder
 title: About
 description: Floriade is a boutique Wellington florist, specializing in unique
   floral and botanical designs using unusual flowers as well as traditional

@@ -1,4 +1,5 @@
 ---
+page_type: special
 layout: layouts/contact-page.njk
 eleventyNavigation:
   order: 60

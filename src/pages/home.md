@@ -1,4 +1,5 @@
 ---
+page_type: builder
 title: Home
 description: Fresh & dried flowers for any occasion. Unique designs that stand
   out from the everyday using unusual flowers and foliage as well as traditional

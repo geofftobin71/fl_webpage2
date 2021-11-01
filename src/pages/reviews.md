@@ -1,4 +1,5 @@
 ---
+page_type: special
 title: Reviews
 description: We are always grateful for reviews on Google. Read some of the kind words our customers have shared about our work.
 layout: layouts/reviews.njk
