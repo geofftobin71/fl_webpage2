@@ -58,7 +58,16 @@ collections:
             widget: "object"
             summary: '{{fields.text}}'
             fields:
-              - {label: "Text", name: "text", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], modes: ['rich_text']}
+              - {label: "Text", name: "text", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], modes: ['rich_text'], minimal: true}
+              - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", default: false, required: false}
+              - label: "Button"
+                name: "button"
+                collapsed: true
+                widget: "object"
+                fields:
+                  - { label: "Text", name: "text", widget: "string", required: false }
+                  - { label: "Link", name: "link", widget: "string", required: false }
+                  - { label: "New Page", name: "new_page", widget: "boolean", default: false, required: false }
           - label: "Instagram Gallery Section"
             name: "instagram-gallery-section"
             widget: "object"
@@ -87,7 +96,7 @@ collections:
           - { label: "Name", name: "key", widget: "string" }
           - { label: "Order", name: "order", widget: "number", default: 0 }
   - label: "Shop Hours"
-    name: "shop_hours"
+    name: "shop-hours"
     delete: false
     files:
       - label: "Regular Shop Hours"
@@ -174,7 +183,7 @@ collections:
               - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
               - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
       - label: "Special Shop Hours"
-        name: "special_shop_hours"
+        name: "special-shop-hours"
         file: "src/_data/special_shop_hours.json"
         editor:
           preview: false
