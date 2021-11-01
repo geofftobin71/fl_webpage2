@@ -51,7 +51,7 @@ collections:
             widget: "list"
             types:
               label: "Text Section"
-              type: "text-section"
+              name: "text-section"
               widget: "object"
               fields:
                 - {label: "Text", name: "text", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], modes: ['rich_text']}
