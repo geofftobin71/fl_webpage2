@@ -1,11 +1,10 @@
 {% set metaTitle = title + " - " + site.name %}
-{% set metaDesc = description %}
+{% set metaDesc = description or site.description %}
 {% set metaImage = (site.url + (social_image or site.social_image)) %}
 {% set currentUrl = (site.url + page.url) %}
 
 {% if page.url == "/" %}
   {% set metaTitle = site.name + " - " + site.tagline %}
-  {% set metaDesc = site.description %}
 {% endif %}
 
 <title>{{ metaTitle | safe }}</title>

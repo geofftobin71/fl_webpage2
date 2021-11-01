@@ -30,6 +30,38 @@ collections:
     label_singular: "Page"
     delete: false
     files:
+      - label: "Home"
+        name: "home"
+        file: "src/pages/home.md"
+        editor:
+          preview: false
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - {label: "Header Title", name: "header_title", widget: "string", required: false}
+          - {label: "Header Image", name: "header_image", widget: "image", required: false}
+          - label: "Menu"
+            name: "eleventyNavigation"
+            collapsed: true
+            widget: "object"
+            fields:
+              - { label: "Name", name: "key", widget: "string" }
+              - { label: "Order", name: "order", widget: "number", default: 0 }
+          - label: "Page Sections"
+            name: "page_sections"
+            label_singular: "Section"
+            widget: "list"
+            types:
+              - label: "Text Section"
+                name: "text-section"
+                widget: "object"
+                fields:
+                  - {label: "Text", name: "text", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], modes: ['rich_text']}
+              - label: "Instagram Section"
+                name: "instagram-gallery-section"
+                widget: "object"
+                fields:
+                  - {label: "Dummy", name: "dummy", widget: "hidden", required: false}
       - label: "About"
         name: "about"
         file: "src/pages/about.md"
@@ -42,12 +74,14 @@ collections:
           - {label: "Header Image", name: "header_image", widget: "image", required: false}
           - label: "Menu"
             name: "eleventyNavigation"
+            collapsed: true
             widget: "object"
             fields:
-              - { label: "Key", name: "key", widget: "string" }
+              - { label: "Name", name: "key", widget: "string" }
               - { label: "Order", name: "order", widget: "number", default: 0 }
           - label: "Page Sections"
             name: "page_sections"
+            label_singular: "Section"
             widget: "list"
             types:
               - label: "Text Section"

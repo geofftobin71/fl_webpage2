@@ -4,7 +4,7 @@
   {% include "partials/header.njk" %}
   <main>
   {% asyncAll section in page_sections %}
-    {% set template = 'partials/' + section.template + '.njk' %}
+    {% set template = 'partials/' + section.type + '.njk' %}
     {% include template %}
   {% endall %}
   </main>
