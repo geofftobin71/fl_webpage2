@@ -59,15 +59,20 @@ collections:
             summary: '{{fields.text}}'
             fields:
               - {label: "Text", name: "text", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], modes: ['rich_text'], minimal: true}
-              - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", default: false, required: false}
+              - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
+              - label: "Align Text"
+                name: "align"
+                widget: "select"
+                default: "Left"
+                options: ["Left", "Center", "Right"]
               - label: "Button"
                 name: "button"
                 collapsed: true
                 widget: "object"
                 fields:
-                  - { label: "Text", name: "text", widget: "string", default: "", required: false }
-                  - { label: "Link", name: "link", widget: "string", default: "", required: false }
-                  - { label: "New Window", name: "new_page", widget: "boolean", default: false, required: false }
+                  - { label: "Text", name: "text", widget: "string", required: false }
+                  - { label: "Link", name: "link", widget: "string", required: false }
+                  - { label: "Open in new Tab/Window", name: "new_page", widget: "boolean", required: false }
           - label: "Instagram Gallery Section"
             name: "instagram-gallery-section"
             widget: "object"
@@ -113,9 +118,9 @@ collections:
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", default: false, required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", required: false}
+              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
+              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
           - label: "Tuesday"
             name: "tuesday"
             widget: "object"
@@ -124,9 +129,9 @@ collections:
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", default: false, required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", required: false}
+              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
+              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
           - label: "Wednesday"
             name: "wednesday"
             widget: "object"
@@ -135,9 +140,9 @@ collections:
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", default: false, required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", required: false}
+              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
+              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
           - label: "Thursday"
             name: "thursday"
             widget: "object"
@@ -146,9 +151,9 @@ collections:
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", default: false, required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", required: false}
+              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
+              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
           - label: "Friday"
             name: "friday"
             widget: "object"
@@ -157,9 +162,9 @@ collections:
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", default: false, required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", required: false}
+              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
+              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
           - label: "Saturday"
             name: "saturday"
             widget: "object"
@@ -168,9 +173,9 @@ collections:
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", default: false, required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", required: false}
+              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
+              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
           - label: "Sunday"
             name: "sunday"
             widget: "object"
@@ -179,9 +184,9 @@ collections:
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", default: false, required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", required: false}
+              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
+              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
       - label: "Special Shop Hours"
         name: "special-shop-hours"
         file: "src/_data/special_shop_hours.json"
@@ -197,9 +202,9 @@ collections:
               - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", default: false, required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", default: false, required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", required: false}
+              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
+              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
   - label: "Lists"
     name: "lists"
     delete: false
