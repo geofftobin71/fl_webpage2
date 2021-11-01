@@ -11,10 +11,10 @@ slug:
 collections:
   - label: "Globals"
     name: "globals"
+    delete: false
     files:
       - label: "Banner Message"
         name: "banner_message"
-        delete: false
         file: "src/_data/banner_message.json"
         editor:
           preview: false
@@ -22,7 +22,6 @@ collections:
           - {label: "Message", name: "message", widget: "markdown", buttons: ['bold', 'italic', 'link'], editor_components: [], modes: ['rich_text'], minimal: true}
       - label: "Site Data"
         name: "site_data"
-        delete: false
         file: "src/_data/site_data.json"
         editor:
           preview: false
@@ -36,7 +35,6 @@ collections:
           - {label: "Postcode", name: "address_postcode", widget: "string"}
       - label: "Theme Settings"
         name: "theme"
-        delete: false
         file: "src/_data/tokens.json"
         editor:
           preview: false
@@ -56,10 +54,10 @@ collections:
               - {label: "Autofill", name: "colorAutofill", widget: "color"}
   - label: "Shop Hours"
     name: "shop_hours"
+    delete: false
     files:
       - label: "Regular Shop Hours"
         name: "regular_shop_hours"
-        delete: false
         file: "src/_data/regular_shop_hours.json"
         editor:
           preview: false
@@ -143,7 +141,6 @@ collections:
               - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
       - label: "Special Shop Hours"
         name: "special_shop_hours"
-        delete: false
         file: "src/_data/special_shop_hours.json"
         editor:
           preview: false
@@ -162,10 +159,10 @@ collections:
               - {label: "No Pickup", name: "no_pickup", widget: "boolean", default: false, required: false}
   - label: "Lists"
     name: "lists"
+    delete: false
     files:
       - label: "FAQ"
         name: "faq"
-        delete: false
         file: "src/_data/faq.json"
         editor:
           preview: false
@@ -180,7 +177,6 @@ collections:
               - {label: "Answer", name: "answer", widget: "text"}
       - label: "Photographers"
         name: "photographers"
-        delete: false
         file: "src/_data/photographers.json"
         editor:
           preview: false
@@ -188,7 +184,6 @@ collections:
           - label: "Photographers"
             label_singular: "Photographer"
             name: "photographers"
-            delete: false
             widget: "list"
             summary: '{{fields.name}}'
             fields:
@@ -196,7 +191,6 @@ collections:
               - {label: "Web Page", name: "webpage", widget: "string"}
       - label: "Reviews"
         name: "reviews"
-        delete: false
         file: "src/_data/reviews.json"
         editor:
           preview: false
@@ -213,14 +207,22 @@ collections:
   - name: "pages"
     label: "Pages"
     label_singular: "Page"
-    folder: "src/pages"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Header Image", name: "header_image", widget: "image", required: false}
+    delete: false
+    files:
+      - label: "About"
+        name: "about"
+        file: "src/pages/about.md"
+        editor:
+          preview: false
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - {label: "Header Title", name: "header_title", widget: "string", required: false}
+          - {label: "Header Image", name: "header_image", widget: "image", required: false}
   - name: "blog"
     label: "Blog"
     label_singular: "Blog Post"
+    delete: false
     folder: "src/blog"
     create: true
     slug: "{{slug}}"
