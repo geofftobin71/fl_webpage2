@@ -9,49 +9,52 @@ slug:
   clean_accents: true
   sanitize_replacement: "-"
 collections:
-  - label: "Globals"
-    name: "globals"
+  - name: "blog"
+    label: "Blog"
+    label_singular: "Blog Post"
+    delete: false
+    folder: "src/blog"
+    create: true
+    slug: "{{slug}}"
+    media_folder: '/{{media_folder}}/blog'
+    public_folder: '{{public_folder}}/blog'
+    fields:
+      - {label: "Draft", name: "draft", widget: "boolean", default: true}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
+      - {label: "Header Image", name: "header_image", widget: "image", required: false}
+      - {label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text']}
+  - name: "pages"
+    label: "Pages"
+    label_singular: "Page"
     delete: false
     files:
-      - label: "Banner Message"
-        name: "banner_message"
-        file: "src/_data/banner_message.json"
+      - label: "About"
+        name: "about"
+        file: "src/pages/about.md"
         editor:
           preview: false
         fields:
-          - {label: "Message", name: "message", widget: "markdown", buttons: ['bold', 'italic', 'link'], editor_components: [], modes: ['rich_text'], minimal: true}
-      - label: "Site Data"
-        name: "site_data"
-        file: "src/_data/site_data.json"
-        editor:
-          preview: false
-        fields:
-          - {label: "SEO Meta Description", name: "description", widget: "text"}
-          - {label: "Header Image", name: "header_image", widget: "image"}
-          - {label: "Phone", name: "phone", widget: "string"}
-          - {label: "Address", name: "address", widget: "string"}
-          - {label: "Suburb", name: "address_locality", widget: "string"}
-          - {label: "Region", name: "address_region", widget: "string"}
-          - {label: "Postcode", name: "address_postcode", widget: "string"}
-      - label: "Theme Settings"
-        name: "theme"
-        file: "src/_data/tokens.json"
-        editor:
-          preview: false
-        fields:
-          - label: "Colors"
-            name: "colors"
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - {label: "Header Title", name: "header_title", widget: "string", required: false}
+          - {label: "Header Image", name: "header_image", widget: "image", required: false}
+          - label: "Menu"
+            name: "eleventyNavigation"
             widget: "object"
             fields:
-              - {label: "Light", name: "colorLight", widget: "color"}
-              - {label: "Dark", name: "colorDark", widget: "color"}
-              - {label: "Alt", name: "colorAlt", widget: "color"}
-              - {label: "Primary", name: "colorPrimary", widget: "color"}
-              - {label: "Shade1", name: "colorShade1", widget: "color"}
-              - {label: "Shade2", name: "colorShade2", widget: "color"}
-              - {label: "Shade3", name: "colorShade3", widget: "color"}
-              - {label: "Button", name: "colorButton", widget: "color"}
-              - {label: "Autofill", name: "colorAutofill", widget: "color"}
+              - { label: "Key", name: "key", widget: "string" }
+              - { label: "Order", name: "order", widget: "number", default: 0 }
+          - label: "Page Sections"
+            name: "page_sections"
+            widget: "list"
+            types:
+              label: "Text Section"
+              type: "text-section"
+              widget: "object"
+              fields:
+                - {label: "Text", name: "text", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], modes: ['rich_text']}
   - label: "Shop Hours"
     name: "shop_hours"
     delete: false
@@ -204,34 +207,46 @@ collections:
               - {label: "Review", name: "review", widget: "text"}
               - {label: "Author", name: "name", widget: "string"}
               - {label: "Wedding", name: "wedding", widget: "boolean"}
-  - name: "pages"
-    label: "Pages"
-    label_singular: "Page"
+  - label: "Globals"
+    name: "globals"
     delete: false
     files:
-      - label: "About"
-        name: "about"
-        file: "src/pages/about.md"
+      - label: "Banner Message"
+        name: "banner_message"
+        file: "src/_data/banner_message.json"
         editor:
           preview: false
         fields:
-          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Message", name: "message", widget: "markdown", buttons: ['bold', 'italic', 'link'], editor_components: [], modes: ['rich_text'], minimal: true}
+      - label: "Site Data"
+        name: "site_data"
+        file: "src/_data/site_data.json"
+        editor:
+          preview: false
+        fields:
           - {label: "Description", name: "description", widget: "text"}
-          - {label: "Header Title", name: "header_title", widget: "string", required: false}
-          - {label: "Header Image", name: "header_image", widget: "image", required: false}
-  - name: "blog"
-    label: "Blog"
-    label_singular: "Blog Post"
-    delete: false
-    folder: "src/blog"
-    create: true
-    slug: "{{slug}}"
-    media_folder: '/{{media_folder}}/blog'
-    public_folder: '{{public_folder}}/blog'
-    fields:
-      - {label: "Draft", name: "draft", widget: "boolean", default: true}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
-      - {label: "Header Image", name: "header_image", widget: "image", required: false}
-      - {label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text']}
+          - {label: "Header Image", name: "header_image", widget: "image"}
+          - {label: "Phone", name: "phone", widget: "string"}
+          - {label: "Address", name: "address", widget: "string"}
+          - {label: "Suburb", name: "address_locality", widget: "string"}
+          - {label: "Region", name: "address_region", widget: "string"}
+          - {label: "Postcode", name: "address_postcode", widget: "string"}
+      - label: "Theme Settings"
+        name: "theme"
+        file: "src/_data/tokens.json"
+        editor:
+          preview: false
+        fields:
+          - label: "Colors"
+            name: "colors"
+            widget: "object"
+            fields:
+              - {label: "Light", name: "colorLight", widget: "color"}
+              - {label: "Dark", name: "colorDark", widget: "color"}
+              - {label: "Alt", name: "colorAlt", widget: "color"}
+              - {label: "Primary", name: "colorPrimary", widget: "color"}
+              - {label: "Shade1", name: "colorShade1", widget: "color"}
+              - {label: "Shade2", name: "colorShade2", widget: "color"}
+              - {label: "Shade3", name: "colorShade3", widget: "color"}
+              - {label: "Button", name: "colorButton", widget: "color"}
+              - {label: "Autofill", name: "colorAutofill", widget: "color"}
