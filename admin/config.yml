@@ -23,7 +23,7 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
-      - {label: "Header Image", name: "header_image", widget: "image", required: false}
+      - {label: "Header Image", name: "header_image", widget: "image", choose_url: false, required: false}
       - {label: "Post Body", name: "body", widget: "markdown", buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], modes: ['rich_text']}
   - label: "Pages"
     name: "pages"
@@ -40,7 +40,7 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Header Title", name: "header_title", widget: "string", required: false}
-      - {label: "Header Image", name: "header_image", widget: "image", required: false}
+      - {label: "Header Image", name: "header_image", widget: "image", choose_url: false, required: false}
       - label: "Menu"
         name: "eleventyNavigation"
         collapsed: true
@@ -74,6 +74,13 @@ collections:
                   - { label: "Text", name: "text", widget: "string", required: false }
                   - { label: "Link", name: "link", widget: "string", required: false }
                   - { label: "Open in new Tab/Window", name: "new_page", widget: "boolean", required: false }
+          - label: "Image"
+            name: "image-section"
+            widget: "object"
+            summary: '{{fields.image}}'
+            fields:
+              - {label: "Image", name: "image", widget: "image", choose_url: false}
+              - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Contact Form"
             name: "contact-form-section"
             widget: "object"
@@ -102,7 +109,7 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Header Title", name: "header_title", widget: "string", required: false}
-      - {label: "Header Image", name: "header_image", widget: "image", required: false}
+      - {label: "Header Image", name: "header_image", widget: "image", choose_url: false, required: false}
       - label: "Menu"
         name: "eleventyNavigation"
         collapsed: true
