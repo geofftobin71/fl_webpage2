@@ -9,6 +9,53 @@ slug:
   clean_accents: true
   sanitize_replacement: "-"
 collections:
+  - label: "Lists"
+    name: "lists"
+    delete: false
+    files:
+      - label: "FAQ"
+        name: "faq"
+        file: "src/_data/faq.json"
+        editor:
+          preview: false
+        fields:
+          - label: "FAQ"
+            label_singular: "FAQ"
+            name: "faq"
+            widget: "list"
+            summary: '{{fields.question}}'
+            fields:
+              - {label: "Question", name: "question", widget: "string"}
+              - {label: "Answer", name: "answer", widget: "text"}
+      - label: "Photographers"
+        name: "photographers"
+        file: "src/_data/photographers.json"
+        editor:
+          preview: false
+        fields:
+          - label: "Photographers"
+            label_singular: "Photographer"
+            name: "photographers"
+            widget: "list"
+            summary: '{{fields.name}}'
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Web Page", name: "webpage", widget: "string"}
+      - label: "Reviews"
+        name: "reviews"
+        file: "src/_data/reviews.json"
+        editor:
+          preview: false
+        fields:
+          - label: "Reviews"
+            label_singular: "Review"
+            name: "reviews"
+            widget: "list"
+            summary: '{{fields.review}} - {{fields.name}}'
+            fields:
+              - {label: "Review", name: "review", widget: "text"}
+              - {label: "Author", name: "name", widget: "string"}
+              - {label: "Wedding", name: "wedding", widget: "boolean"}
   - label: "Blog"
     name: "blog"
     label_singular: "Blog Post"
@@ -225,53 +272,6 @@ collections:
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
               - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
               - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
-  - label: "Lists"
-    name: "lists"
-    delete: false
-    files:
-      - label: "FAQ"
-        name: "faq"
-        file: "src/_data/faq.json"
-        editor:
-          preview: false
-        fields:
-          - label: "FAQ"
-            label_singular: "FAQ"
-            name: "faq"
-            widget: "list"
-            summary: '{{fields.question}}'
-            fields:
-              - {label: "Question", name: "question", widget: "string"}
-              - {label: "Answer", name: "answer", widget: "text"}
-      - label: "Photographers"
-        name: "photographers"
-        file: "src/_data/photographers.json"
-        editor:
-          preview: false
-        fields:
-          - label: "Photographers"
-            label_singular: "Photographer"
-            name: "photographers"
-            widget: "list"
-            summary: '{{fields.name}}'
-            fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Web Page", name: "webpage", widget: "string"}
-      - label: "Reviews"
-        name: "reviews"
-        file: "src/_data/reviews.json"
-        editor:
-          preview: false
-        fields:
-          - label: "Reviews"
-            label_singular: "Review"
-            name: "reviews"
-            widget: "list"
-            summary: '{{fields.review}} - {{fields.name}}'
-            fields:
-              - {label: "Review", name: "review", widget: "text"}
-              - {label: "Author", name: "name", widget: "string"}
-              - {label: "Wedding", name: "wedding", widget: "boolean"}
   - label: "Globals"
     name: "globals"
     delete: false
