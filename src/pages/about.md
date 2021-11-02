@@ -21,6 +21,9 @@ page_sections:
     alternate_background_color: true
   - type: image-section
     image: /images/floriade-dried-flower-room-00001.jpg
+    alternate_background_color: true
+    alt-text: The Floriade dried flower room
+    caption: Floriade Dried Flower Room
   - type: text-section
     text: >-
       Floriade is Wellington’s **dried flowers** specialist. We create large
@@ -43,4 +46,9 @@ page_sections:
     message: What can we do for you?
     email_subject: Wedding Flowers Enquiry
     email_heading: We got your message
+  - type: image-section
+    image: /images/Floriade_dried_flower_room_1200.jpg
+    alt-text: The old Floriade dried flower room
+    caption: Floriade old Dried Flower Room
+    photographer: Erica Jane Photography
 ---
