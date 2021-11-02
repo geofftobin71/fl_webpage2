@@ -550,6 +550,7 @@ article > * + * {
 /* ----- Blog Post ----- */
 
 @media screen and (min-width:800px) {
+  .image-section figure,
   .blog-post figure {
     position:relative;
     width:120%;
@@ -557,6 +558,7 @@ article > * + * {
   }
 }
 
+.image-section figure img,
 .blog-post figure img {
   width:100%;
   height:100%;

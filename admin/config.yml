@@ -80,6 +80,9 @@ collections:
             summary: '{{fields.image}}'
             fields:
               - {label: "Image", name: "image", widget: "image", choose_url: false}
+              - {label: "Alt Text", name: "alt-text", widget: "string" }
+              - {label: "Title", name: "caption", widget: "string", required: false }
+              - {label: "Photographer", name: "photographer", widget: "relation", collection: "photographers", value_field: "photographers.name", search_fields: ["photographers.name"], required: false}
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Contact Form"
             name: "contact-form-section"

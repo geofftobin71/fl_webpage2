@@ -1,2 +1,7 @@
 <section class="image-section{{ ' bg-alt' if (section.alternate_background_color) }}">
+  <div class="wrapper text-wrapper">
+    <figure>
+      <img src="{{ section.image | safe }}" alt="">
+    </figure>
+  </div>
 </section>
