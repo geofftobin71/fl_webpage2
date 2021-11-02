@@ -53,7 +53,7 @@ collections:
         label_singular: "Section"
         widget: "list"
         types:
-          - label: "Text Section"
+          - label: "Text"
             name: "text-section"
             widget: "object"
             summary: '{{fields.text}}'
@@ -74,7 +74,7 @@ collections:
                   - { label: "Text", name: "text", widget: "string", required: false }
                   - { label: "Link", name: "link", widget: "string", required: false }
                   - { label: "Open in new Tab/Window", name: "new_page", widget: "boolean", required: false }
-          - label: "Contact Form Section"
+          - label: "Contact Form"
             name: "contact-form-section"
             widget: "object"
             fields:
@@ -83,7 +83,7 @@ collections:
               - {label: "Email Subject", name: "email_subject", widget: "string", required: false, hint: "eg. Flowers Enquiry"}
               - {label: "Email Reply Heading", name: "email_heading", widget: "string", required: false, hint: "eg. Thankyou for contacting Floriade"}
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
-          - label: "Instagram Gallery Section"
+          - label: "Instagram Gallery"
             name: "instagram-gallery-section"
             widget: "object"
             fields:

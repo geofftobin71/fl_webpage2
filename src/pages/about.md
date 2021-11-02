@@ -36,7 +36,6 @@ page_sections:
       link: https://floriade.co.nz
       new_page: true
   - type: contact-form-section
-  - type: contact-form-section
     alternate_background_color: true
     heading: Send us a Message
     message: What can we do for you?
