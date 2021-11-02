@@ -35,6 +35,11 @@ page_sections:
       text: Learn More
       link: https://floriade.co.nz
       new_page: true
-  - type: text-section
-    text: This is the new text.
+  - type: contact-form-section
+  - type: contact-form-section
+    alternate_background_color: true
+    heading: Send us a Message
+    message: What can we do for you?
+    email_subject: Wedding Flowers Enquiry
+    email_heading: We got your message
 ---
