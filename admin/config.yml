@@ -63,6 +63,7 @@ collections:
               - label: "Align Text"
                 name: "align"
                 widget: "select"
+                required: false
                 default: "Left"
                 options: ["Left", "Center", "Right"]
               - label: "Button"
@@ -73,6 +74,15 @@ collections:
                   - { label: "Text", name: "text", widget: "string", required: false }
                   - { label: "Link", name: "link", widget: "string", required: false }
                   - { label: "Open in new Tab/Window", name: "new_page", widget: "boolean", required: false }
+          - label: "Contact Form Section"
+            name: "contact-form-section"
+            widget: "object"
+            fields:
+              - {label: "Heading", name: "heading", widget: "string", required: false, hint: "eg. Contact Us or Send us a Message"}
+              - {label: "Message placeholder", name: "message", widget: "string", required: false, hint: "eg. How can we help you?"}
+              - {label: "Email Subject", name: "email_subject", widget: "string", required: false, hint: "eg. Flowers Enquiry"}
+              - {label: "Email Reply Heading", name: "email_heading", widget: "string", required: false, hint: "eg. Thankyou for contacting Floriade"}
+              - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Instagram Gallery Section"
             name: "instagram-gallery-section"
             widget: "object"
