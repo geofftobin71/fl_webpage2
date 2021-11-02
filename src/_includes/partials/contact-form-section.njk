@@ -2,19 +2,19 @@
 <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
 <form id="contact-form" class="req-js width100 flow">
   <div>
-    <label for="name"><h4 class="heading">Name</h4></label>
+    <label for="name"><h4 class="heading text-left" style="padding-left:0.5em">Name</h4></label>
     <input required class="input" id="name" name="name" type="text" autocomplete="name" data-error="Name is required" placeholder="Your Name">
   </div>
   <div hidden class="noviz" aria-hidden="true">
-    <label for="password"><h4 class="heading">Password</h4></label>
+    <label for="password"><h4 class="heading text-left" style="padding-left:0.5em">Password</h4></label>
     <input tabindex="-1" class="input" id="password" name="password" type="text" autocomplete="false" placeholder="Password">
   </div>
   <div>
-    <label for="email"><h4 class="heading">Email</h4></label>
+    <label for="email"><h4 class="heading text-left" style="padding-left:0.5em">Email</h4></label>
     <input required class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" data-error="Email is required" placeholder="Your Email address">
   </div>
   <div>
-    <label for="message"><h4 class="heading">Message</h4></label>
+    <label for="message"><h4 class="heading text-left" style="padding-left:0.5em">Message</h4></label>
     <textarea required class="input" id="message" name="message" data-error="Message is required" placeholder="{{ section.message or 'How can we help you?' }}" rows="6"></textarea>
   </div>
   <input id="subject" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
