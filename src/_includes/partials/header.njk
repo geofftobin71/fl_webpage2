@@ -7,19 +7,23 @@
   <figure class="background">
     {% set image_id = header_image or site.header_image %}
     <picture>
-      <source srcset="{% twic path=image_id, params='/focus=auto/cover=4:1', sizes=image_sizes %}" sizes="100vw" media="(min-aspect-ratio: 155/100)">
-      <source srcset="{% twic path=image_id, params='/focus=auto/cover=3:1', sizes=image_sizes %}" sizes="100vw" media="(min-aspect-ratio: 1/1)">
-      <source srcset="{% twic path=image_id, params='/focus=auto/cover=2:1', sizes=image_sizes %}" sizes="100vw">
-      <img src="{% twic path=image_id, params='/resize=1024/focus=auto/cover=3:1' %}" style="background-image:url({% lqip path=image_id, params='/focus=auto/cover=3:1' %})" alt="" />
+    <source srcset="{% twic path=image_id, params='/focus=auto/cover=4:1', sizes=image_sizes %}" sizes="100vw" media="(min-aspect-ratio: 155/100)">
+    <source srcset="{% twic path=image_id, params='/focus=auto/cover=3:1', sizes=image_sizes %}" sizes="100vw" media="(min-aspect-ratio: 1/1)">
+    <source srcset="{% twic path=image_id, params='/focus=auto/cover=2:1', sizes=image_sizes %}" sizes="100vw" media="(min-width:750px)">
+    <source srcset="{% twic path=image_id, params='/focus=auto/cover=3:2', sizes=image_sizes %}" sizes="100vw">
+    <img src="{% twic path=image_id, params='/resize=1024/focus=auto/cover=3:1' %}" style="background-image:url({% lqip path=image_id, params='/focus=auto/cover=3:1' %})" alt="" />
     </picture>
   </figure>
   <div class="content">
     <figure class="logo">
-      <a href="{{ '/' | url }}" tabindex="-1">
+      <a href="{{ '/' | url }}" style="display:block" tabindex="-1">
         <img src="{{ '/icons/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
       </a>
     </figure>
-    <h1>{{ (header_title or title) | pronoun | addNbsp | safe }}</h1>
+    <div class="title">
+      <h1>{{ (header_title or title) | pronoun | addNbsp | safe }}</h1>
+      {% if subheading %}<p class="subheading">{{ subheading | pronoun | addNbsp | safe }}</p>{% endif %}
+    </div>
   </div>
 </header>
 <div class="site-menu">

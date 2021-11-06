@@ -1,5 +1,6 @@
 {
   "layout": "layouts/blog-post.njk",
   "metaType": "article",
+  "eleventyComputed": { "subheading": "<span style='text-transform:none'>{{ date | readableDate }}</span>" },
   "permalink": "/blog/{{ title | slugify }}{{ page.fileSlug | slugSuffix }}/"
 }

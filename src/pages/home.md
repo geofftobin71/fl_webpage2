@@ -10,5 +10,5 @@ eleventyNavigation:
   key: Home
   order: 0
 page_sections:
-  - type: instagram-gallery-section
+  - xtype: instagram-gallery-section
 ---

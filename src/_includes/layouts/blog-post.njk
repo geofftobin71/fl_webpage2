@@ -2,6 +2,7 @@
 layout: layouts/base.njk 
 ---
 {% include "partials/header.njk" %}
+<main>
 <section>
   <article class="blog-post bg-alt wrapper text-wrapper" style="padding-top:2em;padding-bottom:2em">
     {{ content | safe }}
@@ -36,4 +37,5 @@ layout: layouts/base.njk
 </div>
 {%- endif %}
 {%- endif %}
+</main>
 {% include "partials/footer.njk" %}

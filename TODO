@@ -1,15 +1,18 @@
 Next:
 Fix:
 T & C / privacy / cookie policy all on one line
-markdown headings pronoun filter
 Policy pages
 Mailchimp Signup form (OLD!)
-Image widget link to Photographers
 Contact layout enable google maps
 Date subheading in Blog header
 Change nodemailer settings from mailtrap to floriade (functions)
 
 Check:
+a surrounding image display:block
+markdown headings pronoun filter
+addNbsp to headings
+use of safe
+aria-label semantic elements
 Color contrast
 noscript scrollbar styles
 target="_blank" and rel="noopener" on external links

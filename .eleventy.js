@@ -23,7 +23,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let caption = '';
   if(title_txt) {
-    caption = '<figcaption class="caption text-center" style="margin-top:0.3em">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
+    caption = '<figcaption class="caption" style="margin-top:0.3em">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
   }
 
   let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
@@ -183,6 +183,10 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("findSpecialDay", (array, date) => {
     return array.find(element => element.date === date);
+  });
+
+  eleventyConfig.addFilter("findPhotographer", (array, name) => {
+    return array.find(element => element.name === name);
   });
 
   eleventyConfig.addFilter("shuffle", (array) => {

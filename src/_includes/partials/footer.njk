@@ -1,9 +1,5 @@
 <style>.three-columns{display:grid;gap:2.5em 0;grid-template-columns:1fr;grid-template-areas:"location" "contact" "follow" "hours" "subscribe";}@media screen and (min-width: 750px){.three-columns{gap:1.5em 0;grid-template-columns:1fr 1fr 1fr;
-grid-template-areas:"location hours follow" "contact hours subscribe";} } #footer-location{grid-area:location;} #footer-contact{grid-area:contact;} #footer-follow{grid-area:follow;} #footer-hours{grid-area:hours} #footer-subscribe{grid-area:subscribe}
-section > * + * {
-  margin-top:2em;
-}
-</style>
+grid-template-areas:"location hours follow" "contact hours subscribe";} } #footer-location{grid-area:location;} #footer-contact{grid-area:contact;} #footer-follow{grid-area:follow;} #footer-hours{grid-area:hours} #footer-subscribe{grid-area:subscribe} section > * + * {margin-top:2em;} .policies{display:grid;grid-template-columns:1fr;margin-top:0.5em;} @media screen and (min-width:750px){.policies{grid-template-columns:1fr 1fr 1fr;} }</style>
 
 <hr>
 <footer class="bg-alt font-size--1" style="margin-top:auto">
@@ -53,9 +49,11 @@ section > * + * {
     </div>
     <div class="text-center">
       <p style="white-space:nowrap">© Floriade Ltd {% year %}. All rights reserved</p>
-      <p><a href="/terms-and-conditions/">Terms and Conditions</a></p>
-      <p><a href="/privacy/">Privacy Policy</a></p>
-      <p><a href="/cookie-policy/">Cookie Policy</a></p>
+      <div class="policies">
+        <p><a href="/terms-and-conditions/">Terms and Conditions</a></p>
+        <p><a href="/privacy/">Privacy Policy</a></p>
+        <p><a href="/cookie-policy/">Cookie Policy</a></p>
+      </div>
     </div>
   </section>
 </footer>

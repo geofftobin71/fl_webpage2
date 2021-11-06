@@ -1,7 +1,22 @@
 <section class="image-section{{ ' bg-alt' if (section.alternate_background_color) }}">
   <div class="wrapper text-wrapper">
     <figure>
-      <img src="{{ section.image | safe }}" alt="">
+      <img src="{{ section.image | safe }}" alt="{{ section.alt-text }}">
+      {% if section.caption %}
+        <figcaption class="caption" style="margin-top:0.3em">{{ section.caption }}</figcaption>
+      {% endif %}
+      {% if section.photographer %}
+        {% set photographer = photographers.photographers | findPhotographer(section.photographer) %}
+        {% if photographer and photographer.name %}
+          <figcaption class="caption small">Photo Credit : 
+            {% if photographer.webpage %}
+              <a href="{{ photographer.webpage | safe }}" target="_blank" rel="noopener"> {{ photographer.name | safe }}</a>
+            {% else %}
+              {{ photographer.name | safe }}
+            {% endif %}
+          </figcaption>
+        {% endif %}
+      {% endif %}
     </figure>
   </div>
 </section>
