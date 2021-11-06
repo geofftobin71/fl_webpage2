@@ -1,0 +1,15 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  {% include "partials/header.njk" %}
+  <main>
+  <section>
+    <div class="wrapper text-wrapper">
+      <article>
+        {{ super() }}
+      </article>
+    </div>
+  </section>
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}
