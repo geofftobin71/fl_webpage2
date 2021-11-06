@@ -1,20 +1,18 @@
 Next:
+Image gallery
+
 Fix:
-T & C / privacy / cookie policy all on one line
 Policy pages
 Mailchimp Signup form (OLD!)
 Contact layout enable google maps
-Date subheading in Blog header
 Change nodemailer settings from mailtrap to floriade (functions)
 
 Check:
-a surrounding image display:block
-markdown headings pronoun filter
+<a> surrounding image display:block
+headings pronoun filter
 addNbsp to headings
-use of safe
 aria-label semantic elements
-Color contrast
-noscript scrollbar styles
+color contrast
+noscript scrollbar styles (?? review slider)
 target="_blank" and rel="noopener" on external links
-markdown | safe ( filter )
 ul has class

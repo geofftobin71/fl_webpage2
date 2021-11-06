@@ -1,6 +1,7 @@
 {% if banner_message.message %}
+  {% set message = banner_message.message | addNbsp %}
   <aside class="banner-message">
-    {% markdown banner_message.message %}
+    {% markdown message %}
   </aside>
 {% endif %}
 <header id="header" class="header">
