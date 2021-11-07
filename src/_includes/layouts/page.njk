@@ -4,7 +4,7 @@
   {% include "partials/header.njk" %}
   <main>
   {% asyncAll section in page_sections %}
-  {% if section.type %}
+  {% ifAsync section.type %}
     {% set component = 'components/' + section.type + '.njk' %}
     {% include component %}
   {% endif %}

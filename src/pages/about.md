@@ -23,7 +23,7 @@ page_sections:
   - type: image-section
     image: /images/floriade-dried-flower-room-00001.jpg
     alternate_background_color: true
-    alt-text: The Floriade dried flower room
+    alt_text: The Floriade dried flower room
     caption: Floriade Dried Flower Room
   - type: text-section
     text: >-
@@ -49,7 +49,7 @@ page_sections:
     email_heading: We got your message
   - type: image-section
     image: /images/Floriade_dried_flower_room_1200.jpg
-    alt-text: The old Floriade dried flower room
+    alt_text: The old Floriade dried flower room
     caption: Floriade old Dried Flower Room
     photographer: Erica Jane Photography
 ---
