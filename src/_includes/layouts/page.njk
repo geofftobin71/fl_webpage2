@@ -5,6 +5,8 @@
   <main>
   {% asyncAll section in page_sections %}
   {% ifAsync section.type %}
+    {% set debug = page.fileSlug + ' : ' + section.type %}
+    {{ debug | log }}
     {% set component = 'components/' + section.type + '.njk' %}
     {% include component %}
   {% endif %}

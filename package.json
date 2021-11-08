@@ -23,7 +23,6 @@
     "html-minifier": "^4.0.0",
     "jsonminify": "^0.4.1",
     "juice": "^8.0.0",
-    "mailgen": "^2.0.15",
     "markdown-it": "^12.2.0",
     "netlify-cli": "^6.10.3",
     "node-fetch": "^2.6.1",

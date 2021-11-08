@@ -60,7 +60,9 @@
   <main>
   {% include "partials/title-page.njk" %}
   {% asyncAll section in page_sections %}
-  {% if section.type %}
+  {% set debug = page.fileSlug + ' : ' + section.type %}
+  {{ debug | log }}
+  {% ifAsync section.type %}
     {% set component = 'components/' + section.type + '.njk' %}
     {% include component %}
   {% endif %}

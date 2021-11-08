@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
   branch: master
+  use_large_media_transforms_in_media_library: false
 media_folder: "src/images"
 public_folder: "/images"
 logo_url: "https://floriade.co.nz/icons/floriade-icon-round-512.png"
