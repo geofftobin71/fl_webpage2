@@ -497,7 +497,7 @@
     z-index:-1;
   }
 
-  .fader img,
+  .fader figure,
   .fader footer {
     opacity:0;
     animation-iteration-count:infinite;

@@ -14,11 +14,13 @@ const fs = require("fs");
 const site = require("./src/_data/site.js");
 const slugify = require("@sindresorhus/slugify");
 const countableSlugify = slugify.counter();
+const crypto = require('crypto');
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
 markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
   const image_path = tokens[idx].attrs[0][1];
+  const alt_txt = self.renderInlineAsText(tokens, options, env);
   const title_txt = (tokens[idx].attrs[2]) ? tokens[idx].attrs[2][1] : null;
 
   let caption = '';
@@ -26,10 +28,15 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
     caption = '<figcaption class="caption" style="margin-top:0.3em">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
   }
 
-  let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
+  let alt = ' alt="' + alt_txt + '"';
 
   return '<figure><noscript><img ' + alt + ' src="' + site.twic_url + image_path + '" /></noscript><img class="req-js"' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/output=preview" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-bot="contain=750x750" />'
     + caption + '</figure>';
+}
+
+function uniqueId(length) {
+  const buf = crypto.randomBytes(length/2);
+  return buf.toString('hex');
 }
 
 module.exports = function (eleventyConfig) {
@@ -213,6 +220,10 @@ module.exports = function (eleventyConfig) {
       if(array[i].wedding == wedding) { filtered[filtered.length] = array[i]; }
     }
     return filtered;
+  });
+
+  eleventyConfig.addFilter("uniqueId", (length) => {
+    return uniqueId(length);
   });
 
   eleventyConfig.addNunjucksShortcode("twic", function(args) {

@@ -1,24 +1,36 @@
 <section class="image-section{{ ' bg-alt' if (section.alternate_background_color) }}">
   <div class="wrapper text-wrapper">
-    <figure>
-      {% set image_path = section.image | safe %}
-      <noscript><img src="{{ site.twic_url }}{{ image_path }}" alt="{{ section.alt_text }}" /></noscript>
-      <img class="req-js" data-twic-src="image:{{ image_path }}" data-twic-step="50" data-twic-bot="contain=750x750" alt="{{ section.alt_text }}" src="{% lqip path=image_path %}" />
-      {% if section.caption %}
-        <figcaption class="caption" style="margin-top:0.3em">{{ section.caption }}</figcaption>
-      {% endif %}
-      {% if section.photographer %}
-        {% set photographer = photographers.photographers | findPhotographer(section.photographer) %}
-        {% if photographer and photographer.name %}
-          <figcaption class="caption small">Photo Credit : 
-          {% if photographer.webpage %}
-            <a href="{{ photographer.webpage | safe }}" target="_blank" rel="noopener"> {{ photographer.name | safe }}</a>
-          {% else %}
-            {{ photographer.name | safe }}
+    {% set section_images_count = section.images | length %}
+    {% set anim_fade_time = 1 %}
+    {% set anim_show_time = 3 %}
+    {% set anim_duration = (anim_fade_time + anim_show_time) * section_images_count %}
+    {% set one_second = 100.0 / anim_duration %}
+    {% set section_name = 'fade-' + 8 | uniqueId %}
+    {{ ( '<style>@keyframes ' + section_name + '{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if section_images_count > 1 }}
+    <div class="canvas {{ ' fader' if section_images_count > 1 }}">
+      {% for image in section.images %}
+        {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
+        {% set image_path = image.image | safe %}
+        <figure style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}">
+          <noscript><img src="{% twic path=image_path, params='/focus=auto/cover=3:2' %}" alt="{{ image.alt_text }}" /></noscript>
+          <img class="req-js" data-twic-src="image:{{ image_path }}" data-twic-focus="auto" data-twic-transform="cover=3:2" data-twic-step="50" data-twic-bot="contain=750x750" alt="{{ image.alt_text }}" src="{% lqip path=image_path, params='/focus=auto/cover=3:2' %}" />
+          {% ifAsync image.caption %}
+            <figcaption class="caption" style="margin-top:0.3em">{{ image.caption }}</figcaption>
           {% endif %}
-          </figcaption>
-        {% endif %}
-      {% endif %}
-    </figure>
+          {% ifAsync image.photographer %}
+            {% set photographer = photographers.photographers | findPhotographer(image.photographer) %}
+            {% ifAsync photographer and photographer.name %}
+              <figcaption class="caption small" style="margin-top:0.3em">Photo Credit : 
+                {% ifAsync photographer.webpage %}
+                  <a href="{{ photographer.webpage | safe }}" target="_blank" rel="noopener"> {{ photographer.name | safe }}</a>
+                {% else %}
+                  {{ photographer.name | safe }}
+                {% endif %}
+              </figcaption>
+            {% endif %}
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </div>
   </div>
 </section>

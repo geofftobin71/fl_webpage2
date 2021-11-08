@@ -77,12 +77,16 @@ collections:
           - label: "Image"
             name: "image-section"
             widget: "object"
-            summary: '{{fields.image}}'
             fields:
-              - {label: "Image", name: "image", widget: "image", choose_url: false}
-              - {label: "Alt Text", name: "alt_text", widget: "string" }
-              - {label: "Title", name: "caption", widget: "string", required: false }
-              - {label: "Photographer", name: "photographer", widget: "relation", collection: "lists", file: "photographers", value_field: "photographers.*.name", search_fields: ["photographers.*.name"], required: false}
+              - label: "Images"
+                name: "images"
+                label_singular: "Image"
+                widget: "list"
+                fields:
+                  - {label: "Image", name: "image", widget: "image", choose_url: false}
+                  - {label: "Alt Text", name: "alt_text", widget: "string" }
+                  - {label: "Title", name: "caption", widget: "string", required: false }
+                  - {label: "Photographer", name: "photographer", widget: "relation", collection: "lists", file: "photographers", value_field: "photographers.*.name", search_fields: ["photographers.*.name"], required: false}
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Contact Form"
             name: "contact-form-section"
