@@ -78,6 +78,16 @@ collections:
             name: "image-section"
             widget: "object"
             fields:
+              - label: "Aspect Ratio"
+                name: "aspect_ratio"
+                widget: "select"
+                required: false
+                default: { label: "Landscape", value: "3:2" }
+                options:
+                  - { label: "Landscape", value: "3:2" }
+                  - { label: "Square", value: "1:1" }
+                  - { label: "Portrait", value: "2:3" }
+              - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
               - label: "Images"
                 name: "images"
                 label_singular: "Image"
@@ -87,7 +97,6 @@ collections:
                   - {label: "Alt Text", name: "alt_text", widget: "string" }
                   - {label: "Title", name: "caption", widget: "string", required: false }
                   - {label: "Photographer", name: "photographer", widget: "relation", collection: "lists", file: "photographers", value_field: "photographers.*.name", search_fields: ["photographers.*.name"], required: false}
-              - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Contact Form"
             name: "contact-form-section"
             widget: "object"
