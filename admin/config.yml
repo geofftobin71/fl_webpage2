@@ -77,13 +77,12 @@ collections:
           - label: "Image"
             name: "image-section"
             widget: "object"
-            summary: '{{fields.images | length}}'
             fields:
               - label: "Aspect Ratio"
                 name: "aspect_ratio"
                 widget: "select"
                 required: false
-                default: { label: "Landscape", value: "3:2" }
+                default: "3:2"
                 options:
                   - { label: "Landscape", value: "3:2" }
                   - { label: "Square", value: "1:1" }
