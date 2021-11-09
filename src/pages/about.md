@@ -66,4 +66,11 @@ page_sections:
       - image: /images/Floriade_dried_flower_room_1200.jpg
         alt_text: The old Floriade dried flower room
         photographer: Erica Jane Photography
+  - type: image-section
+    aspect_ratio:
+      label: Landscape
+      value: 3:2
+    images:
+      - image: /images/floriade-socialmedia-image.jpg
+        alt_text: Social Media
 ---
