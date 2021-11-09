@@ -38,6 +38,7 @@ page_sections:
         alt_text: Floriade Map
         caption: Floriade Map
         photographer: lovemiphoto
+    aspect_ratio: 2:3
   - type: text-section
     text: >-
       Floriade is Wellington’s **dried flowers** specialist. We create large
