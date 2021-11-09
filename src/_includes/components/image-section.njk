@@ -1,4 +1,5 @@
 <section class="image-section{{ ' bg-alt' if (section.alternate_background_color) }}">
+  {% ifAsync section.heading %}<h2 class="heading">{{ section.heading }}</h2>{% endif %}
   <div class="wrapper text-wrapper">
     {% set section_images_count = section.images | length %}
     {% ifAsync section_images_count > 1 %}
@@ -14,7 +15,7 @@
       {% for image in section.images %}
         {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
         {% set image_path = image.image | safe %}
-        <figure style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}">
+        <figure class="vertical center" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}">
           {% ifAsync aspect_ratio %}
             <noscript><img src="{% twic path=image_path, params='/focus=auto/resize=800/cover=' + aspect_ratio %}" alt="{{ image.alt_text }}" /></noscript>
             <img class="req-js" data-twic-src="image:{{ image_path }}" data-twic-focus="auto" data-twic-transform="cover={{ aspect_ratio }}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ image.alt_text }}" src="{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}" />

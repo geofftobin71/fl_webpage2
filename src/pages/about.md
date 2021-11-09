@@ -11,6 +11,8 @@ eleventyNavigation:
 page_sections:
   - type: text-section
     text: >-
+      ## Text Section
+
       **Floriade** is a boutique Wellington florist specialising in unique fresh
       and dried floral arrangements. We believe that flowers delight the senses
       and bring an emotional response through colour, fragrance, texture and
@@ -21,6 +23,7 @@ page_sections:
     alternate_background_color: true
   - type: reviews-section
   - type: image-section
+    heading: Images
     alternate_background_color: true
     images:
       - image: /images/floriade-dried-flower-room-00001.jpg
@@ -63,6 +66,7 @@ page_sections:
     email_subject: Wedding Flowers Enquiry
     email_heading: We got your message
   - type: image-section
+    heading: More Images
     images:
       - image: /images/Floriade_dried_flower_room_1200.jpg
         alt_text: The old Floriade dried flower room

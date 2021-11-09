@@ -30,7 +30,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let alt = ' alt="' + alt_txt + '"';
 
-  return '<figure><noscript><img ' + alt + ' src="' + site.twic_url + image_path + '" /></noscript><img class="req-js"' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/output=preview" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-bot="contain=750x750" />'
+  return '<figure><noscript><img ' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/resize=800" /></noscript><img class="req-js"' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/output=preview" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-bot="contain=800x800" />'
     + caption + '</figure>';
 }
 

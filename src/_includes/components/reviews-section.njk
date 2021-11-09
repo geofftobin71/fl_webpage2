@@ -5,7 +5,7 @@
 {{ css | cssmin | safe }}
 </style>
 <section id="reviews" class="{{ 'bg-alt' if section.alternate_background_color }}">
-  <h2 class="heading text-center">Reviews</h2>
+  <h2 class="heading" style="margin-bottom:1em">Reviews</h2>
   <ul class="slider" style="align-items:center">
     {% for item in reviews.reviews | filterWeddingReviews(section.wedding or false) | removeLongReviews(section.limit or 300) | shuffle | head(section.count or 5) -%}
       <li id="review{{ loop.index }}" class="slider-item">

@@ -1,12 +1,13 @@
 Next:
-Figure 3:2 based on text-wrapper 
-
-Image gallery
+Hamburger Menu
+Checkerboard section
+Image gallery section
 
 Fix:
 Mailchimp Signup form (OLD!)
 Contact layout enable google maps
 Change nodemailer settings from mailtrap to floriade (functions)
+admin/config hints
 
 Check:
 <a> surrounding image display:block
