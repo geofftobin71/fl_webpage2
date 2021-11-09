@@ -1,0 +1,40 @@
+{% set css %}
+{% include "css/slider.css" %}
+{% endset %}
+<style>
+{{ css | cssmin | safe }}
+</style>
+<section id="reviews" class="{{ 'bg-alt' if section.alternate_background_color }}">
+  <h2 class="heading text-center">Reviews</h2>
+  <ul class="slider" style="align-items:center">
+    {% for item in reviews.reviews | filterWeddingReviews(section.wedding or false) | removeLongReviews(section.limit or 300) | shuffle | head(section.count or 5) -%}
+      <li id="review{{ loop.index }}" class="slider-item">
+        <blockquote class="wrapper text-wrapper flow" style="--flow-space:var(--step-2);box-shadow:none;padding:var(--step-0)">
+          <p>{{ item.review }}</p>
+          <footer>{{ item.name }}</footer>
+        </blockquote>
+      </li>
+    {% endfor -%}
+  </ul>
+  <noscript><div class="text-center"><span class="font-size--1">{{ '<< scroll for more >>' }}</span></div></noscript>
+  <div class="horizontal space-between wrapper page-wrapper slider-controls req-js">
+    <nav class="prev" onclick="scrollToPrevItem('#reviews')">
+      <span role="button" style="width:var(--step-1)" aria-label="Previous">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
+    </nav>
+    <nav class="next" onclick="scrollToNextItem('#reviews')">
+      <span role="button" style="width:var(--step-1)" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
+    </nav>
+  </div>
+  <br>
+  <div class="wrapper button-wrapper buttons">
+    <a href="{{ site.google_review }}" class="button" role="button" target="_blank" rel="noopener" style="min-width:11em">Leave a Review</a>
+    <a href="/reviews" class="button" role="button">Read More Reviews</a>
+  </div>
+</section>
+{% set js %}
+{% include "js/slider.js" %}
+{% endset %}
+
+<script>
+  {{ js | jsmin | safe }}
+</script>

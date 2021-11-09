@@ -2,13 +2,6 @@
 
 {% block head %}
   {{ super() }}
-  {% set css %}
-  {% include "css/slider.css" %}
-  {% endset %}
-
-  <style>
-    {{ css | cssmin | safe }}
-  </style>
 
   {% set jsonld %}  
   {
@@ -73,12 +66,6 @@
 
 {% block foot %}
   {{ super() }}
-  {% set js %}
-  {% include "js/slider.js" %}
-  {% endset %}
 
-  <script>
-    {{ js | jsmin | safe }}
-  </script>
   {# <script>document.addEventListener("DOMContentLoaded",function(){playVideo();},false);function playVideo(){let video=document.getElementById("bg-video");if(window.innerWidth>750){video.setAttribute("autoplay","");video.play();};}</script> #}
 {% endblock %}

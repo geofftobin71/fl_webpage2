@@ -48,7 +48,7 @@
     color:var(--color-primary);
     --box-padding:var(--step-0);
     padding:var(--box-padding);
-    border:2px solid var(--color-shade3);
+    border:1px solid var(--color-shade3);
     border-radius:var(--box-border-radius, 0.4rem);
     border-width:var(--box-border-width, 1px);
     text-align:center;
@@ -216,7 +216,7 @@
   .round-box {
     padding:var(--box-padding, var(--step-0));
     border-radius:var(--box-border-radius, 0.4rem);
-    border-width:var(--box-border-width, 2px);
+    border-width:var(--box-border-width, 1px);
   }
 
   /* ----- Horizontal ----- */
