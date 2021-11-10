@@ -73,9 +73,4 @@ page_sections:
     images:
       - image: /images/floriade-socialmedia-image.jpg
         alt_text: Social Media
-  - type: image-section
-    aspect_ratio: 3:2
-    images:
-      - image: /dried-flowers-by-floriade-00034.jpg
-        alt_text: Dried Flowers by Floriade
 ---

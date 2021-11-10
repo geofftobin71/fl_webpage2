@@ -3,7 +3,6 @@ backend:
   branch: master
 media_library:
   name: cloudinary
-  output_filename_only: true
   config:
     cloud_name: floriade
     api_key: 389122341319441
@@ -55,7 +54,7 @@ collections:
         label_singular: "Section"
         widget: "list"
         types:
-          - label: "Text"
+          - label: "Text Section"
             name: "text-section"
             widget: "object"
             summary: '{{fields.text}}'
@@ -76,7 +75,7 @@ collections:
                   - { label: "Text", name: "text", widget: "string", required: false }
                   - { label: "Link", name: "link", widget: "string", required: false }
                   - { label: "Open in new Tab/Window", name: "new_page", widget: "boolean", required: false }
-          - label: "Image"
+          - label: "Image Section"
             name: "image-section"
             widget: "object"
             fields:
@@ -85,12 +84,12 @@ collections:
                 name: "aspect_ratio"
                 widget: "select"
                 required: false
-                hint: "Only required if there is more than one image"
-                default: "3:2"
+                hint: "Only required if using more than one image as a slideshow"
+                default: "3x2"
                 options:
-                  - { label: "Landscape", value: "3:2" }
-                  - { label: "Square", value: "1:1" }
-                  - { label: "Portrait", value: "2:3" }
+                  - { label: "Landscape", value: "3x2" }
+                  - { label: "Square", value: "1x1" }
+                  - { label: "Portrait", value: "2x3" }
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
               - label: "Images"
                 name: "images"
@@ -102,7 +101,7 @@ collections:
                   - {label: "Alt Text", name: "alt_text", widget: "string" }
                   - {label: "Title", name: "caption", widget: "string", required: false }
                   - {label: "Photographer", name: "photographer", widget: "relation", collection: "lists", file: "photographers", value_field: "photographers.*.name", search_fields: ["photographers.*.name"], required: false}
-          - label: "Contact Form"
+          - label: "Contact Form Section"
             name: "contact-form-section"
             summary: '{{fields.heading}}'
             fields:
@@ -111,12 +110,12 @@ collections:
               - {label: "Email Subject", name: "email_subject", widget: "string", required: false, hint: "eg. Flowers Enquiry"}
               - {label: "Email Reply Heading", name: "email_heading", widget: "string", required: false, hint: "eg. Thankyou for contacting Floriade"}
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
-          - label: "Instagram Gallery"
+          - label: "Instagram Gallery Section"
             name: "instagram-gallery-section"
             widget: "object"
             fields:
               - {label: "Dummy", name: "dummy", widget: "hidden", required: false}
-          - label: "Reviews Slider"
+          - label: "Reviews Slider Section"
             name: "reviews-section"
             widget: "object"
             fields:
