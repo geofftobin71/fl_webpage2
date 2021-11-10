@@ -1,8 +1,11 @@
 backend:
   name: git-gateway
   branch: master
-media_folder: "src/images"
-public_folder: "/images"
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: floriade
+    api_key: 389122341319441
 logo_url: "https://floriade.co.nz/icons/floriade-icon-round-512.png"
 slug:
   encoding: "ascii"
@@ -78,10 +81,12 @@ collections:
             name: "image-section"
             widget: "object"
             fields:
+              - {label: "Heading", name: "heading", widget: "string", required: false}
               - label: "Aspect Ratio"
                 name: "aspect_ratio"
                 widget: "select"
                 required: false
+                hint: "Only required if there is more than one image"
                 default: "3:2"
                 options:
                   - { label: "Landscape", value: "3:2" }
@@ -109,6 +114,11 @@ collections:
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Instagram Gallery"
             name: "instagram-gallery-section"
+            widget: "object"
+            fields:
+              - {label: "Dummy", name: "dummy", widget: "hidden", required: false}
+          - label: "Reviews Slider"
+            name: "reviews-section"
             widget: "object"
             fields:
               - {label: "Dummy", name: "dummy", widget: "hidden", required: false}
