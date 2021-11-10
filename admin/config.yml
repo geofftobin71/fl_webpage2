@@ -3,6 +3,7 @@ backend:
   branch: master
 media_library:
   name: cloudinary
+  output_filename_only: true
   config:
     cloud_name: floriade
     api_key: 389122341319441
@@ -19,8 +20,6 @@ collections:
     create: true
     delete: false
     slug: "{{slug}}"
-    media_folder: '/{{media_folder}}/blog'
-    public_folder: '{{public_folder}}/blog'
     fields:
       - {label: "Draft", name: "draft", widget: "boolean", default: true}
       - {label: "Title", name: "title", widget: "string"}
