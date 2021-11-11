@@ -71,11 +71,16 @@ page_sections:
   - type: image-section
     aspect_ratio: 3x2
     images:
-      - image: /images/floriade-socialmedia-image.jpg
+      - image:
+          - https://res.cloudinary.com/floriade/image/upload/v1619503146/site/floriade-facebook-image.jpg
         alt_text: Social Media
   - type: image-section
     aspect_ratio: 3x2
     images:
-      - image: https://res.cloudinary.com/floriade/image/upload/v1596539280/dried-flowers/dried-flowers-by-floriade-00034.jpg
+      - image:
+          - https://res.cloudinary.com/floriade/image/upload/v1596539280/dried-flowers/dried-flowers-by-floriade-00034.jpg
+          - https://res.cloudinary.com/floriade/image/upload/v1596539276/dried-flowers/dried-flowers-by-floriade-00076.jpg
+          - https://res.cloudinary.com/floriade/image/upload/v1596539276/dried-flowers/dried-flowers-by-floriade-00045.jpg
+          - https://res.cloudinary.com/floriade/image/upload/v1596539275/dried-flowers/dried-flowers-by-floriade-00044.jpg
         alt_text: Dried Flowers by Floriade
 ---
