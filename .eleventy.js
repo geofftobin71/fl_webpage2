@@ -19,7 +19,7 @@ const crypto = require('crypto');
 Settings.defaultZoneName = "Pacific/Auckland";
 
 markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
-  const image_path = tokens[idx].attrs[0][1];
+  const image_path = tokens[idx].attrs[0][1].replace(site.cloudinary_url, '');
   const alt_txt = self.renderInlineAsText(tokens, options, env);
   const title_txt = (tokens[idx].attrs[2]) ? tokens[idx].attrs[2][1] : null;
 

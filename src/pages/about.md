@@ -19,27 +19,6 @@ page_sections:
       We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
     alternate_background_color: true
   - type: reviews-section
-  - type: image-section
-    heading: Images
-    alternate_background_color: true
-    images:
-      - image: /images/floriade-dried-flower-room-00001.jpg
-        alt_text: Floriade dried flower room
-        caption: Floriade Dried Flower Room
-      - image: /images/Floriade_dried_flower_room_1200.jpg
-        alt_text: Floriade old dried flower room
-        caption: Floriade old Dried Flower Room
-      - image: /images/floriade-email-banner.jpg
-        alt_text: Floriade Email banner
-        caption: Floriade Email banner
-      - image: /images/floriade-socialmedia-image.jpg
-        alt_text: Floriade Social Media image
-        caption: Floriade Social Media image
-      - image: /images/floriade-map.jpg
-        alt_text: Floriade Map
-        caption: Floriade Map
-        photographer: lovemiphoto
-    aspect_ratio: 2x3
   - type: text-section
     text: >-
       Floriade is Wellington’s **dried flowers** specialist. We create large
@@ -62,25 +41,4 @@ page_sections:
     message: What can we do for you?
     email_subject: Wedding Flowers Enquiry
     email_heading: We got your message
-  - type: image-section
-    heading: More Images
-    images:
-      - image: /images/Floriade_dried_flower_room_1200.jpg
-        alt_text: The old Floriade dried flower room
-        photographer: Erica Jane Photography
-  - type: image-section
-    aspect_ratio: 3x2
-    images:
-      - image:
-          - https://res.cloudinary.com/floriade/image/upload/v1619503146/site/floriade-facebook-image.jpg
-        alt_text: Social Media
-  - type: image-section
-    aspect_ratio: 3x2
-    images:
-      - image:
-          - https://res.cloudinary.com/floriade/image/upload/v1596539280/dried-flowers/dried-flowers-by-floriade-00034.jpg
-          - https://res.cloudinary.com/floriade/image/upload/v1596539276/dried-flowers/dried-flowers-by-floriade-00076.jpg
-          - https://res.cloudinary.com/floriade/image/upload/v1596539276/dried-flowers/dried-flowers-by-floriade-00045.jpg
-          - https://res.cloudinary.com/floriade/image/upload/v1596539275/dried-flowers/dried-flowers-by-floriade-00044.jpg
-        alt_text: Dried Flowers by Floriade
 ---

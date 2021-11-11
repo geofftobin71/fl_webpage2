@@ -12,7 +12,7 @@ module.exports = {
   description: site_data.description,
   alt: "Flowers by Floriade",
   logo: "/icons/floriade-icon-round-512.png",
-  social_image: "/images/floriade-socialmedia-image.jpg",
+  social_image: "/site/floriade-socialmedia-image.jpg",
   header_image: site_data.header_image,
   phone: site_data.phone,
   phone_intl: site_data.phone.replace("0", "+64").replaceAll(" ", ""),
@@ -31,5 +31,5 @@ module.exports = {
   google_maps: "https://goo.gl/maps/jGdMssVmNamjZXA4A",
   twic_url: "https://ay65paiy.twic.pics",
   match_url: /^https?:\/\/[^\s$.?#].[^\s\/]*/,
-  cloudinary_url: "https://res.cloudinary.com/floriade"
+  cloudinary_url: "https://res.cloudinary.com/floriade/image/upload"
 };
