@@ -6,6 +6,7 @@ media_library:
   config:
     cloud_name: floriade
     api_key: 389122341319441
+    multiple: true
 logo_url: "https://floriade.co.nz/icons/floriade-icon-round-512.png"
 slug:
   encoding: "ascii"

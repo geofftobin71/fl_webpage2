@@ -228,6 +228,39 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addNunjucksShortcode("twic", function(args) {
     let path = (args.path) ? args.path : "";
+    path = path.replace(site.cloudinary_url,"");
+
+    let params = (args.params) ? args.params : "";
+    if(args.sizes) {
+      return args.sizes.map(function(size) {
+        return `${site.twic_url}${path}?twic=v1/resize-max=${size}${params} ${size}w`;
+      }).join(',');
+    } else {
+      return `${site.twic_url}${path}?twic=v1${params}`;
+    }
+  });
+
+  eleventyConfig.addNunjucksAsyncShortcode("lqip", async function(args) {
+    let path = (args.path) ? args.path : "";
+    path = path.replace(site.cloudinary_url,"");
+
+    let params = (args.params) ? args.params : "";
+    let lqip_path = `${site.twic_url}${path}?twic=v1${params}/output=preview`;
+    return fetch(lqip_path)
+      .then(res => res.text())
+      .then(data => {
+        let buff = Buffer.from(data);
+        return ("data:image/svg+xml;base64," + buff.toString("base64"));
+      })
+      .catch(err => {
+        console.error("LQIP error: ", err);
+        return (lqip_path);
+      });
+  });
+
+/*
+  eleventyConfig.addNunjucksShortcode("twic", function(args) {
+    let path = (args.path) ? args.path : "";
     let params = (args.params) ? args.params : "";
     if(args.sizes) {
       return args.sizes.map(function(size) {
@@ -253,6 +286,7 @@ module.exports = function (eleventyConfig) {
         return (lqip_path);
       });
   });
+*/
 
   eleventyConfig.addNunjucksShortcode("insta_twic", function(args) {
     let path = (args.path) ? args.path : "";

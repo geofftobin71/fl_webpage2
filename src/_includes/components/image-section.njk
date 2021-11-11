@@ -18,10 +18,10 @@
         <figure class="vertical center" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}">
           {% ifAsync aspect_ratio %}
             <noscript><img src="{% twic path=image_path, params='/focus=auto/resize=800/cover=' + aspect_ratio %}" alt="{{ image.alt_text }}" /></noscript>
-            <img class="req-js" data-twic-src="image:{{ image_path }}" data-twic-focus="auto" data-twic-transform="cover={{ aspect_ratio }}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ image.alt_text }}" src="{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}" />
+            <img class="req-js" data-twic-src="image:{{ image_path | replace(site.cloudinary_url, '') }}" data-twic-focus="auto" data-twic-transform="cover={{ aspect_ratio }}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ image.alt_text }}" src="{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}" />
           {% else %}
             <noscript><img src="{% twic path=image_path, params='/resize=800' %}" alt="{{ image.alt_text }}" /></noscript>
-            <img class="req-js" data-twic-src="image:{{ image_path }}" data-twic-bot="contain=800x800" alt="{{ image.alt_text }}" src="{% lqip path=image_path %}" />
+            <img class="req-js" data-twic-src="image:{{ image_path | replace(site.cloudinary_url, '') }}" data-twic-bot="contain=800x800" alt="{{ image.alt_text }}" src="{% lqip path=image_path %}" />
           {% endif %}
           {% ifAsync image.caption %}
             <figcaption class="caption" style="margin-top:0.3em">{{ image.caption }}</figcaption>
