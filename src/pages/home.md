@@ -31,6 +31,10 @@ page_sections:
 
       We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
   - type: image-section
+    image: https://res.cloudinary.com/floriade/image/upload/v1625277043/cake-flowers/cake-flowers-0002.jpg
+    alt_text: Cake Flowers
+    caption: Cake Flowers
+    heading: Cake Flowers
   - type: reviews-section
   - type: text-section
     alternate_background_color: true
