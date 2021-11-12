@@ -20,8 +20,6 @@ page_sections:
       We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
   - type: image-section
     alternate_background_color: true
-    images:
-    aspect_ratio: 2x3
   - type: reviews-section
   - type: text-section
     alternate_background_color: true
