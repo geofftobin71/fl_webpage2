@@ -111,6 +111,13 @@ collections:
                   - { label: "Landscape", value: "3x2" }
                   - { label: "Square", value: "1x1" }
                   - { label: "Portrait", value: "2x3" }
+          - label: "Gallery Section"
+            name: "gallery-section"
+            widget: "object"
+            fields:
+              - {label: "Heading", name: "heading", widget: "string", required: false}
+              - {label: "Image", name: "image", widget: "image", choose_url: false, media_library: { config: { multiple: true } } }
+              - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Contact Form Section"
             name: "contact-form-section"
             summary: '{{fields.heading}}'
