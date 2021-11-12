@@ -22,6 +22,15 @@ page_sections:
     alternate_background_color: true
     image: https://res.cloudinary.com/floriade/image/upload/c_crop,g_west,w_2000/v1623993789/IMG_8636.heic
     alt_text: White Flowers
+  - type: text-section
+    text: >-
+      **Floriade** is a boutique Wellington florist specialising in unique fresh
+      and dried floral arrangements. We believe that flowers delight the senses
+      and bring an emotional response through colour, fragrance, texture and
+      composition.
+
+      We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
+  - type: image-section
   - type: reviews-section
   - type: text-section
     alternate_background_color: true

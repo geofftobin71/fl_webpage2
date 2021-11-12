@@ -4,7 +4,7 @@
     {% set image_path = section.image | safe %}
     <figure class="vertical center">
       <noscript><img src="{% twic path=image_path, params='/resize=800' %}" alt="{{ section.alt_text }}" /></noscript>
-      <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-bot="contain=800x800" alt="{{ section.alt_text }}" src="{% lqip path=image_path %}" />
+      <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ section.alt_text }}" src="{% lqip path=image_path %}" />
       {% ifAsync section.caption %}
         <figcaption class="caption" style="margin-top:0.3em">{{ section.caption }}</figcaption>
       {% endif %}
