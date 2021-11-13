@@ -41,27 +41,6 @@ page_sections:
     message: What can we do for you?
     email_subject: Wedding Flowers Enquiry
     email_heading: We got your message
-  - type: gallery-section
+  - xtype: gallery-section
     heading: Gallery
-    image:
-      - https://res.cloudinary.com/floriade/image/upload/v1596539396/wedding-flowers/wedding-flowers-by-floriade-00038.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539396/wedding-flowers/wedding-flowers-by-floriade-00048.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539395/wedding-flowers/wedding-flowers-by-floriade-00031.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539395/wedding-flowers/wedding-flowers-by-floriade-00034.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539394/wedding-flowers/wedding-flowers-by-floriade-00033.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539394/wedding-flowers/wedding-flowers-by-floriade-00030.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539394/wedding-flowers/wedding-flowers-by-floriade-00021.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539394/wedding-flowers/wedding-flowers-by-floriade-00022.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539393/wedding-flowers/wedding-flowers-by-floriade-00012.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539392/wedding-flowers/wedding-flowers-by-floriade-00001.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539392/wedding-flowers/wedding-flowers-by-floriade-00020.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539392/wedding-flowers/wedding-flowers-by-floriade-00017.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539391/wedding-flowers/wedding-flowers-by-floriade-00006.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539391/wedding-flowers/wedding-flowers-by-floriade-00080.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539392/wedding-flowers/wedding-flowers-by-floriade-00008.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539392/wedding-flowers/wedding-flowers-by-floriade-00019.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539391/wedding-flowers/wedding-flowers-by-floriade-00084.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539391/wedding-flowers/wedding-flowers-by-floriade-00100.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539391/wedding-flowers/wedding-flowers-by-floriade-00086.jpg
-      - https://res.cloudinary.com/floriade/image/upload/v1596539390/wedding-flowers/wedding-flowers-by-floriade-00072.jpg
 ---

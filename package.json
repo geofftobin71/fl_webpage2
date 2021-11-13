@@ -18,6 +18,7 @@
     "@quasibit/eleventy-plugin-sitemap": "^2.1.4",
     "@sindresorhus/slugify": "^1.1.2",
     "clean-css": "^5.2.1",
+    "cloudinary": "^1.27.1",
     "dotenv": "^10.0.0",
     "eleventy-plugin-svg-contents": "^0.7.0",
     "html-minifier": "^4.0.0",

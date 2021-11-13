@@ -1,24 +1,26 @@
-<section class="image-section{{ ' bg-alt' if (section.alternate_background_color) }}">
-  {% ifAsync section.heading %}<h2 class="heading">{{ section.heading }}</h2>{% endif %}
+{% set heading = section.heading %}
+{% set image_path = section.image | safe %}
+{% set alt_text = section.alt_text %}
+{% set caption = section.caption %}
+{% set alternate_background_color = section.alternate_background_color %}
+{% set info = image_info | findImage(image_path) %}
+<section class="image-section{{ ' bg-alt' if (alternate_background_color) }}">
+  {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
   <div class="wrapper text-wrapper">
-    {% set image_path = section.image | safe %}
     <figure class="vertical center">
-      <noscript><img src="{% twic path=image_path, params='/resize=800' %}" alt="{{ section.alt_text }}" /></noscript>
-      <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ section.alt_text }}" src="{% lqip path=image_path %}" />
-      {% ifAsync section.caption %}
-        <figcaption class="caption" style="margin-top:0.3em">{{ section.caption }}</figcaption>
+      <noscript><img src="{% twic path=image_path, params='/resize=800' %}" alt="{{ alt_text }}" /></noscript>
+      <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ alt_text }}" src="{% lqip path=image_path %}" />
+      {% ifAsync caption %}
+        <figcaption class="caption" style="margin-top:0.3em">{{ caption }}</figcaption>
       {% endif %}
-      {% ifAsync section.photographer %}
-        {% set photographer = photographers.photographers | findPhotographer(section.photographer) %}
-        {% ifAsync photographer and photographer.name %}
-          <figcaption class="caption small" style="margin-top:0.3em">Photo Credit : 
-            {% ifAsync photographer.webpage %}
-              <a href="{{ photographer.webpage | safe }}" target="_blank" rel="noopener"> {{ photographer.name | safe }}</a>
-            {% else %}
-              {{ photographer.name | safe }}
-            {% endif %}
-          </figcaption>
-        {% endif %}
+      {% ifAsync info and info.photographer_name %}
+        <figcaption class="caption small" style="margin-top:0.3em">Photo Credit : 
+          {% ifAsync info and info.photographer_url %}
+            <a href="{{ info.photographer_url | safe }}" target="_blank" rel="noopener"> {{ info.photographer_name | safe }}</a>
+          {% else %}
+            {{ info.photographer_name | safe }}
+          {% endif %}
+        </figcaption>
       {% endif %}
     </figure>
   </div>

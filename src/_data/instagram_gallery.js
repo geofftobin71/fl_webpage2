@@ -4,7 +4,7 @@ const site = require('./site.js');
 
 module.exports = function() {
 
-  if(!fs.existsSync("_cache")) { fs.mkdirSync("_cache", true); }
+  if(!fs.existsSync('_cache')) { fs.mkdirSync('_cache', true); }
 
   const cachefile = '_cache/instagram-gallery.json';
 

@@ -11,10 +11,11 @@ const jsonminify = require("jsonminify");
 const markdown = require("markdown-it")({ html: true }).disable("code");
 const fetch = require("node-fetch");
 const fs = require("fs");
-const site = require("./src/_data/site.js");
 const slugify = require("@sindresorhus/slugify");
 const countableSlugify = slugify.counter();
 const crypto = require('crypto');
+
+const site = require("./src/_data/site.js");
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
@@ -194,6 +195,14 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("findPhotographer", (array, name) => {
     return array.find(element => element.name === name);
+  });
+
+  eleventyConfig.addFilter("findImage", (array, url) => {
+    return array.find(element => element.url === url);
+  });
+
+  eleventyConfig.addFilter("findFolder", (array, folder) => {
+    return array.filter(element => element.folder === folder);
   });
 
   eleventyConfig.addFilter("shuffle", (array) => {

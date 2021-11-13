@@ -52,12 +52,17 @@ page_sections:
     images:
       - image: https://res.cloudinary.com/floriade/image/upload/v1613194579/chocolate/chocolate-3.jpg
         alt_text: Original Milk Chocolate
+        caption: Original Milk Chocolate
       - image: https://res.cloudinary.com/floriade/image/upload/v1613194575/chocolate/chocolate-2.jpg
         alt_text: Coconut Milk Chocolate
+        caption: Coconut Milk Chocolate
       - image: https://res.cloudinary.com/floriade/image/upload/v1613194575/chocolate/chocolate-4.jpg
         alt_text: Salted Caramel Dark Chocolate
+        caption: Salted Caramel Dark Chocolate
       - image: https://res.cloudinary.com/floriade/image/upload/v1613194572/chocolate/chocolate-5.jpg
         alt_text: Peru Dark Chocolate
+        caption: Peru Dark Chocolate
       - image: https://res.cloudinary.com/floriade/image/upload/v1613194571/chocolate/chocolate-1.jpg
         alt_text: Raspberry White Chocolate
+        caption: Raspberry White Chocolate
 ---
