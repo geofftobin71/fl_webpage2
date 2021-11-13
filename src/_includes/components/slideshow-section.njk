@@ -1,35 +1,38 @@
-<section class="image-section{{ ' bg-alt' if (section.alternate_background_color) }}">
-  {% ifAsync section.heading %}<h2 class="heading">{{ section.heading }}</h2>{% endif %}
+{% set heading = section.heading %}
+{% set alternate_background_color = section.alternate_background_color %}
+<section class="image-section{{ ' bg-alt' if (alternate_background_color) }}">
+  {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
   <div class="wrapper text-wrapper">
-    {% set section_images_count = section.images | length %}
+    {% set images = section.images %}
+    {% set images_count = images | length %}
     {% set aspect_ratio = section.aspect_ratio | replace('x',':') %}
     {% set anim_fade_time = 1 %}
     {% set anim_show_time = 3 %}
-    {% set anim_duration = (anim_fade_time + anim_show_time) * section_images_count %}
+    {% set anim_duration = (anim_fade_time + anim_show_time) * images_count %}
     {% set one_second = 100.0 / anim_duration %}
     {% set section_name = 'fade-' + 8 | uniqueId %}
     {{ ( '<style>@keyframes ' + section_name + '{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe }}
     <div class="canvas fader">
-      {% for image in section.images %}
+      {% for image in images %}
         {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
-        {% set image_path = image.image | safe %}
+        {% set image_path = image.image %}
+        {% set alt_text = image.alt_text %}
+        {% set caption = image.caption %}
+        {% set info = image_info | findImage(image_path) %}
         <figure class="vertical center" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe }}">
-          <noscript><img src="{% twic path=image_path, params='/focus=auto/resize=800/cover=' + aspect_ratio %}" alt="{{ image.alt_text }}" /></noscript>
-          <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover={{ aspect_ratio }}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ image.alt_text }}" src="{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}" />
-          {% ifAsync image.caption %}
-            <figcaption class="caption" style="margin-top:0.3em">{{ image.caption }}</figcaption>
+          <noscript><img src="{% twic path=image_path, params='/focus=auto/resize=800/cover=' + aspect_ratio %}" alt="{{ alt_text }}" /></noscript>
+          <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover={{ aspect_ratio }}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ alt_text }}" src="{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}" />
+          {% ifAsync caption %}
+            <figcaption class="caption" style="margin-top:0.3em">{{ caption }}</figcaption>
           {% endif %}
-          {% ifAsync image.photographer %}
-            {% set photographer = photographers.photographers | findPhotographer(image.photographer) %}
-            {% ifAsync photographer and photographer.name %}
-              <figcaption class="caption small" style="margin-top:0.3em">Photo Credit : 
-                {% ifAsync photographer.webpage %}
-                  <a href="{{ photographer.webpage | safe }}" target="_blank" rel="noopener"> {{ photographer.name | safe }}</a>
-                {% else %}
-                  {{ photographer.name | safe }}
-                {% endif %}
-              </figcaption>
-            {% endif %}
+          {% ifAsync info and info.photographer_name %}
+            <figcaption class="caption small" style="margin-top:0.3em">Photo Credit : 
+              {% ifAsync info and info.photographer_url %}
+                <a href="{{ info.photographer_url | safe }}" target="_blank" rel="noopener"> {{ info.photographer_name | safe }}</a>
+              {% else %}
+                {{ info.photographer_name | safe }}
+              {% endif %}
+            </figcaption>
           {% endif %}
         </figure>
       {% endfor %}
