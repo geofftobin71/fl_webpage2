@@ -18,6 +18,10 @@ page_sections:
 
       We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
     alternate_background_color: true
+  - type: image-section
+    image: https://res.cloudinary.com/floriade/image/upload/v1636759361/wedding-flowers/wpwmhtkp1vf0ufdkzs7v.jpg
+    alt_text: Wedding Couple
+    alternate_background_color: true
   - type: reviews-section
   - type: text-section
     text: >-
