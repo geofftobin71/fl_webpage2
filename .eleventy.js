@@ -19,14 +19,25 @@ const site = require("./src/_data/site.js");
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
-markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
-  const image_path = tokens[idx].attrs[0][1].replace(site.cloudinary_url, '');
+markdown.renderer.rules.image = async function (tokens, idx, options, env, self) {
+  const image_url = tokens[idx].attrs[0][1];
+  const image_path = image_url.replace(site.cloudinary_url, '');
   const alt_txt = self.renderInlineAsText(tokens, options, env);
   const title_txt = (tokens[idx].attrs[2]) ? tokens[idx].attrs[2][1] : null;
 
   let caption = '';
   if(title_txt) {
     caption = '<figcaption class="caption" style="margin-top:0.3em">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
+  }
+
+  const image_info = await require("./src/_data/image_info.js");
+
+  const info = image_info.find(element => element.url === image_url);
+
+  console.log(info);
+
+  if(info && info.photographer_name) {
+    caption += '<figcaption class="caption small" style="margin-top:0.3em">' + markdown.utils.escapeHtml(info.photographer_name) + '</figcaption>';
   }
 
   let alt = ' alt="' + alt_txt + '"';

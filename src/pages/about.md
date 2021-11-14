@@ -47,4 +47,5 @@ page_sections:
     email_heading: We got your message
   - xtype: gallery-section
     heading: Gallery
+    folder: wedding-flowers
 ---

@@ -84,7 +84,6 @@ collections:
               - {label: "Image", name: "image", widget: "image", choose_url: false}
               - {label: "Alt Text", name: "alt_text", widget: "string" }
               - {label: "Caption", name: "caption", widget: "string", required: false }
-              - {label: "Photographer", name: "photographer", widget: "relation", collection: "lists", file: "photographers", value_field: "photographers.*.name", search_fields: ["photographers.*.name"], required: false}
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Slideshow Section"
             name: "slideshow-section"
@@ -100,7 +99,6 @@ collections:
                   - {label: "Image", name: "image", widget: "image", choose_url: false}
                   - {label: "Alt Text", name: "alt_text", widget: "string" }
                   - {label: "Caption", name: "caption", widget: "string", required: false }
-                  - {label: "Photographer", name: "photographer", widget: "relation", collection: "lists", file: "photographers", value_field: "photographers.*.name", search_fields: ["photographers.*.name"], required: false}
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
               - label: "Aspect Ratio"
                 name: "aspect_ratio"
