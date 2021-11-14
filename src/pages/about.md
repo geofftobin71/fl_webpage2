@@ -48,4 +48,17 @@ page_sections:
   - xtype: gallery-section
     heading: Gallery
     folder: wedding-flowers
+  - type: slideshow-section
+    aspect_ratio: 3x2
+    heading: Images
+    images:
+      - image: https://res.cloudinary.com/floriade/image/upload/v1636759620/wedding-flowers/t8u5p0hym29ck42mcgcv.jpg
+        alt_text: Wedding Party
+        caption: Wedding Party
+      - image: https://res.cloudinary.com/floriade/image/upload/v1636759521/wedding-flowers/t8j4zcan2ltnnjstlydx.jpg
+        alt_text: Wedding party on the beach
+        caption: Wedding party on the beach
+      - image: https://res.cloudinary.com/floriade/image/upload/v1636759320/wedding-flowers/fo4zll73ippstpttup3q.jpg
+        alt_text: Bride on the beach
+        caption: Bride on the beach
 ---
