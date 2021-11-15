@@ -31,4 +31,4 @@ Lorem saepe rerum eos vero tempora, ipsum! Dolor excepturi vero non nam consequa
 
 Sit ut illo eligendi ab ratione eveniet Facere amet facere commodi sapiente nulla tempore, labore similique! Dignissimos consectetur illum quas dolores maxime harum! Sunt officiis rem est dolore repellendus. Nihil at nisi earum odit totam Id recusandae totam quam amet?
 
-![Bride & Groom kissing in a field](https://res.cloudinary.com/floriade/image/upload/v1636759361/wedding-flowers/wpwmhtkp1vf0ufdkzs7v.jpg "Bride & Groom")
+![Bride & Groom kissing in a field](https://res.cloudinary.com/floriade/image/upload/v1636759364/wedding-flowers/jhwthqfxsoav3mrm0jlq.jpg "Bride & Groom")
