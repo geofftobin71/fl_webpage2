@@ -604,6 +604,10 @@ article > * + * {
   }
 }
 
+.slideshow-section .canvas {
+  overflow:visible;
+}
+
 .slideshow-section figure {
   width:100%;
   height:100%;
@@ -612,8 +616,6 @@ article > * + * {
 .image-section figure img,
 .slideshow-section figure img,
 .blog-post figure img {
-  width:100%;
-  height:100%;
   margin:0 auto;
   max-height:65ch;
   object-fit:contain;

@@ -1,6 +1,6 @@
 {% set heading = section.heading %}
 {% set alternate_background_color = section.alternate_background_color %}
-<section class="image-section{{ ' bg-alt' if (alternate_background_color) }}">
+<section class="slideshow-section{{ ' bg-alt' if (alternate_background_color) }}">
   {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
   <div class="wrapper text-wrapper">
     {% set images = section.images %}
