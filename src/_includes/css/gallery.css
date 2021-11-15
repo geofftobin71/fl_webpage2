@@ -1,0 +1,130 @@
+
+/* ----- Gallery ----- */
+
+.gallery {
+  --auto-grid-gap: 0;
+  --auto-grid-min-size: 96px;
+}
+
+.gallery li {
+  margin: calc(var(--step--2) / 2);
+}
+
+.gallery .aspect4x3 {
+  grid-column-end: span 4;
+  grid-row-end: span 3;
+}
+
+.gallery .aspect3x2 {
+  grid-column-end: span 3;
+  grid-row-end: span 2;
+}
+
+.gallery .aspect2x1 {
+  grid-column-end: span 4;
+  grid-row-end: span 2;
+}
+
+.gallery .aspect1x1 {
+  grid-column-end: span 2;
+  grid-row-end: span 2;
+}
+
+.gallery .aspect1x2 {
+  grid-column-end: span 2;
+  grid-row-end: span 4;
+}
+
+.gallery .aspect2x3 {
+  grid-column-end: span 2;
+  grid-row-end: span 3;
+}
+
+.gallery .aspect3x4 {
+  grid-column-end: span 3;
+  grid-row-end: span 4;
+}
+
+@media screen and (min-width: 421px) and (max-width: 500px) {
+  .gallery {
+    --auto-grid-min-size: 180px;
+  }
+
+  .gallery .aspect4x3 {
+    grid-column-end: span 2;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect3x2 {
+    grid-column-end: span 2;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect2x1 {
+    grid-column-end: span 2;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect1x1 {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect1x2 {
+    grid-column-end: span 1;
+    grid-row-end: span 2;
+  }
+
+  .gallery .aspect2x3 {
+    grid-column-end: span 1;
+    grid-row-end: span 2;
+  }
+
+  .gallery .aspect3x4 {
+    grid-column-end: span 1;
+    grid-row-end: span 2;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .gallery {
+    --auto-grid-gap: var(--step-1);
+    grid-template-columns: 100%;
+  }
+
+  .gallery .aspect4x3 {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect3x2 {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect2x1 {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect1x1 {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect1x2 {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect2x3 {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+
+  .gallery .aspect3x4 {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+}
+

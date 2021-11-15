@@ -8,7 +8,7 @@
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
     {% include "partials/meta-info.njk" %}
     {% if sitemap.ignore %}
-    <meta name="robots" content="noindex" />
+      <meta name="robots" content="noindex" />
     {% endif %}
     {% include "partials/favicon.njk" %}
 
@@ -24,8 +24,8 @@
     {% endset %}
 
     <style>
-    {% include "css/cookieconsent.min.css" %}
-    {{ css | cssmin | safe }}
+      {% include "css/cookieconsent.min.css" %}
+      {{ css | cssmin | safe }}
     </style>
 
     {% block head %}
@@ -41,20 +41,21 @@
       {{ content | safe }}
     {% endblock %}
 
-    {% block foot %}
-      {# {% include "partials/hamburger-menu.njk" %} #}
-      {% set js %}
-      {% include "js/init_cookieconsent.njk" %}
-      {% endset %}
+    {# {% include "partials/hamburger-menu.njk" %} #}
+    {% set js %}
+    {% include "js/init_cookieconsent.njk" %}
+    {% endset %}
 
-      <script async src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-      <script async src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-      <script async defer src="{{ site.twic_url }}/?v1"></script>
-      {# <script async src="https://js.stripe.com/v3/"></script> #}
-      <script>
+    <script async src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script async src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script async defer src="{{ site.twic_url }}/?v1"></script>
+    {# <script async src="https://js.stripe.com/v3/"></script> #}
+    <script>
       {% include "js/smoothscroll.min.js" %}
-        {{ js | jsmin | safe }}
-      </script>
+      {{ js | jsmin | safe }}
+    </script>
+
+    {% block foot %}
     {% endblock %}
 
   </body>

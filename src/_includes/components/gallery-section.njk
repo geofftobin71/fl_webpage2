@@ -1,9 +1,9 @@
 {% set folder = section.folder %}
+{% set heading = section.heading %}
 {% ifAsync folder %}
-<hr>
-<section>
+<section class="gallery-section{{ ' bg-alt' if (alternate_background_color) }}">
   <div class="wrapper page-wrapper">
-    <h2 class="heading text-right" style="margin-bottom:1em">{{ gallery_name | lower + ' gallery' }}</h2>
+    {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
 
     <ul class="auto-grid gallery">
 

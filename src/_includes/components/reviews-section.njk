@@ -1,9 +1,3 @@
-{% set css %}
-{% include "css/slider.css" %}
-{% endset %}
-<style>
-{{ css | cssmin | safe }}
-</style>
 <section id="reviews" class="{{ 'bg-alt' if section.alternate_background_color }}">
   <h2 class="heading" style="margin-bottom:1em">Reviews</h2>
   <ul class="slider" style="align-items:center">
@@ -31,10 +25,3 @@
     <a href="/reviews" class="button" role="button">Read More Reviews</a>
   </div>
 </section>
-{% set js %}
-{% include "js/slider.js" %}
-{% endset %}
-
-<script>
-  {{ js | jsmin | safe }}
-</script>
