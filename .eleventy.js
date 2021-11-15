@@ -19,7 +19,7 @@ const site = require("./src/_data/site.js");
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
-markdown.renderer.rules.image = async function (tokens, idx, options, env, self) {
+markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
   const image_url = tokens[idx].attrs[0][1];
   const image_path = image_url.replace(site.cloudinary_url, '');
   const alt_txt = self.renderInlineAsText(tokens, options, env);
@@ -30,14 +30,15 @@ markdown.renderer.rules.image = async function (tokens, idx, options, env, self)
     caption = '<figcaption class="caption" style="margin-top:0.3em">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
   }
 
-  const image_info = await require("./src/_data/image_info.js");
-
+  const image_info = require("./_cache/image-info.json");
   const info = image_info.find(element => element.url === image_url);
 
-  console.log(info);
-
   if(info && info.photographer_name) {
-    caption += '<figcaption class="caption small" style="margin-top:0.3em">' + markdown.utils.escapeHtml(info.photographer_name) + '</figcaption>';
+    if(info && info.photographer_url) {
+      caption += '<figcaption class="caption small" style="margin-top:0.3em">Photo credit : <a href="' + info.photographer_url + '" target="_blank" rel="noopener">' + markdown.utils.escapeHtml(info.photographer_name) + '</a></figcaption>';
+    } else {
+      caption += '<figcaption class="caption small" style="margin-top:0.3em">Photo credit : ' + markdown.utils.escapeHtml(info.photographer_name) + '</figcaption>';
+    }
   }
 
   let alt = ' alt="' + alt_txt + '"';

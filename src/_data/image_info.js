@@ -62,9 +62,7 @@ module.exports = (async function() {
   // console.log(JSON.stringify(resources,null,2));
   // console.log(JSON.stringify(image_info,null,2));
 
-  if(site.dev) {
-    fs.writeFileSync(cachefile, JSON.stringify(image_info, null, 2));
-  }
+  fs.writeFileSync(cachefile, JSON.stringify(image_info, null, 2));
 
   return image_info;
 

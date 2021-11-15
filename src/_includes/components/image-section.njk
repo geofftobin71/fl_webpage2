@@ -14,7 +14,7 @@
         <figcaption class="caption" style="margin-top:0.3em">{{ caption }}</figcaption>
       {% endif %}
       {% ifAsync info and info.photographer_name %}
-        <figcaption class="caption small" style="margin-top:0.3em">Photo Credit : 
+        <figcaption class="caption small" style="margin-top:0.3em">Photo credit : 
           {% ifAsync info and info.photographer_url %}
             <a href="{{ info.photographer_url | safe }}" target="_blank" rel="noopener"> {{ info.photographer_name | safe }}</a>
           {% else %}

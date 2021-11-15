@@ -23,9 +23,7 @@ module.exports = function() {
   return fetch('https://graph.instagram.com/me/media?fields=id,media_url,thumbnail_url,caption,timestamp&access_token=' + process.env.INSTAGRAM_TOKEN)
     .then(res => res.json())
     .then(json => {
-      if(site.dev) {
-        fs.writeFileSync(cachefile, JSON.stringify(json.data, null, 2));
-      }
+      fs.writeFileSync(cachefile, JSON.stringify(json.data, null, 2));
       return json.data;
     });
 };
