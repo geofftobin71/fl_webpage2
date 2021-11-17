@@ -31,5 +31,6 @@ module.exports = {
   google_maps: "https://goo.gl/maps/jGdMssVmNamjZXA4A",
   twic_url: "https://ay65paiy.twic.pics",
   match_url: /^https?:\/\/[^\s$.?#].[^\s\/]*/,
-  cloudinary_url: "https://res.cloudinary.com/floriade/image/upload"
+  cloudinary_url: "https://res.cloudinary.com/floriade/image/upload",
+  transgif: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
 };

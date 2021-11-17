@@ -45,9 +45,10 @@ page_sections:
     message: What can we do for you?
     email_subject: Wedding Flowers Enquiry
     email_heading: We got your message
-  - xtype: gallery-section
-    heading: Gallery
+  - type: gallery-section
+    heading: Wedding Flowers
     folder: wedding-flowers
+    alt_text: Wedding Flowers by Floriade
   - type: slideshow-section
     aspect_ratio: 3x2
     heading: Images

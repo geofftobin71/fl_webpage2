@@ -270,15 +270,36 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncShortcode("lqip", async function(args) {
     let path = (args.path) ? args.path : "";
+
+    const image_info = require("./_cache/image-info.json");
+    const info = image_info.find(element => element.url === path);
+
+    let cachefile;
+
+    if(info && info.id) {
+      cachefile = '_cache/lqip_' + info.id;
+
+      if(fs.existsSync(cachefile)) {
+        // console.log('Using ' + cachefile + ' cache');
+        const cache = fs.readFileSync(cachefile);
+        return cache;
+      }
+    }
+
     path = path.replace(site.cloudinary_url,"");
 
-    let params = (args.params) ? args.params : "";
-    let lqip_path = `${site.twic_url}${path}?twic=v1${params}/output=preview`;
+    const params = (args.params) ? args.params : "";
+    const lqip_path = `${site.twic_url}${path}?twic=v1${params}/output=preview`;
+
     return fetch(lqip_path)
       .then(res => res.text())
       .then(data => {
-        let buff = Buffer.from(data);
-        return ("data:image/svg+xml;base64," + buff.toString("base64"));
+        const buff = Buffer.from(data);
+        const lqip = "data:image/svg+xml;base64," + buff.toString("base64");
+
+        if(cachefile) { fs.writeFileSync(cachefile, lqip); }
+
+        return (lqip);
       })
       .catch(err => {
         console.error("LQIP error: ", err);
@@ -300,13 +321,34 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncShortcode("insta_lqip", async function(args) {
     let path = (args.path) ? args.path : "";
-    let params = (args.params) ? args.params : "";
-    let lqip_path = path.replace(site.match_url, site.twic_url + "/instagram").replace("?", "?twic=v1" + params + "/output=preview&");
+
+    const image_info = require("./_cache/instagram-gallery.json");
+    const info = image_info.find(element => element.media_url === path);
+
+    let cachefile;
+
+    if(info && info.id) {
+      cachefile = '_cache/lqip_' + info.id;
+
+      if(fs.existsSync(cachefile)) {
+        // console.log('Using ' + cachefile + ' cache');
+        const cache = fs.readFileSync(cachefile);
+        return cache;
+      }
+    }
+
+    const params = (args.params) ? args.params : "";
+    const lqip_path = path.replace(site.match_url, site.twic_url + "/instagram").replace("?", "?twic=v1" + params + "/output=preview&");
+
     return fetch(lqip_path)
       .then(res => res.text())
       .then(data => {
-        let buff = Buffer.from(data);
-        return ("data:image/svg+xml;base64," + buff.toString("base64"));
+        const buff = Buffer.from(data);
+        const lqip = "data:image/svg+xml;base64," + buff.toString("base64");
+
+        if(cachefile) { fs.writeFileSync(cachefile, lqip); }
+
+        return (lqip);
       })
       .catch(err => {
         console.error("LQIP error: ", err);

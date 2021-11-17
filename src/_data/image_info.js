@@ -36,6 +36,7 @@ module.exports = (async function() {
 
     let item = {};
 
+    item.id = image.asset_id;
     item.url = image.secure_url;
     item.folder = image.folder;
     item.aspect_ratio = image.aspect_ratio;
@@ -59,7 +60,7 @@ module.exports = (async function() {
     image_info.push(item);
   });
 
-  // console.log(JSON.stringify(resources,null,2));
+  console.log(JSON.stringify(resources,null,2));
   // console.log(JSON.stringify(image_info,null,2));
 
   fs.writeFileSync(cachefile, JSON.stringify(image_info, null, 2));

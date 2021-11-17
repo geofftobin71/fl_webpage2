@@ -1,34 +1,35 @@
 {% set folder = section.folder %}
 {% set heading = section.heading %}
+{% set alt_text = section.alt_text or site.alt %}
 {% ifAsync folder %}
 <section class="gallery-section{{ ' bg-alt' if (alternate_background_color) }}">
   <div class="wrapper page-wrapper">
-    {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
+    {% ifAsync heading %}<h2 class="heading" style="margin-bottom:1em">{{ heading }}</h2>{% endif %}
 
     <ul class="auto-grid gallery">
 
-      {% set images = image_info | findFolder(folder) | shuffle | head(10) %}
+      {% set images = image_info | findFolder(folder) | shuffle %}
 
       {% for image in images -%}
+        {% set image_path = image.url %}
         {% if image.aspect_ratio > 1.3 %}
-          {% set aspect = "4x3" %}
+          {% set aspect_ratio = "4:3" %}
           {% set width = "640" %}
           {% set height = "480" %}
         {% elif image.aspect_ratio > 0.76 %}
-          {% set aspect = "1x1" %}
+          {% set aspect_ratio = "1:1" %}
           {% set width = "320" %}
           {% set height = "320" %}
         {% else %}
-          {% set aspect = "2x3" %}
+          {% set aspect_ratio = "2:3" %}
           {% set width = "320" %}
           {% set height = "480" %}
         {% endif %}
-        <li class="aspect hover-scale aspect{{ aspect }}">
-          <figure>
-            <noscript>
-              <a href="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" class="height100"><img class="round border-alt border2" src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context['Credit Name'] %} - Photo credit {{ image.context['Credit Name'] }}{% endif %}" width="{{ width }}" height="{{ height }}" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /></a>
-            </noscript>
-            <img class="round border-alt border2" src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context['Credit Name'] %} - Photo credit {{ image.context['Credit Name'] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox('#item{{ loop.index0 }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" />
+        <li class="hover-scale aspect aspect{{ aspect_ratio | replace(':','x') }}">
+          <figure style="background-image:url({% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %})">
+            <noscript><a href="{% twic path=image_path %}" style="height:100%;display:block"><img class="round border-alt" src="{% twic path=image_path, params='/focus=auto/cover=' + width + 'x' + height %}" alt="{{ alt_text }}" style="cursor:pointer" /></a></noscript>
+            <img class="req-js round border-alt" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover" data-twic-step="10" data-twic-bot="cover={{ width }}x{{ height }}" alt="{{ alt_text }}" src="{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}" onclick="openLightbox('#item{{ loop.index }}')" style="cursor:pointer" />
+            {# <img class="round border-alt border2" src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context['Credit Name'] %} - Photo credit {{ image.context['Credit Name'] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox('#item{{ loop.index0 }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /> #}
           </figure>
         </li>
         {%- endfor %}
@@ -37,6 +38,7 @@
   </div>
 </section>
 
+{#
 <div id="lightbox" class="slider-controls">
   <ul class="slider">
     {% for image in images -%}
@@ -88,4 +90,5 @@
     <span role="button" title="Next" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
   </nav>
 </div>
+#}
 {% endif %}

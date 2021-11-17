@@ -870,3 +870,13 @@ html[data-modal-active="true"] {
   white-space:nowrap;
 }
 
+/* ----- Twic ----- */
+
+[data-twic-src] {
+  opacity:0;
+}
+
+.twic-done {
+  opacity:1;
+  transition: opacity 500ms linear;
+}
