@@ -60,8 +60,10 @@ module.exports = (async function() {
     image_info.push(item);
   });
 
-  console.log(JSON.stringify(resources,null,2));
+  // console.log(JSON.stringify(resources,null,2));
   // console.log(JSON.stringify(image_info,null,2));
+
+  console.log('Caching image-info cache');
 
   fs.writeFileSync(cachefile, JSON.stringify(image_info, null, 2));
 

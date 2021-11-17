@@ -26,6 +26,7 @@
     "juice": "^8.0.0",
     "markdown-it": "^12.2.0",
     "netlify-cli": "^6.10.3",
+    "netlify-plugin-cache-folder": "^0.0.8",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.7.0",
     "uglify-js": "^3.14.2"

@@ -1,2 +1,4 @@
 [functions."contact-form-handler"]
   included_files = ["email/contact-thankyou.*"]
+[[plugins]]
+  package = "netlify-plugin-cache-folder"
