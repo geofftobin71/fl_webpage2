@@ -29,8 +29,10 @@
     {% for item in instagram_images -%}
       {% set thumbnail_path = (item.thumbnail_url or item.media_url) %}
       <li id="item{{ loop.index }}" class="slider-item">
-        <figure class="horizontal center middle" style="background-image:url({% insta_lqip path=thumbnail_path, params='/focus=auto/cover=1:1' %})">
-          <img data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover=1:1" data-twic-step="50" data-twic-bot="cover=1440x1440" alt="{{ item.caption | urldecode }}" src="{{ site.transgif }}" />
+        <figure class="horizontal center middle">
+          <div style="background-image:url({% insta_lqip path=thumbnail_path, params='/focus=auto/cover=1:1' %})">
+            <img data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover=1:1" data-twic-step="50" data-twic-bot="cover=1440x1440" alt="{{ item.caption | urldecode }}" src="{{ site.transgif }}" />
+          </div>
           <figcaption class="wrapper text-wrapper">
             <div class="text-center text-shadow flow">
               <h4>{{ item.caption | urldecode }}</h4>

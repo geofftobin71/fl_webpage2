@@ -20,8 +20,10 @@
         {% set caption = image.caption %}
         {% set info = image_info | findImage(image_path) %}
         <figure class="vertical center" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe }}">
-          <noscript><img src="{% twic path=image_path, params='/focus=auto/resize=800/cover=' + aspect_ratio %}" alt="{{ alt_text }}" /></noscript>
-          <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover={{ aspect_ratio }}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ alt_text }}" src="{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}" />
+          <div style="background-image:url({% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %})">
+            <noscript><img src="{% twic path=image_path, params='/focus=auto/resize=800/cover=' + aspect_ratio %}" alt="{{ alt_text }}" /></noscript>
+            <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover={{ aspect_ratio }}/max" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ alt_text }}" src="{{ site.transgif }}" />
+          </div>
           {% ifAsync caption %}
             <figcaption class="caption" style="margin-top:0.3em">{{ caption }}</figcaption>
           {% endif %}
