@@ -613,8 +613,9 @@ article > * + * {
   height:100%;
 }
 
+.image-section figure > div,
 .slideshow-section figure > div,
-.image-section figure > div {
+.blog-post figure > div {
   width:100%;
   height:100%;
   background-size:contain;

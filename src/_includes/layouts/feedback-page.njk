@@ -4,7 +4,7 @@
   <main class="canvas center min-height100vh" style="position:relative">
   <figure class="background" style="filter:brightness(60%)">
     {% set image_path = header_image or site.header_image %}
-    <img class="bg cover" srcset="{% twic path=image_path, sizes=image_sizes %}" width="1024" height="1024" sizes="100vmax" src="{% twic path=image_path %}" style="background-image:url({% lqip path=image_path %})" alt="" />
+    <img class="bg cover" srcset="{% twic path=image_path, sizes=image_sizes %}" width="1024" height="1024" sizes="100vmax" src="{% twic path=image_path %}" style="background-image:url('{% lqip path=image_path %}')" alt="" />
   </figure>
   <div id="content">
     <div class="bg-alt vertical center round wrapper text-wrapper flow font-secondary text-center" style="--measure:60ch;padding:var(--step-2);margin:var(--step--1)">

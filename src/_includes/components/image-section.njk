@@ -8,7 +8,7 @@
   {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
   <div class="wrapper text-wrapper">
     <figure class="vertical center">
-      <div style="background-image:url({% lqip path=image_path %})">
+      <div style="background-image:url('{% lqip path=image_path %}')">
         <noscript><img src="{% twic path=image_path, params='/resize=800' %}" alt="{{ alt_text }}" /></noscript>
         <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ alt_text }}" src="{{ site.transgif }}" />
       </div>

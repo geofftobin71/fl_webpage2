@@ -12,7 +12,7 @@
     <source srcset="{% twic path=image_path, params='/focus=auto/cover=3:1', sizes=image_sizes %}" sizes="100vw" media="(min-aspect-ratio: 1/1)">
     <source srcset="{% twic path=image_path, params='/focus=auto/cover=2:1', sizes=image_sizes %}" sizes="100vw" media="(min-width:750px)">
     <source srcset="{% twic path=image_path, params='/focus=auto/cover=3:2', sizes=image_sizes %}" sizes="100vw">
-    <img src="{% twic path=image_path, params='/resize=1024/focus=auto/cover=3:1' %}" style="background-image:url({% lqip path=image_path, params='/focus=auto/cover=3:1' %})" alt="" />
+    <img src="{% twic path=image_path, params='/resize=1024/focus=auto/cover=3:1' %}" style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=3:1' %}')" alt="" />
     </picture>
   </figure>
   <div class="content">

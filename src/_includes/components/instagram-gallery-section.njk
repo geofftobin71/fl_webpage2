@@ -11,7 +11,7 @@
         {% for item in instagram_images -%}
           {% set thumbnail_path = (item.thumbnail_url or item.media_url) %}
           <li class="aspect aspect1x1 hover-scale">
-            <figure class="round border-alt" style="background-image:url({% insta_lqip path=thumbnail_path, params='/focus=auto/cover=1:1' %})">
+            <figure class="round border-alt" style="background-image:url('{% insta_lqip path=thumbnail_path, params='/focus=auto/cover=450x450' %}')">
               <noscript><a href="{% insta_twic path=thumbnail_path %}" style="height:100%;display:block"><img class="round" src="{% insta_twic path=thumbnail_path, params='/focus=auto/cover=450x450' %}" width="450" height="450" alt="{{ item.caption | urldecode }}" style="cursor:pointer" /></a></noscript>
               <img class="req-js round" data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover" data-twic-step="10" data-twic-bot="cover=450x450" alt="{{ item.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" src="{{ site.transgif }}" style="cursor:pointer" />
             </figure>
@@ -30,11 +30,11 @@
       {% set thumbnail_path = (item.thumbnail_url or item.media_url) %}
       <li id="item{{ loop.index }}" class="slider-item">
         <figure class="horizontal center middle">
-          <div style="background-image:url({% insta_lqip path=thumbnail_path, params='/focus=auto/cover=1:1' %})">
+          <div style="background-image:url('{% insta_lqip path=thumbnail_path, params='/focus=auto/cover=1:1' %}')">
             <img data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover=1:1" data-twic-step="50" data-twic-bot="cover=1440x1440" alt="{{ item.caption | urldecode }}" src="{{ site.transgif }}" />
           </div>
           <figcaption class="wrapper text-wrapper">
-            <div class="text-center text-shadow flow">
+            <div class="text-center text-shadow">
               <h4>{{ item.caption | urldecode }}</h4>
             </div>
           </figcaption>

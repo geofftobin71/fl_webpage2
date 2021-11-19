@@ -43,7 +43,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let alt = ' alt="' + alt_txt + '"';
 
-  return '<figure><noscript><img ' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/resize=800" /></noscript><img class="req-js"' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/output=preview" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-bot="contain=800x800" />'
+  return '<figure class="vertical center"><div style="background-image:url(' + site.twic_url + image_path + '?twic=v1/output=preview)"><noscript><img ' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/resize=800" /></noscript><img class="req-js"' + alt + ' src="' + site.transgif + '" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-bot="contain=800x800" /></div>'
     + caption + '</figure>';
 }
 
@@ -268,6 +268,7 @@ module.exports = function (eleventyConfig) {
     return `image:${path}`;
   });
 
+  /*
   eleventyConfig.addNunjucksAsyncShortcode("lqip", async function(args) {
     let path = (args.path) ? args.path : "";
 
@@ -294,8 +295,49 @@ module.exports = function (eleventyConfig) {
     return fetch(lqip_path)
       .then(res => res.text())
       .then(data => {
+        let re = /width=\"(\w+)\"\s+height=\"(\w+)\"/;
+        data = data.replace(re, 'width="$1" height="$2" viewbox="0 0 $1 $2"');
         const buff = Buffer.from(data);
         const lqip = "data:image/svg+xml;base64," + buff.toString("base64");
+
+        if(cachefile) { fs.writeFileSync(cachefile, lqip); }
+
+        return (lqip);
+      })
+      .catch(err => {
+        console.error("LQIP error: ", err);
+        return (lqip_path);
+      });
+  });
+  */
+
+  eleventyConfig.addNunjucksAsyncShortcode("lqip", async function(args) {
+    let path = (args.path) ? args.path : "";
+
+    const image_info = require("./_cache/image-info.json");
+    const info = image_info.find(element => element.url === path);
+
+    let cachefile;
+
+    if(info && info.id) {
+      cachefile = '_cache/lqip_' + info.id;
+
+      if(fs.existsSync(cachefile)) {
+        // console.log('Using ' + cachefile + ' cache');
+        const cache = fs.readFileSync(cachefile);
+        return cache;
+      }
+    }
+
+    path = path.replace(site.cloudinary_url,"");
+
+    const params = (args.params) ? args.params : "";
+    const lqip_path = `${site.twic_url}${path}?twic=v1${params}/output=preview`;
+
+    return fetch(lqip_path)
+      .then(res => res.text())
+      .then(data => {
+        const lqip = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
 
         if(cachefile) { fs.writeFileSync(cachefile, lqip); }
 
@@ -343,8 +385,7 @@ module.exports = function (eleventyConfig) {
     return fetch(lqip_path)
       .then(res => res.text())
       .then(data => {
-        const buff = Buffer.from(data);
-        const lqip = "data:image/svg+xml;base64," + buff.toString("base64");
+        const lqip = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
 
         if(cachefile) { fs.writeFileSync(cachefile, lqip); }
 
