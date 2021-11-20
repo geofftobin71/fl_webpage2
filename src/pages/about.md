@@ -22,6 +22,10 @@ page_sections:
     image: https://res.cloudinary.com/floriade/image/upload/v1636759361/wedding-flowers/wpwmhtkp1vf0ufdkzs7v.jpg
     alt_text: Wedding Couple
     alternate_background_color: true
+  - type: youtube-section
+    heading: Jumanji Trailer
+    videoId: rBxcF-r9Ibs
+    videoTitle: Jumanji &colon; The Next Level trailer
   - type: reviews-section
   - type: text-section
     text: >-

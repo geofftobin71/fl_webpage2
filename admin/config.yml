@@ -114,7 +114,7 @@ collections:
             widget: "object"
             fields:
               - {label: "Heading", name: "heading", widget: "string", required: false}
-              - {label: "Image", name: "image", widget: "image", choose_url: false, media_library: { config: { multiple: true } } }
+              - {label: "Folder", name: "folder", widget: "string", hint: "Cloudinary folder to source images from"}
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Contact Form Section"
             name: "contact-form-section"
