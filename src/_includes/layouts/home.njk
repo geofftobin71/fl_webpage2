@@ -1,16 +1,7 @@
-{% extends "layouts/base.njk" %}
+{% extends "layouts/page.njk" %}
 
 {% block head %}
   {{ super() }}
-  {% set css %}
-  {% include "css/slider.css" %}
-  {% include "css/gallery.css" %}
-  {% include "css/form.css" %}
-  {% endset %}
-  <style>
-    {{ css | cssmin | safe }}
-  </style>
-
   {% set jsonld %}  
   {
     "@context": "http://www.schema.org",
@@ -58,29 +49,11 @@
 {% endblock %}
 
 {% block content %}
-  <main>
-  {% include "partials/title-page.njk" %}
-  {% asyncAll section in page_sections %}
-  {% set debug = page.fileSlug + ' : ' + section.type %}
-  {{ debug | log }}
-  {% ifAsync section.type %}
-    {% set component = 'components/' + section.type + '.njk' %}
-    {% include component %}
-  {% endif %}
-  {% endall %}
-  </main>
-  {% include "partials/footer.njk" %}
+{% include "partials/title-page.njk" %}
+  {{ super() }}
 {% endblock %}
 
 {% block foot %}
   {{ super() }}
-  {% set js %}
-  {% include "js/slider.js" %}
-  {% endset %}
-
-  <script>
-    {{ js | jsmin | safe }}
-  </script>
-
   {# <script>document.addEventListener("DOMContentLoaded",function(){playVideo();},false);function playVideo(){let video=document.getElementById("bg-video");if(window.innerWidth>750){video.setAttribute("autoplay","");video.play();};}</script> #}
 {% endblock %}

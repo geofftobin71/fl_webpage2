@@ -18,9 +18,7 @@
     {% include "css/theme.njk" %}
     {% include "css/layout.css" %}
     {% include "css/input.css" %}
-    {#
     {% include "css/hamburger-menu.css" %}
-    #}
     {% endset %}
 
     <style>
@@ -41,7 +39,7 @@
       {{ content | safe }}
     {% endblock %}
 
-    {# {% include "partials/hamburger-menu.njk" %} #}
+    {% include "partials/hamburger-menu.njk" %}
     {% set js %}
     {% include "js/init_cookieconsent.njk" %}
     {% endset %}

@@ -13,7 +13,9 @@
 {% endblock %}
 
 {% block content %}
+  {% ifAsync page.url != "/" %}
   {% include "partials/header.njk" %}
+  {% endif %}
   <main>
   {% asyncAll section in page_sections %}
   {% ifAsync section.type %}
