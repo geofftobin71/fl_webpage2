@@ -247,6 +247,10 @@ module.exports = function (eleventyConfig) {
     return uniqueId(length);
   });
 
+  eleventyConfig.addNunjucksShortcode("youtube", function(id) {
+    return `<lite-youtube videoid="${id}"></lite-youtube>`;
+  });
+
   eleventyConfig.addNunjucksShortcode("twic", function(args) {
     let path = (args.path) ? args.path : "";
     path = path.replace(site.cloudinary_url,"");
