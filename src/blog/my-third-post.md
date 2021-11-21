@@ -10,6 +10,3 @@ Hello, here is the body of the post.
 
 {% youtube "rBxcF-r9Ibs" %}
 
-## She Hulk Trailer
-
-{% youtube "LePECEK2NmM" %}

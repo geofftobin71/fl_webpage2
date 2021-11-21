@@ -248,7 +248,18 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addNunjucksShortcode("youtube", function(id) {
-    return `<lite-youtube videoid="${id}"></lite-youtube>`;
+    return `<lite-youtube videoid="${id}" style="background-image: url('https://i.ytimg.com/vi/${id}/maxresdefault.jpg');">
+      <button type="button" class="lty-playbtn">
+      <span class="lyt-visually-hidden">Play Video</span>
+      </button>
+      </lite-youtube>
+      <noscript style="display:block">
+      <a style="display:block;width:100%;max-width:720px;margin:0 auto" href="https://youtu.be/${id}" target="_blank" rel="noopener">
+      <img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt="YouTube video" width="1280" height="720">
+      <p class="caption">Click to Play</p>
+      </a>
+      <style>lite-youtube{display:none}</style>
+      </noscript>`;
   });
 
   eleventyConfig.addNunjucksShortcode("twic", function(args) {
