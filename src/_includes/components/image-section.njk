@@ -13,10 +13,10 @@
         <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ alt_text }}" src="{{ site.transgif }}" />
       </div>
       {% ifAsync caption %}
-        <figcaption class="caption" style="margin-top:0.3em">{{ caption }}</figcaption>
+        <figcaption class="caption">{{ caption }}</figcaption>
       {% endif %}
       {% ifAsync info and info.photographer_name %}
-        <figcaption class="caption small" style="margin-top:0.3em">Photo credit : 
+        <figcaption class="caption small">Photo credit : 
           {% ifAsync info and info.photographer_url %}
             <a href="{{ info.photographer_url | safe }}" target="_blank" rel="noopener"> {{ info.photographer_name | safe }}</a>
           {% else %}

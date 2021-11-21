@@ -27,7 +27,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let caption = '';
   if(title_txt) {
-    caption = '<figcaption class="caption" style="margin-top:0.3em">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
+    caption = '<figcaption class="caption">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
   }
 
   const image_info = require("./_cache/image-info.json");
@@ -35,9 +35,9 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   if(info && info.photographer_name) {
     if(info && info.photographer_url) {
-      caption += '<figcaption class="caption small" style="margin-top:0.3em">Photo credit : <a href="' + info.photographer_url + '" target="_blank" rel="noopener">' + markdown.utils.escapeHtml(info.photographer_name) + '</a></figcaption>';
+      caption += '<figcaption class="caption small">Photo credit : <a href="' + info.photographer_url + '" target="_blank" rel="noopener">' + markdown.utils.escapeHtml(info.photographer_name) + '</a></figcaption>';
     } else {
-      caption += '<figcaption class="caption small" style="margin-top:0.3em">Photo credit : ' + markdown.utils.escapeHtml(info.photographer_name) + '</figcaption>';
+      caption += '<figcaption class="caption small">Photo credit : ' + markdown.utils.escapeHtml(info.photographer_name) + '</figcaption>';
     }
   }
 
@@ -267,49 +267,6 @@ module.exports = function (eleventyConfig) {
 
     return `image:${path}`;
   });
-
-  /*
-  eleventyConfig.addNunjucksAsyncShortcode("lqip", async function(args) {
-    let path = (args.path) ? args.path : "";
-
-    const image_info = require("./_cache/image-info.json");
-    const info = image_info.find(element => element.url === path);
-
-    let cachefile;
-
-    if(info && info.id) {
-      cachefile = '_cache/lqip_' + info.id;
-
-      if(fs.existsSync(cachefile)) {
-        // console.log('Using ' + cachefile + ' cache');
-        const cache = fs.readFileSync(cachefile);
-        return cache;
-      }
-    }
-
-    path = path.replace(site.cloudinary_url,"");
-
-    const params = (args.params) ? args.params : "";
-    const lqip_path = `${site.twic_url}${path}?twic=v1${params}/output=preview`;
-
-    return fetch(lqip_path)
-      .then(res => res.text())
-      .then(data => {
-        let re = /width=\"(\w+)\"\s+height=\"(\w+)\"/;
-        data = data.replace(re, 'width="$1" height="$2" viewbox="0 0 $1 $2"');
-        const buff = Buffer.from(data);
-        const lqip = "data:image/svg+xml;base64," + buff.toString("base64");
-
-        if(cachefile) { fs.writeFileSync(cachefile, lqip); }
-
-        return (lqip);
-      })
-      .catch(err => {
-        console.error("LQIP error: ", err);
-        return (lqip_path);
-      });
-  });
-  */
 
   eleventyConfig.addNunjucksAsyncShortcode("lqip", async function(args) {
     let path = (args.path) ? args.path : "";

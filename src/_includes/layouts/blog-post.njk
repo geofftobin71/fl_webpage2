@@ -1,6 +1,12 @@
 --- 
 layout: layouts/base.njk 
 ---
+{% set css %}
+{% include "css/lite-yt-embed.css" %}
+{% endset %}
+<style>
+{{ css | cssmin | safe }}
+</style>
 {% include "partials/header.njk" %}
 <main>
 <section>
@@ -39,3 +45,9 @@ layout: layouts/base.njk
 {%- endif %}
 </main>
 {% include "partials/footer.njk" %}
+{% set js %}
+{% include "js/lite-yt-embed.js" %}
+{% endset %}
+<script>
+  {{ js | jsmin | safe }}
+</script>

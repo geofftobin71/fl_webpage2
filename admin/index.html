@@ -12,42 +12,44 @@
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
     <script>
       CMS.registerEditorComponent({
-        id: "collapsible-note",
-        label: "Collapsible Note",
-        fields: [
-          { name: 'summary', label: 'Summary', widget: 'string' },
-          { name: 'details', label: 'Details', widget: 'markdown' }
-        ],
-        pattern: /^<details>$\s*?<summary>(.*?)<\/summary>\n\n(.*?)\n^<\/details>$/ms,
-        fromBlock: function(match) {
-          return { summary: match[1], detail: match[2] };
-        },
-        toBlock: function(data) {
-          return ` <details> <summary>${data.summary}</summary> ${data.detail} </details> `;
-        },
-        toPreview: function(data) {
-          return ` <details> <summary>${data.summary}</summary> ${data.detail} </details> `;
-        }
-      });
-    </script>
-    <script>
-      CMS.registerEditorComponent({
         id: "youtube",
-        label: "Youtube",
-        fields: [{name: 'id', label: 'Youtube Video ID', widget: 'string'}],
-        pattern: /^<lite-youtube video-id="(.*?)"<\/lite-youtube>$/ms,
+        label: "YouTube",
+        fields: [{name: 'id', label: 'YouTube Video ID', widget: 'string'}],
+        pattern: /^<lite-youtube video-id="(.*?)"(.*?)^<\/noscript>$/ms,
         fromBlock: function(match) {
           return {
             id: match[1]
           };
         },
         toBlock: function(obj) {
-          return `<lite-youtube videoid="${obj.id}"></lite-youtube>`;
-        },
-        toPreview: function(obj) {
-          return `<lite-youtube videoid="${obj.id}"></lite-youtube>`;
-        }
-      });
+          return `<lite-youtube videoid="${obj.id}" style="background-image: url('https://i.ytimg.com/vi/${obj.id}/maxresdefault.jpg');">
+            <button type="button" class="lty-playbtn">
+            <span class="lyt-visually-hidden">Play Video</span>
+            </button>
+            </lite-youtube>
+            <noscript style="display:block">
+            <a style="display:block;width:100%;max-width:720px;margin:0 auto" href="https://youtu.be/${obj.id}" target="_blank" rel="noopener">
+            <img src="https://i.ytimg.com/vi/${obj.id}/maxresdefault.jpg" alt="YouTube video" width="1280" height="720">
+            <p class="caption">Click to Play</p>
+            </a>
+            <style>lite-youtube{display:none}</style>
+            </noscript>`;
+            },
+            toPreview: function(obj) {
+            return `<lite-youtube videoid="${obj.id}" style="background-image: url('https://i.ytimg.com/vi/${obj.id}/maxresdefault.jpg');">
+              <button type="button" class="lty-playbtn">
+                <span class="lyt-visually-hidden">Play Video</span>
+              </button>
+            </lite-youtube>
+            <noscript style="display:block">
+              <a style="display:block;width:100%;max-width:720px;margin:0 auto" href="https://youtu.be/${obj.id}" target="_blank" rel="noopener">
+                <img src="https://i.ytimg.com/vi/${obj.id}/maxresdefault.jpg" alt="YouTube video" width="1280" height="720">
+                <p class="caption">Click to Play</p>
+              </a>
+              <style>lite-youtube{display:none}</style>
+            </noscript>`;
+            }
+            });
     </script>
   </body>
 </html>
