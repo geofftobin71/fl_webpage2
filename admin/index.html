@@ -15,7 +15,7 @@
         id: "youtube",
         label: "YouTube",
         fields: [{name: 'id', label: 'YouTube Video ID', widget: 'string'}],
-        pattern: /^<lite-youtube video-id="(.*?)"<\/lite-youtube>$/ms,
+        pattern: /^<lite-youtube video-id="(.*?)"><\/lite-youtube>$/ms,
         fromBlock: function(match) {
           return {
             id: match[1]

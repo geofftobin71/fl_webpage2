@@ -6,7 +6,7 @@ date: 2020-10-11
 ---
 Hello, here is the body of the post.
 
-<lite-youtube videoid="rBxcF-r9Ibs"</lite-youtube>
+<lite-youtube videoid="rBxcF-r9Ibs"></lite-youtube>
 <noscript></noscript>
 
 Amazing!
