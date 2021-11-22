@@ -601,16 +601,12 @@ article > * + * {
   position:relative;
 }
 
-/*
 @media screen and (min-width:800px) {
-  .slideshow-section .canvas,
-  .image-section figure,
   .blog-post figure {
     width:120%;
     margin-left:-10%;
   }
 }
-*/
 
 .slideshow-section .canvas {
   overflow:visible;

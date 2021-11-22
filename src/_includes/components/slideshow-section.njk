@@ -1,8 +1,8 @@
 {% set heading = section.heading %}
 {% set alternate_background_color = section.alternate_background_color %}
 <section class="slideshow-section{{ ' bg-alt' if (alternate_background_color) }}">
-  {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
-  <div class="wrapper text-wrapper">
+  <div class="wrapper flow">
+    {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
     {% set images = section.images %}
     {% set images_count = images | length %}
     {% set aspect_ratio = section.aspect_ratio | replace('x',':') %}
@@ -19,10 +19,12 @@
         {% set alt_text = image.alt_text %}
         {% set caption = image.caption %}
         {% set info = image_info | findImage(image_path) %}
-        <figure class="vertical center" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe }}">
+{% set width = info.width or 1024 %}
+{% set height = info.height or 1024 %}
+        <figure style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe }}">
           <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}')">
-            <noscript><img src="{% twic path=image_path, params='/focus=auto/resize=800/cover=' + aspect_ratio %}" alt="{{ alt_text }}" /></noscript>
-            <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover={{ aspect_ratio }}/max" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ alt_text }}" src="{{ site.transgif }}" />
+            <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=' + aspect_ratio %}" alt="{{ alt_text }}" /></noscript>
+            <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover={{ aspect_ratio }}/max" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="{{ alt_text }}" src="{% placeholder width, height %}" />
           </div>
           {% ifAsync caption %}
             <figcaption class="caption">{{ caption }}</figcaption>
