@@ -1,0 +1,20 @@
+{% set heading = section.heading %}
+{% set subheading = section.subheading %}
+{% set button = section.button %}
+{% set image_path = section.image %}
+{% set info = image_info | findImage(image_path) %}
+{% set width = info.width or 1024 %}
+{% set height = info.height or 1024 %}
+<section class="banner-section" style="--section-padding:15vh">
+  <div class="wrapper text-wrapper text-center">
+    {% ifAsync heading %}<h2>{{ heading }}</h2>{% endif %}
+    {% ifAsync subheading %}<p class="subheading">{{ subheading }}</p>{% endif %}
+    {% ifAsync button.text %}
+      <div class="text-center font-size-0"><a class="button" role="button" href="{{ button.link }}"{{ ' target="_blank" rel="noopener"' | safe if button.new_page }}>{{ button.text }}</a></div>
+    {% endif %}
+  </div>
+  <figure class="background" style="background-image:url('{% lqip path=image_path %}')">
+    <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path %}" alt="" /></noscript>
+    <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-step="50" data-twic-transform="cover" data-twic-bot="contain=1024x1024" alt="" src="{% placeholder width, height %}" />
+  </figure>
+</section>

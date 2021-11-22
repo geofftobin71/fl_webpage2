@@ -27,18 +27,10 @@ page_sections:
     videoId: rBxcF-r9Ibs
     videoTitle: Jumanji &colon; The Next Level trailer
   - type: reviews-section
-  - type: text-section
-    text: >-
-      Floriade is Wellington’s **dried flowers** specialist. We create large
-      dried floral sculptures for corporate events, weddings and commercial
-      installations.
-
-
-      A large part of our business ethos is to be as sustainable as possible by preventing wastage. We intentionally source our flowers with the intention of drying whatever we can.
-
-
-      Drying flowers is a great way to prolong the life of flowers and create something sculptural, textural and beautiful. We have a custom-built flower drying machine that allows us to provide the highest quality dried flowers.
-    align: Center
+  - type: banner-section
+    heading: We are awesome!
+    subheading: You should check us out
+    image: https://res.cloudinary.com/floriade/image/upload/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00060.jpg
     button:
       text: Learn More
       link: https://floriade.co.nz

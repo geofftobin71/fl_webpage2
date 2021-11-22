@@ -18,10 +18,6 @@
 }
  */
 
-  main {
-    background-color: var(--color-light);
-  }
-
   figure {
     overflow: hidden;
   }
@@ -395,7 +391,9 @@
   }
 
   .header h1,
-  .header .subheading {
+  .header .subheading,
+  .banner-section h2,
+  .banner-section .subheading {
     color:var(--color-light);
     text-transform:lowercase;
     text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
@@ -404,6 +402,27 @@
   .header .subheading {
     font-family:var(--font-family-alt);
     font-size:var(--step-0);
+  }
+
+  .banner-section h2 {
+    font-size:var(--step-3);
+    margin-bottom:1em;
+  }
+
+  .banner-section .subheading {
+    font-family:var(--font-family-alt);
+    font-size:var(--step-2);
+    margin-bottom:1.5em;
+  }
+
+  .banner-section {
+    --button-bg:var(--color-light);
+    --button-fg:var(--color-button);
+    --button-border:var(--color-light);
+    --button-hover-bg:var(--color-button);
+    --button-hover-fg:var(--color-light);
+    --button-hover-border:var(--color-shade3);
+    --button-focus:var(--color-primary);
   }
 
   @media screen and (orientation:portrait) and (max-width:750px) {
@@ -473,6 +492,7 @@
     margin:0;
     padding:0;
     z-index:-2;
+    filter:brightness(var(--brightness));
   }
 
   .background img,
@@ -484,7 +504,6 @@
   .background img {
     object-fit:cover;
     object-position:center center;
-    filter:brightness(var(--brightness));
   }
 
   .cover {
