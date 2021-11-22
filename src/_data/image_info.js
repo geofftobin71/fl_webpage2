@@ -39,6 +39,8 @@ module.exports = (async function() {
     item.id = image.asset_id;
     item.url = image.secure_url;
     item.folder = image.folder;
+    item.width = image.width;
+    item.height = image.height;
     item.aspect_ratio = image.aspect_ratio;
 
     if(image.metadata && image.metadata.photographer) {

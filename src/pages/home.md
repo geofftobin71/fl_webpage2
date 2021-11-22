@@ -20,7 +20,7 @@ page_sections:
       We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
   - type: image-section
     alternate_background_color: true
-    image: https://res.cloudinary.com/floriade/image/upload/c_crop,g_west,w_2000/v1623993789/IMG_8636.heic
+    image: https://res.cloudinary.com/floriade/image/upload/v1623993789/IMG_8636.heic
     alt_text: White Flowers
   - type: text-section
     text: >-

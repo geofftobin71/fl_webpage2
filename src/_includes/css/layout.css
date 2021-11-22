@@ -595,15 +595,22 @@ article > * + * {
 
 /* ----- Blog Post ----- */
 
+.slideshow-section .canvas,
+.image-section figure,
+.blog-post figure {
+  position:relative;
+}
+
+/*
 @media screen and (min-width:800px) {
   .slideshow-section .canvas,
   .image-section figure,
   .blog-post figure {
-    position:relative;
     width:120%;
     margin-left:-10%;
   }
 }
+*/
 
 .slideshow-section .canvas {
   overflow:visible;
@@ -617,8 +624,6 @@ article > * + * {
 .image-section figure > div,
 .slideshow-section figure > div,
 .blog-post figure > div {
-  width:100%;
-  height:100%;
   background-size:contain;
   background-position:center center;
   background-repeat:no-repeat;
@@ -627,8 +632,8 @@ article > * + * {
 .image-section figure img,
 .slideshow-section figure img,
 .blog-post figure img {
+  max-height:75vmin;
   margin:0 auto;
-  max-height:var(--measure);
   object-fit:contain;
   background-size:contain;
 }

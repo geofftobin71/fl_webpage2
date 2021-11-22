@@ -4,13 +4,15 @@
 {% set caption = section.caption %}
 {% set alternate_background_color = section.alternate_background_color %}
 {% set info = image_info | findImage(image_path) %}
+{% set width = info.width or 1024 %}
+{% set height = info.height or 1024 %}
 <section class="image-section{{ ' bg-alt' if (alternate_background_color) }}">
-  {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
-  <div class="wrapper text-wrapper">
-    <figure class="vertical center">
+  <div class="wrapper flow">
+    {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
+    <figure>
       <div style="background-image:url('{% lqip path=image_path %}')">
-        <noscript><img src="{% twic path=image_path, params='/resize=800' %}" alt="{{ alt_text }}" /></noscript>
-        <img class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-step="50" data-twic-bot="contain=800x800" alt="{{ alt_text }}" src="{{ site.transgif }}" />
+        <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/resize=1024' %}" alt="{{ alt_text }}" /></noscript>
+        <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="{{ alt_text }}" src="{% placeholder width, height %}" />
       </div>
       {% ifAsync caption %}
         <figcaption class="caption">{{ caption }}</figcaption>

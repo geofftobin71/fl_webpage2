@@ -321,6 +321,35 @@ module.exports = function (eleventyConfig) {
       });
   });
 
+  eleventyConfig.addNunjucksAsyncShortcode("placeholder", async function(width,height) {
+
+    let cachefile;
+
+    cachefile = '_cache/placeholder_' + width + 'x' + height;
+
+    if(fs.existsSync(cachefile)) {
+      // console.log('Using ' + cachefile + ' cache');
+      const cache = fs.readFileSync(cachefile);
+      return cache;
+    }
+
+    const placeholder_path = `${site.twic_url}/v1/placeholder:${width}x${height}`;
+
+    return fetch(placeholder_path)
+      .then(res => res.text())
+      .then(data => {
+        const placeholder = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
+
+        if(cachefile) { fs.writeFileSync(cachefile, placeholder); }
+
+        return (placeholder);
+      })
+      .catch(err => {
+        console.error("placeholder error: ", err);
+        return (placeholder_path);
+      });
+  });
+
   eleventyConfig.addNunjucksShortcode("insta_twic", function(args) {
     let path = (args.path) ? args.path : "";
     let params = (args.params) ? args.params : "";
