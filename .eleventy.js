@@ -45,7 +45,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let alt = ' alt="' + alt_txt + '"';
 
-  return '<figure><div style="background-image:url(' + site.twic_url + image_path + '?twic=v1/output=preview)"><noscript><img ' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/resize=800" /></noscript><img class="req-js"' + alt + ' src="' + site.twic_url + '/v1/placeholder:' + width + 'x' + height + '" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-bot="contain=800x800" /></div>'
+  return '<figure><div style="background-image:url(' + site.twic_url + image_path + '?twic=v1/output=preview)"><noscript><img ' + alt + ' src="' + site.twic_url + image_path + '?twic=v1/resize=800" /></noscript><img class="req-js"' + alt + ' src="' + site.twic_url + '/v1/placeholder:' + width + 'x' + height + ':transparent" data-twic-src="image:' + image_path + '" data-twic-step="50" data-twic-bot="contain=800x800" /></div>'
     + caption + '</figure>';
 }
 
@@ -335,7 +335,7 @@ module.exports = function (eleventyConfig) {
       return cache;
     }
 
-    const placeholder_path = `${site.twic_url}/v1/placeholder:${width}x${height}`;
+    const placeholder_path = `${site.twic_url}/v1/placeholder:${width}x${height}:transparent`;
 
     return fetch(placeholder_path)
       .then(res => res.text())

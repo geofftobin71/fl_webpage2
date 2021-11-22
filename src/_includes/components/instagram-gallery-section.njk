@@ -13,7 +13,7 @@
           <li class="aspect aspect1x1 hover-scale">
             <figure class="round border-alt" style="background-image:url('{% insta_lqip path=thumbnail_path, params='/focus=auto/cover=450x450' %}')">
               <noscript><a href="{% insta_twic path=thumbnail_path %}" style="height:100%;display:block"><img class="round" src="{% insta_twic path=thumbnail_path, params='/focus=auto/cover=450x450' %}" width="450" height="450" alt="{{ item.caption | urldecode }}" style="cursor:pointer" /></a></noscript>
-              <img class="req-js round" data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover" data-twic-step="10" data-twic-bot="cover=450x450" alt="{{ item.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" src="{{ site.transgif }}" style="cursor:pointer" />
+              <img class="req-js round" data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover" data-twic-step="10" data-twic-bot="cover=450x450" alt="{{ item.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" src="{% placeholder 450,450 %}" style="cursor:pointer" />
             </figure>
           </li>
         {% endfor %}
@@ -31,7 +31,7 @@
       <li id="item{{ loop.index }}" class="slider-item">
         <figure class="horizontal center middle">
           <div style="background-image:url('{% insta_lqip path=thumbnail_path, params='/focus=auto/cover=1:1' %}')">
-            <img data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover=1:1" data-twic-step="50" data-twic-bot="cover=1440x1440" alt="{{ item.caption | urldecode }}" src="{{ site.transgif }}" />
+            <img data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover=1:1" data-twic-step="30" data-twic-bot="cover=1440x1440" alt="{{ item.caption | urldecode }}" src="{% placeholder 1440,1440 %}" />
           </div>
           <figcaption class="wrapper text-wrapper">
             <div class="text-center text-shadow">
