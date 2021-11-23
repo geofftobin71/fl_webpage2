@@ -29,5 +29,26 @@
         }
       });
     </script>
+    <script>
+      function uid() {
+        let uID = '';
+        let length = 8;
+        let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (let i = 0; i < length; i++) {
+          uID += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return uID;
+      };
+
+      var IdControl = createClass({
+        this.props.value = uid();
+
+        render: function() {
+          return h('input', { type: 'text', value: this.props.value });
+        }
+      });
+
+      CMS.registerWidget('id', IdControl);
+    </script>
   </body>
 </html>
