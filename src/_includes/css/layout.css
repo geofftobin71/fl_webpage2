@@ -607,8 +607,8 @@ article > * + * {
 
 @media screen and (max-width:750px) {
   .wrapper {
-    padding-left:var(--step-0);
-    padding-right:var(--step-0);
+    padding-left:var(--step--1);
+    padding-right:var(--step--1);
   }
 }
 
@@ -647,7 +647,7 @@ article > * + * {
 .image-section figure img,
 .slideshow-section figure img,
 .blog-post figure img {
-  max-height:75vmin;
+  max-height:85vh;
   margin:0 auto;
   object-fit:contain;
 }
