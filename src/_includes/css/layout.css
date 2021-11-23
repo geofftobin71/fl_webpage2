@@ -618,6 +618,7 @@ article > * + * {
 .image-section figure,
 .blog-post figure {
   position:relative;
+  overflow:visible;
 }
 
 @media screen and (min-width:800px) {
@@ -642,6 +643,8 @@ article > * + * {
   background-size:contain;
   background-position:center center;
   background-repeat:no-repeat;
+  filter:drop-shadow(0 -1px 0 red) drop-shadow(0 1px 0 red) drop-shadow(-1px 0 0 red) drop-shadow(1px 0 0 red);
+  /* filter:drop-shadow(0 -1px 0 rgba(0,0,0,0.1)) drop-shadow(0 1px 0 rgba(0,0,0,0.1)) drop-shadow(-1px 0 0 rgba(0,0,0,0.1)) drop-shadow(1px 0 0 rgba(0,0,0,0.1)); */
 }
 
 .image-section figure img,
@@ -650,7 +653,6 @@ article > * + * {
   max-height:75vmin;
   margin:0 auto;
   object-fit:contain;
-  background-size:contain;
 }
 
 /* ----- Buttons ----- */

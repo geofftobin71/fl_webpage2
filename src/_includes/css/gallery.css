@@ -1,6 +1,10 @@
 
 /* ----- Gallery ----- */
 
+.gallery-section figure {
+  border:1px solid rgba(0,0,0,0.1);
+}
+
 .gallery {
   --auto-grid-gap: 0;
   --auto-grid-min-size: 96px;
