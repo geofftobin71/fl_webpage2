@@ -41,13 +41,14 @@
       };
 
       var IdControl = createClass({
-        this.props.value = uid();
-
+        getDefaultProps: function() {
+          return { value: uid() };
+        },
         render: function() {
           return h('input', { type: 'text', value: this.props.value });
         }
       });
-
+      
       CMS.registerWidget('id', IdControl);
     </script>
   </body>
