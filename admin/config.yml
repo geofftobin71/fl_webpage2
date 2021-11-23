@@ -279,7 +279,7 @@ collections:
             summary: '{{fields.name}}'
             fields:
               - {label: "Name", name: "name", widget: "string"}
-              - {label: "ID", name: "id", widget: "id"}
+              - {label: "ID", name: "id", widget: "id", required: false}
   - label: "Lists"
     name: "lists"
     delete: false

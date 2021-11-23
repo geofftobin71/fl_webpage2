@@ -41,7 +41,7 @@
       };
 
       var IdControl = createClass({
-        getDefaultProps: function() {
+        getInitialState: function() {
           return { value: uid() };
         },
         render: function() {
