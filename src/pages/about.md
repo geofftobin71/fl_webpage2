@@ -28,7 +28,7 @@ page_sections:
     videoTitle: Jumanji &colon; The Next Level trailer
   - type: reviews-section
   - type: banner-section
-    heading: We are awesome!
+    heading: We are totally awesome!
     subheading: You should check us out
     image: https://res.cloudinary.com/floriade/image/upload/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00060.jpg
     button:
@@ -42,7 +42,7 @@ page_sections:
     email_subject: Wedding Flowers Enquiry
     email_heading: We got your message
   - type: gallery-section
-    heading: Wedding Flowers
+    heading: Wedding Flowers Gallery
     folder: wedding-flowers
     alt_text: Wedding Flowers by Floriade
   - type: slideshow-section

@@ -1,12 +1,8 @@
 Next:
-Review slider button alignment
 Checkerboard section
 
 Fix:
-Transparent placeholders
 Gallery histogram
-Mobile image-section padding
-Mobile gallery-section padding / gap
 Mailchimp Signup form (OLD!)
 Contact layout enable google maps
 Change nodemailer settings from mailtrap to floriade (functions)
@@ -14,7 +10,7 @@ admin/config hints
 
 Check:
 <a> surrounding image display:block
-headings pronoun filter
+headings pronoun / nbsp filter
 addNbsp to headings
 aria-label semantic elements
 color contrast

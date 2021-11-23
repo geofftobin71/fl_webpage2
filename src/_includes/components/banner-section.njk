@@ -7,8 +7,8 @@
 {% set height = info.height or 1024 %}
 <section class="banner-section" style="--section-padding:15vh">
   <div class="wrapper text-wrapper text-center">
-    {% ifAsync heading %}<h2>{{ heading }}</h2>{% endif %}
-    {% ifAsync subheading %}<p class="subheading">{{ subheading }}</p>{% endif %}
+    {% ifAsync heading %}<h2>{{ heading | addNbsp | safe }}</h2>{% endif %}
+    {% ifAsync subheading %}<p class="subheading">{{ subheading | addNbsp | safe }}</p>{% endif %}
     {% ifAsync button.text %}
       <div class="text-center font-size-0"><a class="button" role="button" href="{{ button.link }}"{{ ' target="_blank" rel="noopener"' | safe if button.new_page }}>{{ button.text }}</a></div>
     {% endif %}
