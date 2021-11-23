@@ -6,13 +6,16 @@
 {% set info = image_info | findImage(image_path) %}
 {% set width = info.width or 1024 %}
 {% set height = info.height or 1024 %}
+{% set aspect_ratio = '1:1' %}
+{% ifAsync info.aspect_ratio > 1.1 %}{% set aspect_ratio = '3:2' %}{% endif %}
+{% ifAsync info.aspect_ratio < 0.9 %}{% set aspect_ratio = '2:3' %}{% endif %}
 <section class="image-section{{ ' bg-alt' if (alternate_background_color) }}">
   <div class="wrapper flow">
     {% ifAsync heading %}<h2 class="heading">{{ heading }}</h2>{% endif %}
     <figure>
-      <div style="background-image:url('{% lqip path=image_path %}')">
-        <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/resize=1024' %}" alt="{{ alt_text }}" /></noscript>
-        <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="{{ alt_text }}" src="{% placeholder width, height %}" />
+      <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}')">
+        <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=' + aspect_ratio %}" alt="{{ alt_text }}" /></noscript>
+        <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-transform="cover={{ aspect_ratio }}/max" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="{{ alt_text }}" src="{% placeholder width, height %}" />
       </div>
       {% ifAsync caption %}
         <figcaption class="caption">{{ caption }}</figcaption>
