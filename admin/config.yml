@@ -262,6 +262,24 @@ collections:
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
               - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
               - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
+  - label: "Shop"
+    name: "shop"
+    delete: false
+    files:
+      - label: "Products"
+        name: "products"
+        file: "src/_data/products.json"
+        editor:
+          preview: false
+        fields:
+          - label: "Products"
+            label_singular: "Product"
+            name: "products"
+            widget: "list"
+            summary: '{{fields.name}}'
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "ID", name: "id", widget: "id"}
   - label: "Lists"
     name: "lists"
     delete: false
