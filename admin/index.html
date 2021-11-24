@@ -42,10 +42,10 @@
 
       var IdControl = createClass({
         defaultProps: function() {
-          return { value: '' };
+          return { value: uid() };
         },
         getInitialState: function() {
-          return { value: uid() };
+          return { value: this.props.value };
         },
         render: function() {
           return h('input', { type: 'text', value: this.props.value });
