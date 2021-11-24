@@ -1,4 +1,12 @@
 {
   "products": [
+    {
+      "id": "Rpcr8Cjg",
+      "name": "Fresh Flowers"
+    },
+    {
+      "id": "vZInFGTN",
+      "name": "Dried Flowers"
+    }
   ]
 }
