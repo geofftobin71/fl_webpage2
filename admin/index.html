@@ -44,7 +44,7 @@
         render: function() {
           if(!this.props.value) {
             let value = uid();
-            onChange(value);
+            this.props.onChange(value);
           }
           return h('input', { type: 'text', value: this.props.value });
         }
