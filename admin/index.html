@@ -42,7 +42,10 @@
 
       var IdControl = createClass({
         render: function() {
-          if(!this.props.value) { this.props.value = uid(); }
+          if(!this.props.value) {
+            let value = uid();
+            onChange(value);
+          }
           return h('input', { type: 'text', value: this.props.value });
         }
       });
