@@ -41,10 +41,8 @@
       };
 
       var IdControl = createClass({
-        state: function() {
-          return { value: uid() };
-        },
         render: function() {
+          if(!this.props.value) { this.props.value = uid(); }
           return h('input', { type: 'text', value: this.props.value });
         }
       });
