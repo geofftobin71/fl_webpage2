@@ -41,6 +41,12 @@
       };
 
       var IdControl = createClass({
+        propTypes: {
+          value: React.PropTypes.string
+        },
+        defaultProps: {
+          value: ''
+        },
         getInitialState: function() {
           return { value: uid() };
         },
