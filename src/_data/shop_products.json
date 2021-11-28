@@ -1,4 +1,64 @@
 {
   "products": [
+    {
+      "disabled": false,
+      "id": "pwFJYPY4",
+      "name": "Vibrant Colours Bouquet",
+      "category": "Fresh Flowers"
+    },
+    {
+      "disabled": false,
+      "id": "gu1hHm4r",
+      "name": "Subtle Pastels Bouquet",
+      "category": "Fresh Flowers"
+    },
+    {
+      "disabled": false,
+      "id": "647SsCQg",
+      "name": "Avant-garde Bouquet",
+      "category": "Fresh Flowers"
+    },
+    {
+      "disabled": false,
+      "id": "utwy7NKk",
+      "name": "Vintage Dried Bouquet",
+      "category": "Dried Flowers"
+    },
+    {
+      "disabled": false,
+      "id": "XyXGxdNy",
+      "name": "Wild Rustic Bouquet",
+      "category": "Dried Flowers"
+    },
+    {
+      "disabled": false,
+      "id": "sVj4uvm8",
+      "name": "Raspberry Milk Chocolate",
+      "category": "Chocolate"
+    },
+    {
+      "disabled": false,
+      "id": "JHezAdp6",
+      "name": "Coconut Milk Chocolate",
+      "category": "Chocolate"
+    },
+    {
+      "disabled": false,
+      "id": "F8VXwWYA",
+      "name": "Original Milk Chocolate",
+      "category": "Chocolate"
+    },
+    {
+      "disabled": false,
+      "id": "bceUTIrR",
+      "name": "Salted Caramel Dark Chocolate",
+      "category": "Chocolate"
+    },
+    {
+      "disabled": false,
+      "id": "oRCDowha",
+      "name": "Peru Dark Chocolate",
+      "category": "Chocolate"
+    }
   ]
 }
