@@ -157,7 +157,7 @@ collections:
         fields:
           - { label: "Name", name: "key", widget: "string" }
           - { label: "Order", name: "order", widget: "number", default: 0 }
-  - label: "Shop Hours"
+  - label: "Hours"
     name: "shop-hours"
     delete: false
     files:
@@ -268,7 +268,7 @@ collections:
     files:
       - label: "Products"
         name: "products"
-        file: "src/_data/products.json"
+        file: "src/_data/shop_products.json"
         editor:
           preview: false
         fields:
@@ -279,9 +279,12 @@ collections:
             summary: '{{fields.name}}'
             fields:
               - {label: "Name", name: "name", widget: "string"}
-              - {label: "ID", name: "id", widget: "id", required: false}
-  - label: "Lists"
-    name: "lists"
+              - {label: "SEO Description", name: "seo_description", widget: "text", required: false}
+              - {label: "Page Description", name: "page_description", widget: "text", required: false}
+              - {label: "Disabled", name: "disabled", widget: "boolean", required: false}
+              - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}
+  - label: "Misc"
+    name: "misc"
     delete: false
     files:
       - label: "FAQ"

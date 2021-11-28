@@ -21,7 +21,7 @@
         <img src="{{ '/icons/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
       </a>
     </figure>
-    <div class="title">
+    <div class="title flow" style="--flow-space:2em">
       <h1>{{ (header_title or title) | pronoun | addNbsp | safe }}</h1>
       {% if subheading %}<p class="subheading">{{ subheading | pronoun | addNbsp | safe }}</p>{% endif %}
     </div>

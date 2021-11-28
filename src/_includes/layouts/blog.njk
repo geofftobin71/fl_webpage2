@@ -1,10 +1,93 @@
 {% extends "layouts/base.njk" %}
 
+{% block head %}
+  {{ super() }}
+  {% set css %}
+  #post-list ul > * + * {
+    margin-top: var(--step-4);
+  }
+  #post-list > ul > li {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform: translate3d(0,0,0);
+    opacity: 1;
+    transition: transform 750ms ease, opacity 750ms linear;
+    padding:0 0.5em;
+  }
+  #post-list > ul > li.hidden {
+    transform: translate3d(0,200px,0);
+    opacity: 0.01;
+  }
+  .post-preview {
+    font-family:var(--font-family-base);
+    background-color:var(--color-alt);
+    color:var(--color-primary);
+    border:1px solid var(--color-shade3);
+    border-radius:var(--box-border-radius, 0.4rem);
+    border-width:var(--box-border-width, 1px);
+    text-align:center;
+    box-shadow:0 0 20px rgba(0, 0, 0, 0.1);
+    display:block;
+    overflow:hidden;
+  }
+  .post-preview .header {
+    max-width:var(--measure);
+    padding:var(--step-2);
+    min-height:150px;
+    z-index:0;
+  }
+  .post-preview .content {
+   padding-top:1em;
+   padding-bottom:1em;
+   z-index:2;
+  }
+  .post-preview h2 {
+    color:var(--color-light);
+  }
+  .post-preview time {
+    display:block;
+    text-align:right;
+  }
+
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
 {% block content %}
   {% include "partials/header.njk" %}
   <main>
-  {% set postslist = collections.blog %}
-  {% include "partials/postslist.njk" %}
+  <section>
+    <div id="post-list">
+      <ul class="vertical center flow">
+        {% for post in collections.blog %}
+          <li>
+            <div class="post-preview">
+              <div class="header vertical middle">
+                <figure class="background">
+                  {% set image_path = post.data.header_image or site.header_image %}
+                  <picture>
+                  <source srcset="{% twic path=image_path, params='/focus=auto/cover=3:1', sizes=image_sizes %}" sizes="65ch" media="(min-width:450px)">
+                  <source srcset="{% twic path=image_path, params='/focus=auto/cover=2:1', sizes=image_sizes %}" sizes="65ch">
+                  <img src="{% twic path=image_path, params='/resize=1024/focus=auto/cover=3:1' %}" style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=3:1' %}')" alt="" />
+                  </picture>
+                </figure>
+                <h2 class="heading text-shadow">{{ post.data.title | pronoun | addNbsp | safe }}</h2>
+              </div>
+              <div class="content wrapper text-wrapper flow">
+                <p>
+                {{ post.data.description }}
+                </p>
+                <div class="horizontal center"><a href="{{ post.url | url }}" class="button" role="button">Read More</a></div>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
   </main>
   {% include "partials/footer.njk" %}
 {% endblock %}

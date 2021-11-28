@@ -1,7 +1,7 @@
 ---
 draft: false
 title: My first post
-description: The first post on the Eleventy + Netlify CMS from scratch blog
+description: The first post on the Eleventy + Netlify CMS from scratch blog. Dolor consequuntur ipsum nesciunt porro inventore. Error blanditiis reiciendis sapiente reiciendis aperiam eos? Modi alias excepturi debitis sapiente iste.
 date: 2020-10-08
 header_image: https://res.cloudinary.com/floriade/image/upload/v1636759375/wedding-flowers/hryvstt1uqbs4lpuwoks.jpg
 ---
