@@ -266,6 +266,22 @@ collections:
     name: "shop"
     delete: false
     files:
+      - label: "Categories"
+        name: "categories"
+        file: "src/_data/shop_categories.json"
+        editor:
+          preview: false
+        fields:
+          - label: "Categories"
+            label_singular: "Category"
+            name: "categories"
+            widget: "list"
+            summary: '{{fields.name}}'
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Description", name: "description", widget: "text", required: false}
+              - {label: "Disabled", name: "disabled", widget: "boolean", default: false, required: false}
+              - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}
       - label: "Products"
         name: "products"
         file: "src/_data/shop_products.json"
@@ -279,9 +295,8 @@ collections:
             summary: '{{fields.name}}'
             fields:
               - {label: "Name", name: "name", widget: "string"}
-              - {label: "SEO Description", name: "seo_description", widget: "text", required: false}
-              - {label: "Page Description", name: "page_description", widget: "text", required: false}
-              - {label: "Disabled", name: "disabled", widget: "boolean", required: false}
+              - {label: "Description", name: "description", widget: "text", required: false}
+              - {label: "Disabled", name: "disabled", widget: "boolean", default: false, required: false}
               - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}
   - label: "Misc"
     name: "misc"
