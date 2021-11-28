@@ -1,4 +1,19 @@
 {
   "categories": [
+    {
+      "disabled": false,
+      "id": "Ri2AMM6H",
+      "name": "Fresh Flowers"
+    },
+    {
+      "disabled": false,
+      "id": "FgcrZEWY",
+      "name": "Dried Flowers"
+    },
+    {
+      "disabled": false,
+      "id": "4WfLlSCl",
+      "name": "Chocolate"
+    }
   ]
 }
