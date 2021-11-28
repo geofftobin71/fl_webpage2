@@ -18,7 +18,7 @@
     transform: translate3d(0,200px,0);
     opacity: 0.01;
   }
-  .post-preview {
+  .post-preview > div {
     font-family:var(--font-family-base);
     background-color:var(--color-alt);
     color:var(--color-primary);
@@ -63,15 +63,15 @@
     <div id="post-list">
       <ul class="vertical center flow">
         {% for post in collections.blog %}
-          <li>
-            <div class="post-preview">
+          <li class="post-preview">
+            <div>
               <div class="header vertical middle">
                 <figure class="background">
                   {% set image_path = post.data.header_image or site.header_image %}
                   <picture>
-                  <source srcset="{% twic path=image_path, params='/focus=auto/cover=3:1', sizes=image_sizes %}" sizes="65ch" media="(min-width:450px)">
-                  <source srcset="{% twic path=image_path, params='/focus=auto/cover=2:1', sizes=image_sizes %}" sizes="65ch">
-                  <img src="{% twic path=image_path, params='/resize=1024/focus=auto/cover=3:1' %}" style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=3:1' %}')" alt="" />
+                    <source srcset="{% twic path=image_path, params='/focus=auto/cover=3:1', sizes=image_sizes %}" sizes="65ch" media="(min-width:450px)">
+                    <source srcset="{% twic path=image_path, params='/focus=auto/cover=2:1', sizes=image_sizes %}" sizes="65ch">
+                    <img src="{% twic path=image_path, params='/resize=1024/focus=auto/cover=3:1' %}" style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=3:1' %}')" alt="" />
                   </picture>
                 </figure>
                 <h2 class="heading text-shadow">{{ post.data.title | pronoun | addNbsp | safe }}</h2>
@@ -92,3 +92,28 @@
   {% include "partials/footer.njk" %}
 {% endblock %}
 
+{% block foot %}
+  {{ super() }}
+  {% set js %}
+  const posts = document.querySelectorAll(".post-preview");
+  const posts_options = { root: null, threshold: 0.25, rootMargin: "0px" };
+  const posts_observer = new IntersectionObserver((entries, posts_observer) => {
+  entries.forEach(entry => {
+  if(!entry.isIntersecting) {
+  entry.target.classList.add("hidden");
+  return;
+  }
+  entry.target.classList.remove("hidden");
+  posts_observer.unobserve(entry.target);
+  });
+  }, posts_options);
+
+  posts.forEach(review => {
+  posts_observer.observe(review);
+  });
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}
