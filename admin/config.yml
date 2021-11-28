@@ -296,6 +296,7 @@ collections:
             fields:
               - {label: "Name", name: "name", widget: "string"}
               - {label: "Description", name: "description", widget: "text", required: false}
+              - {label: "Category", name: "category", widget: "relation", collection: "shop", file: "categories", value_field: "categories.*.name", search_fields: ["categories.*.name"], required: false}
               - {label: "Disabled", name: "disabled", widget: "boolean", default: false, required: false}
               - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}
   - label: "Misc"
