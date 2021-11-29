@@ -219,6 +219,14 @@ module.exports = function (eleventyConfig) {
     return array.filter(element => element.folder === folder);
   });
 
+  eleventyConfig.addFilter("findCategory", (array, category) => {
+    return array.filter(element => element.category === category);
+  });
+
+  eleventyConfig.addFilter("notDisabled", (array) => {
+    return array.filter(element => element.disabled === false);
+  });
+
   eleventyConfig.addFilter("shuffle", (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
