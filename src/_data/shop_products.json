@@ -4,7 +4,17 @@
       "disabled": false,
       "id": "pwFJYPY4",
       "name": "Vibrant Colours Bouquet",
-      "category": "Fresh Flowers"
+      "category": "Fresh Flowers",
+      "images": [
+        "https://res.cloudinary.com/floriade/image/upload/v1613592809/shop/vibrant-colours-bouquet-1.jpg",
+        "https://res.cloudinary.com/floriade/image/upload/v1613592809/shop/vibrant-colours-bouquet-2.jpg",
+        "https://res.cloudinary.com/floriade/image/upload/v1613592812/shop/vibrant-colours-bouquet-3.jpg",
+        "https://res.cloudinary.com/floriade/image/upload/v1613592813/shop/vibrant-colours-bouquet-4.jpg",
+        "https://res.cloudinary.com/floriade/image/upload/v1613592809/shop/vibrant-colours-bouquet-5.jpg",
+        "https://res.cloudinary.com/floriade/image/upload/v1613592809/shop/vibrant-colours-bouquet-6.jpg",
+        "https://res.cloudinary.com/floriade/image/upload/v1613592812/shop/vibrant-colours-bouquet-7.jpg",
+        "https://res.cloudinary.com/floriade/image/upload/v1613592813/shop/vibrant-colours-bouquet-8.jpg"
+      ]
     },
     {
       "disabled": true,
