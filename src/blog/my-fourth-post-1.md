@@ -5,8 +5,6 @@ description: This is the fourth post copy. Lorem atque eligendi dolores
   architecto sint? Ab reprehenderit assumenda consectetur amet quia. Ex
   consequuntur pariatur ipsum eius incidunt Atque alias.
 date: 2021-10-19
-header_image:
-  - https://res.cloudinary.com/floriade/image/upload/v1596539275/dried-flowers/dried-flowers-by-floriade-00041.jpg
 ---
 This is the body of the post. Sit eaque pariatur similique repudiandae quam laborum atque Sunt rerum quo accusamus repellat consequatur Maxime mollitia adipisci aspernatur sapiente omnis, quos. Dolore corporis quod aspernatur culpa maiores quas iusto perspiciatis. Explicabo illo dicta vel facere voluptatibus sequi neque! Accusamus ipsum illo vero saepe porro Asperiores aliquam repellendus molestiae autem doloribus?
 
