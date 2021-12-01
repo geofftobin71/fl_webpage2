@@ -35,7 +35,34 @@
     {
       "disabled": false,
       "id": "FgcrZEWY",
-      "name": "Dried Flowers"
+      "name": "Dried Flowers",
+      "variants": [
+        {
+          "price": 75,
+          "id": "yaFCtTw4",
+          "name": "$75"
+        },
+        {
+          "price": 100,
+          "id": "uK8NZ7QL",
+          "name": "$100"
+        },
+        {
+          "price": 150,
+          "id": "mfgY3Rcx",
+          "name": "$150"
+        },
+        {
+          "price": 200,
+          "id": "vSa5mvmx",
+          "name": "$200"
+        },
+        {
+          "price": 250,
+          "id": "Zr79EqvX",
+          "name": "$250"
+        }
+      ]
     },
     {
       "disabled": false,
