@@ -48,8 +48,8 @@ collections:
         collapsed: true
         widget: "object"
         fields:
-          - { label: "Name", name: "key", widget: "string" }
-          - { label: "Order", name: "order", widget: "number", default: 0 }
+          - {label: "Name", name: "key", widget: "string"}
+          - {label: "Order", name: "order", widget: "number", default: 0}
       - label: "Page Sections"
         name: "page_sections"
         label_singular: "Section"
@@ -73,17 +73,17 @@ collections:
                 collapsed: true
                 widget: "object"
                 fields:
-                  - { label: "Text", name: "text", widget: "string", required: false }
-                  - { label: "Link", name: "link", widget: "string", required: false }
-                  - { label: "Open in new Tab/Window", name: "new_page", widget: "boolean", required: false }
+                  - {label: "Text", name: "text", widget: "string", required: false}
+                  - {label: "Link", name: "link", widget: "string", required: false}
+                  - {label: "Open in new Tab/Window", name: "new_page", widget: "boolean", required: false}
           - label: "Image Section"
             name: "image-section"
             widget: "object"
             fields:
               - {label: "Heading", name: "heading", widget: "string", required: false}
               - {label: "Image", name: "image", widget: "image", choose_url: false}
-              - {label: "Alt Text", name: "alt_text", widget: "string" }
-              - {label: "Caption", name: "caption", widget: "string", required: false }
+              - {label: "Alt Text", name: "alt_text", widget: "string"}
+              - {label: "Caption", name: "caption", widget: "string", required: false}
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
           - label: "Slideshow Section"
             name: "slideshow-section"
@@ -97,8 +97,8 @@ collections:
                 summary: '{{fields.alt_text}}'
                 fields:
                   - {label: "Image", name: "image", widget: "image", choose_url: false}
-                  - {label: "Alt Text", name: "alt_text", widget: "string" }
-                  - {label: "Caption", name: "caption", widget: "string", required: false }
+                  - {label: "Alt Text", name: "alt_text", widget: "string"}
+                  - {label: "Caption", name: "caption", widget: "string", required: false}
               - {label: "Alternate Background Colour", name: "alternate_background_color", widget: "boolean", required: false}
               - label: "Aspect Ratio"
                 name: "aspect_ratio"
@@ -106,9 +106,9 @@ collections:
                 required: false
                 default: "3x2"
                 options:
-                  - { label: "Landscape", value: "3x2" }
-                  - { label: "Square", value: "1x1" }
-                  - { label: "Portrait", value: "2x3" }
+                  - {label: "Landscape", value: "3x2"}
+                  - {label: "Square", value: "1x1"}
+                  - {label: "Portrait", value: "2x3"}
           - label: "Gallery Section"
             name: "gallery-section"
             widget: "object"
@@ -155,8 +155,8 @@ collections:
         collapsed: true
         widget: "object"
         fields:
-          - { label: "Name", name: "key", widget: "string" }
-          - { label: "Order", name: "order", widget: "number", default: 0 }
+          - {label: "Name", name: "key", widget: "string"}
+          - {label: "Order", name: "order", widget: "number", default: 0}
   - label: "Hours"
     name: "shop-hours"
     delete: false
@@ -280,6 +280,16 @@ collections:
             fields:
               - {label: "Name", name: "name", widget: "string"}
               - {label: "Description", name: "description", widget: "text", required: false}
+              - label: "Variants"
+                name: "variants"
+                label_singular: "Variant"
+                widget: "list"
+                min: 1
+                summary: '{{fields.name}}'
+                fields:
+                  - {label: "Name", name: "name", widget: "string"}
+                  - {label: "Price", name: "price", widget: "number", value_type: float, default: 1, min: 1}
+                  - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}
               - {label: "Disabled", name: "disabled", widget: "boolean", default: false, required: false}
               - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}
       - label: "Products"
