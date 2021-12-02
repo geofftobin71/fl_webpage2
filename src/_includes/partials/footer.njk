@@ -5,7 +5,7 @@ grid-template-areas:"location hours follow" "contact hours subscribe";} } #foote
 <footer class="bg-alt font-size--1" style="margin-top:auto">
   <section class="wrapper page-wrapper" style="padding-top:2em;padding-bottom:2em">
     <div class="horizontal center middle" style="width:48px;margin:0 auto">
-      <button title="Scroll to Top" aria-label="Scroll to Top" class="color-primary req-js" style="cursor:pointer;width:24px" onclick="(function(){document.querySelector('#top').scrollIntoView({behavior:'smooth'});})();return false;" >{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</button>
+      <button title="Scroll to Top" aria-label="Scroll to Top" class="color-primary req-js cursor-pointer" style="width:24px" onclick="(function(){document.querySelector('#top').scrollIntoView({behavior:'smooth'});})();return false;" >{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</button>
       <noscript><a href="#top" class="nofocus" role="button" tabindex="0" title="Scroll to Top" aria-label="Scroll to Top" style="display:block;width:24px">{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</a></noscript>
     </div>
     <div class="three-columns">

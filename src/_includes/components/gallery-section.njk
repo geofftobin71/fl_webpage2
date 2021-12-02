@@ -33,8 +33,8 @@
           {% endif %}
           <li class="hover-scale aspect aspect{{ aspect_ratio | replace(':','x') }}">
             <figure class="round" style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=' + aspect_ratio %}')">
-              <noscript><a href="{% twic path=image_path %}" style="height:100%;display:block"><img width="{{ width }}" height="{{ height }}" class="round" src="{% twic path=image_path, params='/focus=auto/cover=' + width + 'x' + height %}" alt="{{ alt_text }}" title="{{ image_title }}" style="cursor:pointer" /></a></noscript>
-              <img width="{{ width }}" height="{{ height }}" class="req-js round" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover" data-twic-step="10" data-twic-bot="cover={{ width }}x{{ height }}" alt="{{ alt_text }}" title="{{ image_title }}" src="{% placeholder width,height %}" onclick="openLightbox('#item{{ loop.index }}')" style="cursor:pointer" />
+              <noscript><a href="{% twic path=image_path %}" style="height:100%;display:block"><img width="{{ width }}" height="{{ height }}" class="round cursor-pointer" src="{% twic path=image_path, params='/focus=auto/cover=' + width + 'x' + height %}" alt="{{ alt_text }}" title="{{ image_title }}" /></a></noscript>
+              <img width="{{ width }}" height="{{ height }}" class="req-js round cursor-pointer" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover" data-twic-step="10" data-twic-bot="cover={{ width }}x{{ height }}" alt="{{ alt_text }}" title="{{ image_title }}" src="{% placeholder width,height %}" onclick="openLightbox('#item{{ loop.index }}')" />
             </figure>
           </li>
           {%- endfor %}

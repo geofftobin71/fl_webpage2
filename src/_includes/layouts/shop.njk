@@ -3,45 +3,78 @@
 {% block head %}
   {{ super() }}
   {% set css %}
-  .product-preview {
+  .products {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin:-1em;
+  }
+  .product-card {
+    flex-basis:33%;
+    padding:1em;
+    --radius:0.5em;
+  }
+  @media screen and (orientation:portrait) {
+    .product-card {
+      flex-basis:90%;
+    }
+  }
+  @media screen and (orientation:portrait) and (min-width:750px) {
+    .product-card {
+      flex-basis:50%;
+    }
+  }
+  .product-card > div {
     display:flex;
     flex-direction:column;
+    height:100%;
+    border:1px solid rgba(0,0,0,0.2);
+    border-radius:var(--radius);
+    overflow:hidden;
   }
-  .product-preview > * {
+  .product-card > * {
     width:100%;
     height:auto;
-    max-width:90%;
-    margin-left:auto;
-    margin-right:auto;
   }
-  .product-preview figure {
-    border:1px solid rgba(0,0,0,0.1);
+  .product-card figure {
+    border-top-left-radius:var(--radius);
+    border-top-right-radius:var(--radius);
+    overflow:hidden;
   }
-  .product-preview figure > div {
+  .product-card figure > div {
     background-size:cover;
     background-position:center center;
     background-repeat:no-repeat;
   }
-  .product-preview .content {
-    border:1px solid rgba(0,0,0,0.1);
+  .product-card .content {
     padding:1em;
     background-color:var(--color-alt);
+    flex-grow:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
   }
-  @media screen and (orientation:landscape) {
-    .product-preview {
-      flex-direction:row;
-    }
-    .product-preview:nth-of-type(odd) {
-      flex-direction:row-reverse;
-    }
-    .product-preview > * {
-      max-width:50%;
-    }
+  .product-card .button {
+    z-index:2;
+    opacity:0;
+    transition: opacity 200ms linear;
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
+    --button-bg:rgba(0,0,0,0.1);
+    --button-fg:var(--color-light);
+    --button-border:var(--color-light);
+    --button-hover-bg:rgba(0,0,0,0.1);
+    --button-hover-fg:var(--color-light);
+    --button-hover-border:var(--color-light);
+    --button-focus:var(--color-light);
+  }
+  .product-card > div:hover .button {
+    opacity:1;
   }
   section:nth-of-type(even) {
     background-color:var(--color-alt);
   }
-  section:nth-of-type(even) .product-preview .content {
+  section:nth-of-type(even) .product-card .content {
     background-color:var(--color-light);
   }
   {% endset %}
@@ -56,48 +89,58 @@
   {% for category in shop_categories.categories | notDisabled -%}
     <section class="shop">
       <h2 class="heading">{{ category.name | safe }}</h2>
-      <div class="wrapper flow" style="--flow-space:var(--step-4)">
-        {% ifAsync category.description %}<p>{{ category.description | safe }}</p>{% endif %}
-        {% set products = shop_products.products | findCategory(category.name) | notDisabled %}
-        {% for product in products %}
-          {% set images = product.images %}
-          {% set images_count = images | length %}
-          {% set anim_fade_time = 1 %}
-          {% set anim_show_time = 3 %}
-          {% set width = 1024 %}
-          {% set height = 1024 %}
-          {% set anim_duration = (anim_fade_time + anim_show_time) * images_count %}
-          {% set one_second = 100.0 / anim_duration %}
-          {% set section_name = 'fade-' + 8 | uniqueId %}
-          {{ ( '<style>@keyframes ' + section_name + '{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if images_count > 1 }}
-          <div class="product-preview">
-            {% ifAsync images_count == 1 %}
-              {% set image_path = images[0] %}
-              <figure>
-                <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=1:1' %}')">
-                  <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=1:1' %}" alt="" /></noscript>
-                  <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover=1:1/max" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="" src="{% placeholder width, height %}" />
-                </div>
-              </figure>
-            {% else %}
-              <div class="canvas fader">
-                {% for image_path in images %}
-                  {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
-                  <figure style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe }}">
+      <div class="wrapper page-wrapper">
+        <div class="products">
+          {% ifAsync category.description %}<p>{{ category.description | safe }}</p>{% endif %}
+          {% set products = shop_products.products | findCategory(category.name) | notDisabled %}
+          {% for product in products %}
+            {% set variants = product | findVariants %}
+            {% set images = product.images %}
+            {% set images_count = images | length %}
+            {% set anim_fade_time = 1 %}
+            {% set anim_show_time = 3 %}
+            {% set width = 1024 %}
+            {% set height = 1024 %}
+            {% set anim_duration = (anim_fade_time + anim_show_time) * images_count %}
+            {% set one_second = 100.0 / anim_duration %}
+            {% set section_name = 'fade-' + 8 | uniqueId %}
+            {{ ( '<style>@keyframes ' + section_name + '{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if images_count > 1 }}
+            <div class="product-card">
+              <div class="hover-scale cursor-pointer" style="position:relative">
+                <a href="" style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:1"></a>
+                {% ifAsync images_count == 1 %}
+                  {% set image_path = images[0] %}
+                  <figure>
                     <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=1:1' %}')">
                       <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=1:1' %}" alt="" /></noscript>
                       <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover=1:1/max" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="" src="{% placeholder width, height %}" />
                     </div>
                   </figure>
-                {% endfor %}
+                {% else %}
+                  <div class="canvas fader">
+                    <div class="vertical center middle width100 height100">
+                      <a href="" class="button text-shadow">view options</a>
+                    </div>
+                    {% for image_path in images %}
+                      {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
+                      <figure style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe }}">
+                        <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=1:1' %}')">
+                          <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=1:1' %}" alt="" /></noscript>
+                          <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover=1:1/max" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="" src="{% placeholder width, height %}" />
+                        </div>
+                      </figure>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                <div class="content vertical center middle">
+                  <h3 class="heading font-size-2">{{ product.name }}</h3>
+                  {% ifAsync product.description %}<p>{{ product.description | safe }}</p>{% endif %}
+                  <p class="font-secondary font-size-2 color-shade1">{{ 'from ' if (variants | length) > 1 }}{{ variants[0].name }}</p>
+                </div>
               </div>
-            {% endif %}
-            <div class="content vertical center middle">
-              <h3 class="heading">{{ product.name }}</h3>
-              {% ifAsync product.description %}<p>{{ product.description | safe }}</p>{% endif %}
             </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
     </section>
   {% endfor -%}

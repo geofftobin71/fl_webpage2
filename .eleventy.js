@@ -16,6 +16,8 @@ const countableSlugify = slugify.counter();
 const crypto = require('crypto');
 
 const site = require("./src/_data/site.js");
+const shop_products = require("./src/_data/shop_products.json");
+const shop_categories = require("./src/_data/shop_categories.json");
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
@@ -147,6 +149,15 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromJSDate(dateObj).toFormat("yyyy-LL-dd");
   });
 
+  eleventyConfig.addFilter("formatMoney", (price) => {
+    if(price == 0) { return 'free'; }
+    if(Math.floor(price) == (price)) {
+      return '$' + (price);
+    } else {
+      return '$' + (price).toFixed(2);
+    }
+  });
+
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {
     if(!Array.isArray(array) || array.length === 0) {
@@ -221,6 +232,12 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("findCategory", (array, category) => {
     return array.filter(element => element.category === category);
+  });
+
+  eleventyConfig.addFilter("findVariants", (product) => {
+    const category = shop_categories.categories.find(element => element.name === product.category);
+
+    return category.variants;
   });
 
   eleventyConfig.addFilter("notDisabled", (array) => {

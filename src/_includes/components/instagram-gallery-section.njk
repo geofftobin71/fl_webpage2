@@ -12,8 +12,8 @@
           {% set thumbnail_path = (item.thumbnail_url or item.media_url) %}
           <li class="aspect aspect1x1 hover-scale">
             <figure class="round" style="border:1px solid rgba(0,0,0,0.1);background-image:url('{% insta_lqip path=thumbnail_path, params='/focus=auto/cover=450x450' %}')">
-              <noscript><a href="{% insta_twic path=thumbnail_path %}" style="height:100%;display:block"><img class="round" src="{% insta_twic path=thumbnail_path, params='/focus=auto/cover=450x450' %}" width="450" height="450" alt="{{ item.caption | urldecode }}" style="cursor:pointer" /></a></noscript>
-              <img class="req-js round" data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover" data-twic-step="10" data-twic-bot="cover=450x450" alt="{{ item.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" src="{% placeholder 450,450 %}" style="cursor:pointer" />
+              <noscript><a href="{% insta_twic path=thumbnail_path %}" style="height:100%;display:block"><img class="round cursor-pointer" src="{% insta_twic path=thumbnail_path, params='/focus=auto/cover=450x450' %}" width="450" height="450" alt="{{ item.caption | urldecode }}" /></a></noscript>
+              <img class="req-js round cursor-pointer" data-twic-src="image:instagram{{ thumbnail_path | replace(site.match_url,"") | safe }}" data-twic-focus="auto" data-twic-transform="cover" data-twic-step="10" data-twic-bot="cover=450x450" alt="{{ item.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" src="{% placeholder 450,450 %}" />
             </figure>
           </li>
         {% endfor %}

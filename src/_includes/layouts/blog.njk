@@ -18,33 +18,32 @@
     transform: translate3d(0,200px,0);
     opacity: 0.01;
   }
-  .post-preview > div {
+  .post-card > div {
     font-family:var(--font-family-base);
     background-color:var(--color-alt);
     color:var(--color-primary);
-    border:1px solid var(--color-shade3);
-    border-radius:var(--box-border-radius, 0.4rem);
+    border:1px solid rgba(0,0,0,0.1);
+    border-radius:var(--box-border-radius, 0.5rem);
     border-width:var(--box-border-width, 1px);
     text-align:center;
-    box-shadow:0 0 20px rgba(0, 0, 0, 0.1);
     display:block;
     overflow:hidden;
   }
-  .post-preview .header {
+  .post-card .header {
     max-width:var(--measure);
     padding:var(--step-2);
     min-height:150px;
     z-index:0;
   }
-  .post-preview .content {
+  .post-card .content {
    padding-top:1em;
    padding-bottom:1em;
    z-index:2;
   }
-  .post-preview h2 {
+  .post-card h2 {
     color:var(--color-light);
   }
-  .post-preview time {
+  .post-card time {
     display:block;
     text-align:right;
   }
@@ -63,7 +62,7 @@
     <div id="post-list">
       <ul class="vertical center flow">
         {% for post in collections.blog %}
-          <li class="post-preview">
+          <li class="post-card">
             <div>
               <div class="header vertical middle">
                 <figure class="background">
@@ -95,7 +94,7 @@
 {% block foot %}
   {{ super() }}
   {% set js %}
-  const posts = document.querySelectorAll(".post-preview");
+  const posts = document.querySelectorAll(".post-card");
   const posts_options = { root: null, threshold: 0.25, rootMargin: "0px" };
   const posts_observer = new IntersectionObserver((entries, posts_observer) => {
   entries.forEach(entry => {

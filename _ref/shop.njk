@@ -1,0 +1,108 @@
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+  {{ super() }}
+  {% set css %}
+  .product-preview {
+    display:flex;
+    flex-direction:column;
+  }
+  .product-preview > * {
+    width:100%;
+    height:auto;
+    max-width:90%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .product-preview figure {
+    border:1px solid rgba(0,0,0,0.1);
+  }
+  .product-preview figure > div {
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+  }
+  .product-preview .content {
+    border:1px solid rgba(0,0,0,0.1);
+    padding:1em;
+    background-color:var(--color-alt);
+  }
+  @media screen and (orientation:landscape) {
+    .product-preview {
+      flex-direction:row;
+    }
+    .product-preview:nth-of-type(odd) {
+      flex-direction:row-reverse;
+    }
+    .product-preview > * {
+      max-width:50%;
+    }
+  }
+  section:nth-of-type(even) {
+    background-color:var(--color-alt);
+  }
+  section:nth-of-type(even) .product-preview .content {
+    background-color:var(--color-light);
+  }
+  {% endset %}
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
+{% block content %}
+  {% include "partials/header.njk" %}
+  <main>
+  {% for category in shop_categories.categories | notDisabled -%}
+    <section class="shop">
+      <h2 class="heading">{{ category.name | safe }}</h2>
+      <div class="wrapper flow" style="--flow-space:var(--step-4)">
+        {% ifAsync category.description %}<p>{{ category.description | safe }}</p>{% endif %}
+        {% set products = shop_products.products | findCategory(category.name) | notDisabled %}
+        {% for product in products %}
+          {% set variants = product | findVariants %}
+          {% set images = product.images %}
+          {% set images_count = images | length %}
+          {% set anim_fade_time = 1 %}
+          {% set anim_show_time = 3 %}
+          {% set width = 1024 %}
+          {% set height = 1024 %}
+          {% set anim_duration = (anim_fade_time + anim_show_time) * images_count %}
+          {% set one_second = 100.0 / anim_duration %}
+          {% set section_name = 'fade-' + 8 | uniqueId %}
+          {{ ( '<style>@keyframes ' + section_name + '{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if images_count > 1 }}
+          <div class="product-preview">
+            {% ifAsync images_count == 1 %}
+              {% set image_path = images[0] %}
+              <figure>
+                <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=1:1' %}')">
+                  <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=1:1' %}" alt="" /></noscript>
+                  <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover=1:1/max" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="" src="{% placeholder width, height %}" />
+                </div>
+              </figure>
+            {% else %}
+              <div class="canvas fader">
+                {% for image_path in images %}
+                  {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
+                  <figure style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe }}">
+                    <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=1:1' %}')">
+                      <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=1:1' %}" alt="" /></noscript>
+                      <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover=1:1/max" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="" src="{% placeholder width, height %}" />
+                    </div>
+                  </figure>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <div class="content vertical center middle">
+              <h3 class="heading font-size-2">{{ product.name }}</h3>
+              {% ifAsync product.description %}<p>{{ product.description | safe }}</p>{% endif %}
+              <p class="font-secondary font-size-2">{{ 'from ' if (variants | length) > 1 }}{{ variants[0].name }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor -%}
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}
