@@ -280,6 +280,7 @@ collections:
             fields:
               - {label: "Name", name: "name", widget: "string"}
               - {label: "Description", name: "description", widget: "text", required: false}
+              - {label: "Footer", name: "footer", widget: "markdown", buttons: ['bold', 'italic', 'link'], editor_components: [], modes: ['rich_text'], minimal: true, required: false}
               - label: "Variants"
                 name: "variants"
                 label_singular: "Variant"
@@ -307,6 +308,7 @@ collections:
               - {label: "Name", name: "name", widget: "string"}
               - {label: "Category", name: "category", widget: "relation", collection: "shop", file: "categories", value_field: "categories.*.name", search_fields: ["categories.*.name"]}
               - {label: "Description", name: "description", widget: "text", required: false}
+              - {label: "Header Image", name: "header_image", widget: "image", choose_url: false, required: false}
               - {label: "Images", name: "images", widget: "image", choose_url: false, media_library: {config: {multiple: true} }, required: false}
               - {label: "Disabled", name: "disabled", widget: "boolean", default: false, required: false}
               - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}

@@ -1,0 +1,255 @@
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+  {{ super() }}
+  {% set css %}
+    {% include "css/form.css" %}
+  .product-card {
+    display:flex;
+    flex-direction:column;
+  }
+  .product-card > * {
+    width:100%;
+    height:auto;
+    max-width:90%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .product-card figure {
+    border:1px solid rgba(0,0,0,0.1);
+  }
+  .product-card figure > div {
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+  }
+  .product-card .content {
+    border:1px solid rgba(0,0,0,0.1);
+    padding:1em;
+    background-color:var(--color-alt);
+  }
+  @media screen and (orientation:landscape) {
+    .product-card {
+      flex-direction:row;
+    }
+    .product-card > * {
+      max-width:50%;
+    }
+  }
+    .stepper-controls {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .stepper-controls nav {
+      color: var(--color-shade3);
+      padding: 0;
+      margin: 0 0.5em;
+      border-radius: 50%;
+      width: var(--step-2);
+      height: var(--step-2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+    }
+    .stepper-controls nav span {
+      width: var(--step-2);
+    }
+    @media screen and (min-width:750px) and (orientation:portrait) {
+      .stepper-controls nav span {
+        width: var(--step-1);
+      }
+    }
+    @media screen and (min-width:950px) {
+      .stepper-controls nav span {
+        width: var(--step-1);
+      }
+    }
+    @media screen and (max-width:350px) {
+      .radio-label {
+        padding: 0.35em;
+      }
+    }
+    @media screen and (min-width:351px) and (max-width:400px) {
+      .radio-label {
+        padding: 0.45em;
+      }
+    }
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+
+  <script src="https://js.afterpay.com/afterpay-1.x.js" data-analytics-enabled async ></script>
+{% endblock %}
+
+{% block content %}
+  {% include "partials/header.njk" %}
+  <main>
+  {% set variants = product | findVariants %}
+  {% set images = product.images %}
+  {% set images_count = images | length %}
+  {% set anim_fade_time = 1 %}
+  {% set anim_show_time = 3 %}
+  {% set width = 1024 %}
+  {% set height = 1024 %}
+  {% set anim_duration = (anim_fade_time + anim_show_time) * images_count %}
+  {% set one_second = 100.0 / anim_duration %}
+  {% set section_name = (product.name | slug) + '-fade' %}
+  {{ ( '<style>@keyframes ' + section_name + '{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if images_count > 1 }}
+
+  {% set category = shop_categories.categories | findCategory(product.category) %}
+  {% set variant_heading = category.variant_heading or "Bouquet Size" %}
+  {% set number_heading = category.number_heading or "Number of Bouquets" %}
+
+  {% include "partials/javascript-warning.njk" %}
+
+  {% include "partials/view-cart-button.njk" %}
+
+  <section>
+    <div class="wrapper page-wrapper">
+      <div class="product-card">
+        {% if images_count == 1 %}
+          {% set image_path = images[0] %}
+          <div class="canvas">
+            <figure>
+              <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=1:1' %}')">
+                <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=1:1' %}" alt="" /></noscript>
+                <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover=1:1/max" data-twic-step="50" data-twic-bot="cover=1024x1024" alt="" src="{% placeholder width, height %}" />
+              </div>
+            </figure>
+          </div>
+        {% else %}
+          <div class="canvas fader">
+            {% for image_path in images %}
+              {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
+              <figure style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe }}">
+                <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=1:1' %}')">
+                  <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=1:1' %}" alt="" /></noscript>
+                  <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover=1:1/max" data-twic-step="50" data-twic-bot="cover=1024x1024" alt="" src="{% placeholder width, height %}" />
+                </div>
+              </figure>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="content vertical center middle">
+          <h3 class="heading font-size-2">{{ product.name }}</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {#
+  <div id="shop" class="checkerboard">
+    <div>
+      <figure class="canvas {{ 'fader' if images_count > 1 }}" style="background-image:url({{ lqip_data }})">
+        {% for product_image in product.images %}
+          {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
+          {% set image_id = (product_image | stripVersion) or (site.header_image | stripVersion) %}
+          {% set image_info = image_id | imgInfo %}
+          {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
+          {% set src = site.cloudinary_url + "/w_750," + transforms + image_id %}
+          <noscript><img class="cover" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
+          {%- set srcset -%}
+          {%- for size in image_sizes -%}
+          {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
+          {%- endfor -%}
+          {%- endset -%}
+          <img class="cover" data-srcset="{{ srcset }}" sizes="(min-width: 1500px) and (orientation: landscape) 750px, (orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if images_count > 1 }}" loading="lazy" decoding="async" />
+        {% endfor %}
+      </figure>
+    </div>
+    <div class="content">
+      <article style="margin:0 auto">
+        <div id="parents-in-cart" class="vertical flow">
+          <h2 class="heading text-center">{{ product.name }}</h2>
+          {% if product.price %}
+            <p class="color-shade1 font-size-2 font-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>
+            <afterpay-placement style="text-align:center;margin:0 auto" data-locale="en_NZ" data-currency="NZD" data-amount="{{ product.price | formatMoney }}" data-modal-theme="white" data-size="sm" ></afterpay-placement>
+          {% endif %}
+          <p id="product-stock-count" class="color-shade1 text-center font-secondary" style="display:none"></p>
+
+          <div id="product-panel" class="shop-panel flow">
+
+            {% set valid_variants = product.variants | validProductVariants %}
+            {% if valid_variants | length %}
+              <h3 class="text-lowercase text-center">{{ variant_heading }}</h3>
+
+              <div class="radio-label-wrapper" {{ ' style="flex-direction:column"' | safe if product.columns }}>
+                {% for variant in valid_variants %}
+                  <input id="{{ variant.id }}" name="variant-id" type="radio" value="{{ variant.id }}" onclick="selectVariant('{{ variant.id }}')">
+                  <label class="radio-label text-center round" for="{{ variant.id }}" x-apple-data-detectors="false">{{ variant.name }}
+                    <br><span id="{{ variant.id }}-stock-count" style="display:none"></span>
+                  </label>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if number_heading %}
+              <div id="number-group" class="vertical flow">
+                <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
+                <div class="stepper-controls">
+                  <nav class="req-js" onclick="document.getElementById('product-count').stepDown();hideError();">
+                    <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
+                  </nav>
+
+                  <input id="product-count" name="product-count" type="number" min="1" oninput="hideError()" value="1" class="input text-center round" style="width:3em">
+
+                  <nav class="req-js" onclick="document.getElementById('product-count').stepUp();hideError();">
+                    <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
+                  </nav>
+                </div>
+              </div>
+            {% else %}
+              <input id="product-count" name="product-count" type="hidden" value="1">
+            {% endif %}
+
+          </div>
+
+          <div id="button-group" class="vertical flow center">
+            <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }}, 'Please choose a {{ variant_heading | safe }}')"><span>{{ '/src/svg/cart-plus.svg' | svgContents | iconTextButton | safe }}</span>{{ 'Add to Cart' | lower }}</button>
+            <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
+          </div>
+        </div>
+
+        <div id="no-parents-in-cart" class="vertical flow" style="display:none">
+          <h2 class="heading text-center">{{ product.name }}</h2>
+          {% if product.price %}<p class="color-shade1 font-size-2 font-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
+          <hr />
+          <p class="text-center" style="margin-left:auto;margin-right:auto;max-width:45ch">This product can only be purchased as an add&#8209;on to {{ product | listParents }}.</p>
+          <div class="horizontal center middle">
+            <a class="button" style="margin-left:auto;margin-right:auto" href="/shop/">
+              <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  #}
+
+  {# <script>document.addEventListener("DOMContentLoaded",function(){displayShopProduct("{{product.id}}");},false);</script> #}
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}
+
+{#
+{% block foot %}
+  {{ super() }}
+  {% set js %}
+  {% include "js/shop-base.js" %}
+  {% include "js/luxon.min.js" %}
+  {% include "js/shop-common.js" %}
+  {% include "js/shop-products.js" %}
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}
+#}

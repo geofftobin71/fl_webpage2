@@ -25,12 +25,21 @@
     }
   }
   .product-card > div {
+    position:relative;
     display:flex;
     flex-direction:column;
     height:100%;
     border:1px solid rgba(0,0,0,0.2);
     border-radius:var(--radius);
     overflow:hidden;
+  }
+  .product-card > div > a {
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:1;
   }
   .product-card > * {
     width:100%;
@@ -92,7 +101,7 @@
       <div class="wrapper page-wrapper">
         <div class="products">
           {% ifAsync category.description %}<p>{{ category.description | safe }}</p>{% endif %}
-          {% set products = shop_products.products | findCategory(category.name) | notDisabled %}
+          {% set products = shop_products.products | filterByCategory(category.name) | notDisabled %}
           {% for product in products %}
             {% set variants = product | findVariants %}
             {% set images = product.images %}
@@ -106,20 +115,25 @@
             {% set section_name = 'fade-' + 8 | uniqueId %}
             {{ ( '<style>@keyframes ' + section_name + '{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if images_count > 1 }}
             <div class="product-card">
-              <div class="hover-scale cursor-pointer" style="position:relative">
-                <a href="" style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:1"></a>
+              <div class="hover-scale cursor-pointer">
+                <a href="/shop/products/{{ product.name | slug | url }}/">
                 {% ifAsync images_count == 1 %}
                   {% set image_path = images[0] %}
-                  <figure>
-                    <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=1:1' %}')">
-                      <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=1:1' %}" alt="" /></noscript>
-                      <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover=1:1/max" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="" src="{% placeholder width, height %}" />
+                  <div class="canvas">
+                    <div class="vertical center middle width100 height100">
+                      <a href="/shop/products/{{ product.name | slug | url }}/" class="button text-shadow">view {{ ' options' if (variants | length) > 1 }}</a>
                     </div>
-                  </figure>
+                    <figure>
+                      <div style="background-image:url('{% lqip path=image_path, params='/focus=auto/cover=1:1' %}')">
+                        <noscript><img width="{{ width }}" height="{{ height }}" src="{% twic path=image_path, params='/focus=auto/resize=1024/cover=1:1' %}" alt="" /></noscript>
+                        <img width="{{ width }}" height="{{ height }}" class="req-js" data-twic-src="{% twic_dyn path=image_path %}" data-twic-focus="auto" data-twic-transform="cover=1:1/max" data-twic-step="50" data-twic-bot="contain=1024x1024" alt="" src="{% placeholder width, height %}" />
+                      </div>
+                    </figure>
+                  </div>
                 {% else %}
                   <div class="canvas fader">
                     <div class="vertical center middle width100 height100">
-                      <a href="" class="button text-shadow">view options</a>
+                      <a href="/shop/products/{{ product.name | slug | url }}/" class="button text-shadow">view {{ ' options' if (variants | length) > 1 }}</a>
                     </div>
                     {% for image_path in images %}
                       {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
@@ -134,7 +148,6 @@
                 {% endif %}
                 <div class="content vertical center middle">
                   <h3 class="heading font-size-2">{{ product.name }}</h3>
-                  {% ifAsync product.description %}<p>{{ product.description | safe }}</p>{% endif %}
                   <p class="font-secondary font-size-2 color-shade1">{{ 'from ' if (variants | length) > 1 }}{{ variants[0].name }}</p>
                 </div>
               </div>

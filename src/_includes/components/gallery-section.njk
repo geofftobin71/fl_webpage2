@@ -8,7 +8,7 @@
 
       <ul class="auto-grid gallery">
 
-        {% set images = image_info | findFolder(folder) | shuffle %}
+        {% set images = image_info | filterByFolder(folder) | shuffle %}
 
         {% for image in images -%}
           {% set image_path = image.url %}

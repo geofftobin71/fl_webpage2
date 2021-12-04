@@ -226,11 +226,15 @@ module.exports = function (eleventyConfig) {
     return array.find(element => element.url === url);
   });
 
-  eleventyConfig.addFilter("findFolder", (array, folder) => {
+  eleventyConfig.addFilter("filterByFolder", (array, folder) => {
     return array.filter(element => element.folder === folder);
   });
 
-  eleventyConfig.addFilter("findCategory", (array, category) => {
+  eleventyConfig.addFilter("findCategory", (array, name) => {
+    return array.find(element => element.name === name);
+  });
+
+  eleventyConfig.addFilter("filterByCategory", (array, category) => {
     return array.filter(element => element.category === category);
   });
 
