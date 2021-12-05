@@ -24,7 +24,7 @@
   background-color:var(--input-bg);
   color:var(--color-dark);
   border:1px solid var(--color-shade2);
-  border-radius:var(--radius);
+  border-radius:var(--radius, 0.4rem);
 }
 
 .input:not(textarea) {
@@ -88,7 +88,7 @@ input:-webkit-autofill:focus {
   background-color:var(--color-autofill);
   color:var(--color-dark);
   border:1px solid var(--color-shade2);
-  border-radius:var(--radius);
+  border-radius:var(--radius, 0.4rem);
   -webkit-text-fill-color:var(--color-dark);
   transition:background-color 5000s ease-in-out 0s;
   box-shadow:0 0 0px 1000px var(--color-autofill) inset;

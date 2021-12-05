@@ -7,16 +7,27 @@
   .product-card {
     display:flex;
     flex-direction:column;
+    --radius:0.4rem;
+    border-radius:var(--radius);
+    border:1px solid rgba(0,0,0,0.2);
+    margin:0 auto;
   }
   .product-card > * {
     width:100%;
     height:auto;
-    max-width:90%;
     margin-left:auto;
     margin-right:auto;
   }
+  @media screen and (orientation:portrait) and (min-width:750px) {
+    .product-card {
+      max-width:90%;
+    }
+  }
   .product-card figure {
-    border:1px solid rgba(0,0,0,0.1);
+    border-top-left-radius:var(--radius);
+    border-top-right-radius:var(--radius);
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
   }
   .product-card figure > div {
     background-size:cover;
@@ -24,9 +35,15 @@
     background-repeat:no-repeat;
   }
   .product-card .content {
-    border:1px solid rgba(0,0,0,0.1);
     padding:1em;
     background-color:var(--color-alt);
+    border-top-left-radius:0;
+    border-top-right-radius:0;
+    border-bottom-left-radius:var(--radius);
+    border-bottom-right-radius:var(--radius);
+  }
+  .product-card .content > div {
+    flex-grow:1;
   }
   @media screen and (orientation:landscape) {
     .product-card {
@@ -35,50 +52,29 @@
     .product-card > * {
       max-width:50%;
     }
+    .product-card figure {
+      border-top-left-radius:var(--radius);
+      border-top-right-radius:0;
+      border-bottom-left-radius:var(--radius);
+      border-bottom-right-radius:0;
+    }
+    .product-card .content {
+      border-top-left-radius:0;
+      border-top-right-radius:var(--radius);
+      border-bottom-left-radius:0;
+      border-bottom-right-radius:var(--radius);
+    }
   }
-    .stepper-controls {
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin-left:auto;
-      margin-right:auto;
+  @media screen and (max-width:350px) {
+    .radio-label {
+      padding: 0.35em;
     }
-    .stepper-controls nav {
-      color: var(--color-shade3);
-      padding: 0;
-      margin: 0 0.5em;
-      border-radius: 50%;
-      width: var(--step-2);
-      height: var(--step-2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      cursor: pointer;
+  }
+  @media screen and (min-width:351px) and (max-width:400px) {
+    .radio-label {
+      padding: 0.45em;
     }
-    .stepper-controls nav span {
-      width: var(--step-2);
-    }
-    @media screen and (min-width:750px) and (orientation:portrait) {
-      .stepper-controls nav span {
-        width: var(--step-1);
-      }
-    }
-    @media screen and (min-width:950px) {
-      .stepper-controls nav span {
-        width: var(--step-1);
-      }
-    }
-    @media screen and (max-width:350px) {
-      .radio-label {
-        padding: 0.35em;
-      }
-    }
-    @media screen and (min-width:351px) and (max-width:400px) {
-      .radio-label {
-        padding: 0.45em;
-      }
-    }
+  }
   {% endset %}
 
   <style>
@@ -137,8 +133,21 @@
             {% endfor %}
           </div>
         {% endif %}
-        <div class="content vertical center middle">
-          <h3 class="heading font-size-2">{{ product.name }}</h3>
+        <div class="content vertical center">
+          <div class="vertical center middle flow">
+            <h2 class="heading">{{ product.name }}</h2>
+            {% if variants | length > 1 %}
+              <h3 class="heading">{{ variant_heading }}</h3>
+              <div class="radio-label-wrapper" {{ ' style="flex-direction:column"' | safe if product.columns }}>
+                {% for variant in variants %}
+                  <input id="{{ variant.id }}" name="variant-id" type="radio" value="{{ variant.id }}" onclick="showAddToCart()">
+                  <label class="radio-label text-center round" for="{{ variant.id }}" x-apple-data-detectors="false">{{ variant.name }}</label>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}')"><span>{{ '/src/svg/cart-plus.svg' | svgContents | iconTextButton | safe }}</span>{{ 'Add to Cart' | lower }}</button>
+          </div>
+          {% if category.footer %}<br><footer class="caption">{% markdown category.footer %}</footer>{% endif %}
         </div>
       </div>
     </div>
@@ -238,18 +247,14 @@
   {% include "partials/footer.njk" %}
 {% endblock %}
 
-{#
 {% block foot %}
   {{ super() }}
   {% set js %}
-  {% include "js/shop-base.js" %}
   {% include "js/luxon.min.js" %}
-  {% include "js/shop-common.js" %}
-  {% include "js/shop-products.js" %}
+  {% include "js/shop.js" %}
   {% endset %}
 
   <script>
     {{ js | jsmin | safe }}
   </script>
 {% endblock %}
-#}

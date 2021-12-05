@@ -130,7 +130,7 @@
 
 #lightbox figcaption > div {
   display: inline-block;
-  border-radius:0.5em;
+  border-radius:0.4rem;
   color:var(--color-light);
   font:var(--font-family-alt);
   text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
