@@ -45,7 +45,7 @@
   .product-card .content > div {
     flex-grow:1;
   }
-  @media screen and (orientation:landscape) {
+  @media screen and (orientation:landscape) and (min-width:850px) {
     .product-card {
       flex-direction:row;
     }
@@ -80,8 +80,6 @@
   <style>
     {{ css | cssmin | safe }}
   </style>
-
-  <script src="https://js.afterpay.com/afterpay-1.x.js" data-analytics-enabled async ></script>
 {% endblock %}
 
 {% block content %}
@@ -101,6 +99,7 @@
 
   {% set category = shop_categories.categories | findCategory(product.category) %}
   {% set variant_heading = category.variant_heading or "Bouquet Size" %}
+  {% set button_message = category.button_message or "Choose a Bouquet Size" %}
   {% set number_heading = category.number_heading or "Number of Bouquets" %}
 
   {% include "partials/javascript-warning.njk" %}
@@ -138,7 +137,7 @@
             <h2 class="heading">{{ product.name }}</h2>
             {% if variants | length > 1 %}
               <h3 class="heading">{{ variant_heading }}</h3>
-              <div class="radio-label-wrapper" {{ ' style="flex-direction:column"' | safe if product.columns }}>
+              <div class="radio-label-wrapper">
                 {% for variant in variants %}
                   <input id="{{ variant.id }}" name="variant-id" type="radio" value="{{ variant.id }}" onclick="showAddToCart()">
                   <label class="radio-label text-center round" for="{{ variant.id }}" x-apple-data-detectors="false">{{ variant.name }}</label>
@@ -146,9 +145,15 @@
               </div>
             {% endif %}
             <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}')"><span>{{ '/src/svg/cart-plus.svg' | svgContents | iconTextButton | safe }}</span>{{ 'Add to Cart' | lower }}</button>
+            {% if button_message %}<p id="add-to-cart-message" class="caption">{{ button_message }}</p>{% endif %}
           </div>
           {% if category.footer %}<br><footer class="caption">{% markdown category.footer %}</footer>{% endif %}
         </div>
+      </div>
+      <div class="horizontal center middle" style="margin-top:2em">
+        <a class="button" style="margin-left:auto;margin-right:auto" href="/shop/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
+        </a>
       </div>
     </div>
   </section>
@@ -242,7 +247,7 @@
   </div>
   #}
 
-  {# <script>document.addEventListener("DOMContentLoaded",function(){displayShopProduct("{{product.id}}");},false);</script> #}
+  <script>document.addEventListener("DOMContentLoaded",function(){showAddToCart();showViewCart();},false);</script>
   </main>
   {% include "partials/footer.njk" %}
 {% endblock %}
@@ -250,7 +255,6 @@
 {% block foot %}
   {{ super() }}
   {% set js %}
-  {% include "js/luxon.min.js" %}
   {% include "js/shop.js" %}
   {% endset %}
 

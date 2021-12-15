@@ -82,6 +82,7 @@ input[type="radio"]:checked + .radio-label {
   color:white;
   background-color:var(--color-primary);
   text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
+  transform:scale(1.2);
 }
 
 input[type="radio"][disabled] + .radio-label {

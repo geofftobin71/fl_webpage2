@@ -306,7 +306,7 @@ collections:
             summary: '{{fields.name}}'
             fields:
               - {label: "Name", name: "name", widget: "string"}
-              - {label: "Category", name: "category", widget: "relation", collection: "shop", file: "categories", value_field: "categories.*.name", search_fields: ["categories.*.name"]}
+              - {label: "Category", name: "category", widget: "relation", collection: "shop", file: "categories", value_field: "categories.*.id", search_fields: ["categories.*.name"], display_fields: ["categories.*.name"]}
               - {label: "Description", name: "description", widget: "text", required: false}
               - {label: "Header Image", name: "header_image", widget: "image", choose_url: false, required: false}
               - {label: "Images", name: "images", widget: "image", choose_url: false, media_library: {config: {multiple: true} }, required: false}

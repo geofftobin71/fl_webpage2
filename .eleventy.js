@@ -239,7 +239,8 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("findVariants", (product) => {
-    const category = shop_categories.categories.find(element => element.name === product.category);
+    // const category = shop_categories.categories.find(element => element.name === product.category);
+    const category = shop_categories.categories.find(element => element.name === "Fresh Flowers");
 
     return category.variants;
   });

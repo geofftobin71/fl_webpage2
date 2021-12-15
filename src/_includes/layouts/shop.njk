@@ -95,6 +95,11 @@
 {% block content %}
   {% include "partials/header.njk" %}
   <main>
+
+  {% include "partials/javascript-warning.njk" %}
+
+  {% include "partials/view-cart-button.njk" %}
+
   {% for category in shop_categories.categories | notDisabled -%}
     <section class="shop">
       <h2 class="heading">{{ category.name | safe }}</h2>
@@ -157,6 +162,18 @@
       </div>
     </section>
   {% endfor -%}
+  <script>document.addEventListener("DOMContentLoaded",function(){showViewCart();},false);</script>
   </main>
   {% include "partials/footer.njk" %}
+{% endblock %}
+
+{% block foot %}
+  {{ super() }}
+  {% set js %}
+  {% include "js/shop.js" %}
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
 {% endblock %}
