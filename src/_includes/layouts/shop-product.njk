@@ -144,7 +144,7 @@
                 {% endfor %}
               </div>
             {% endif %}
-            <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}')"><span>{{ '/src/svg/cart-plus.svg' | svgContents | iconTextButton | safe }}</span>{{ 'Add to Cart' | lower }}</button>
+            <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}','{{ product.category }}')"><span>{{ '/src/svg/cart-plus.svg' | svgContents | iconTextButton | safe }}</span>{{ 'Add to Cart' | lower }}</button>
             {% if button_message %}<p id="add-to-cart-message" class="caption">{{ button_message }}</p>{% endif %}
           </div>
           {% if category.footer %}<br><footer class="caption">{% markdown category.footer %}</footer>{% endif %}
@@ -154,6 +154,7 @@
         <a class="button" style="margin-left:auto;margin-right:auto" href="/shop/">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
         </a>
+        <br><button class="button" onclick="clearCart()">{{ 'Clear Cart' | lower }}</button>
       </div>
     </div>
   </section>

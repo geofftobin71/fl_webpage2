@@ -79,7 +79,7 @@ function showAddToCart() {
   }
 }
 
-function addToCart(product_id) {
+function addToCart(product_id, category_id) {
   const variants = document.querySelectorAll("input[name='variant-id']");
 
   let variant_id = "none";
@@ -98,6 +98,7 @@ function addToCart(product_id) {
   for(let i = 0; i < product_count; ++i) {
     cart.push({
       "cart-id": uid(),
+      "category-id": category_id,
       "product-id": product_id,
       "variant-id": variant_id
     });
@@ -108,3 +109,6 @@ function addToCart(product_id) {
   window.location.href = "/cart/";
 }
 
+function clearCart() {
+  localStorage.clear();
+}

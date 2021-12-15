@@ -15,9 +15,13 @@ const slugify = require("@sindresorhus/slugify");
 const countableSlugify = slugify.counter();
 const crypto = require('crypto');
 
+delete require.cache[require.resolve('./src/_data/site.js')];
+delete require.cache[require.resolve('./src/_data/shop_categories.json')];
+delete require.cache[require.resolve('./src/_data/shop_products.json')];
+
 const site = require("./src/_data/site.js");
-const shop_products = require("./src/_data/shop_products.json");
 const shop_categories = require("./src/_data/shop_categories.json");
+const shop_products = require("./src/_data/shop_products.json");
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
@@ -230,17 +234,16 @@ module.exports = function (eleventyConfig) {
     return array.filter(element => element.folder === folder);
   });
 
-  eleventyConfig.addFilter("findCategory", (array, name) => {
-    return array.find(element => element.name === name);
+  eleventyConfig.addFilter("findCategory", (array, id) => {
+    return array.find(element => element.id === id);
   });
 
-  eleventyConfig.addFilter("filterByCategory", (array, category) => {
-    return array.filter(element => element.category === category);
+  eleventyConfig.addFilter("filterByCategory", (array, id) => {
+    return array.filter(element => element.category === id);
   });
 
   eleventyConfig.addFilter("findVariants", (product) => {
-    // const category = shop_categories.categories.find(element => element.name === product.category);
-    const category = shop_categories.categories.find(element => element.name === "Fresh Flowers");
+    const category = shop_categories.categories.find(element => element.id === product.category);
 
     return category.variants;
   });

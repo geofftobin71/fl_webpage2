@@ -106,7 +106,7 @@
       <div class="wrapper page-wrapper">
         <div class="products">
           {% ifAsync category.description %}<p>{{ category.description | safe }}</p>{% endif %}
-          {% set products = shop_products.products | filterByCategory(category.name) | notDisabled %}
+          {% set products = shop_products.products | filterByCategory(category.id) | notDisabled %}
           {% for product in products %}
             {% set variants = product | findVariants %}
             {% set images = product.images %}
