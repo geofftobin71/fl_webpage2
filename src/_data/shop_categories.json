@@ -76,7 +76,11 @@
           "name": "$15"
         }
       ],
-      "footer": "Chocolate Blocks are only available to purchase in addition to flowers."
+      "footer": "Chocolate Blocks are only available to purchase in addition to flowers.",
+      "parents": [
+        "Ri2AMM6H",
+        "FgcrZEWY"
+      ]
     }
   ]
 }
