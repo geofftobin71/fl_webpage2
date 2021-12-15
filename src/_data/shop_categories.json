@@ -31,6 +31,8 @@
           "name": "$250"
         }
       ],
+      "variant_heading": "Bouquet Size",
+      "button_message": "Choose a Bouquet Size",
       "footer": "Arrangements shown are *representative examples* only.\\\nYour order may not look exactly like the photos shown.\\\nSpecific flowers and colours may not be available due to seasonal availability and demand."
     },
     {
@@ -63,7 +65,10 @@
           "id": "Zr79EqvX",
           "name": "$250"
         }
-      ]
+      ],
+      "variant_heading": "Bouquet Size",
+      "button_message": "Choose a Bouquet Size",
+      "footer": "Arrangements shown are *representative examples* only.\\\nYour order may not look exactly like the photos shown.\\\nSpecific flowers and colours may not be available due to seasonal availability and demand."
     },
     {
       "disabled": false,
@@ -76,7 +81,8 @@
           "name": "$15"
         }
       ],
-      "footer": "Chocolate Blocks are only available to purchase in addition to flowers.",
+      "button_message": "Add Fresh Flowers or Dried Flowers to your cart first",
+      "footer": "Chocolate Blocks are only available to purchase in addition to flowers",
       "parents": [
         "Ri2AMM6H",
         "FgcrZEWY"

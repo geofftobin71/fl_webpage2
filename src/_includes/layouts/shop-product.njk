@@ -101,7 +101,6 @@
   {% set category = shop_categories.categories | findCategory(product.category) %}
   {% set variant_heading = category.variant_heading or "Bouquet Size" %}
   {% set button_message = category.button_message or "Choose a Bouquet Size" %}
-  {% set number_heading = category.number_heading or "Number of Bouquets" %}
 
   {% include "partials/javascript-warning.njk" %}
 
@@ -144,6 +143,8 @@
                   <label class="radio-label text-center round" for="{{ variant.id }}" x-apple-data-detectors="false">{{ variant.name }}</label>
                 {% endfor %}
               </div>
+            {% else %}
+              <input name="variant-id" type="hidden" value="{{ variants[0].id }}">
             {% endif %}
             <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}','{{ product.category }}')"><span>{{ '/src/svg/cart-plus.svg' | svgContents | iconTextButton | safe }}</span>{{ 'Add to Cart' | lower }}</button>
             {% if button_message %}<p id="add-to-cart-message" class="caption">{{ button_message }}</p>{% endif %}

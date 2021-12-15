@@ -56,16 +56,13 @@ function showAddToCart(parents) {
 
   let ok = true;
 
-  if(variants && variants.length > 0) {
+  if(variants && variants.length > 1) {
     const selected_variant = document.querySelector("input[name='variant-id']:checked");
     if(!selected_variant) { ok = false; }
   }
 
   if(parents && parents.length > 0) {
-    console.log(parents);
     const cart_parent = cart.find(element => parents.includes(element.category_id));
-    console.log(cart);
-    console.log(cart_parent);
     if(!cart_parent) { ok = false; }
   }
 
@@ -85,9 +82,14 @@ function showAddToCart(parents) {
 function addToCart(product_id, category_id) {
   const variants = document.querySelectorAll("input[name='variant-id']");
 
-  let variant_id = "none";
-  if(variants && variants.length > 0) {
-    let variant_input = document.querySelector("input[name='variant-id']:checked");
+  let variant_id;
+  if(variants) {
+    let variant_input;
+    if(variants.length > 1) {
+      variant_input = document.querySelector("input[name='variant-id']:checked");
+    } else {
+      variant_input = document.querySelector("input[name='variant-id']");
+    }
     if(variant_input) {
       variant_id = variant_input.value;
     } else {
