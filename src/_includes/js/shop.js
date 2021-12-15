@@ -51,19 +51,22 @@ function hideError() {
   }
 }
 
-function showAddToCart() {
+function showAddToCart(parents) {
   const variants = document.querySelectorAll("input[name='variant-id']");
-  const selected_variant = document.querySelector("input[name='variant-id']:checked");
 
-  let ok = false;
+  let ok = true;
 
   if(variants && variants.length > 0) {
-    if(selected_variant) {
-      ok = true;
-    }
-  } else {
-    // Check for parents
-    ok = true;
+    const selected_variant = document.querySelector("input[name='variant-id']:checked");
+    if(!selected_variant) { ok = false; }
+  }
+
+  if(parents && parents.length > 0) {
+    console.log(parents);
+    const cart_parent = cart.find(element => parents.includes(element.category_id));
+    console.log(cart);
+    console.log(cart_parent);
+    if(!cart_parent) { ok = false; }
   }
 
   if(ok) {
@@ -97,10 +100,10 @@ function addToCart(product_id, category_id) {
 
   for(let i = 0; i < product_count; ++i) {
     cart.push({
-      "cart-id": uid(),
-      "category-id": category_id,
-      "product-id": product_id,
-      "variant-id": variant_id
+      "cart_id": uid(),
+      "category_id": category_id,
+      "product_id": product_id,
+      "variant_id": variant_id
     });
   }
 

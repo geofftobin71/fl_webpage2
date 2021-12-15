@@ -248,6 +248,12 @@ module.exports = function (eleventyConfig) {
     return category.variants;
   });
 
+  eleventyConfig.addFilter("findParents", (product) => {
+    const category = shop_categories.categories.find(element => element.id === product.category);
+
+    return category.parents ? category.parents.map(function(p){ return "'" + p + "'"; }).join(",") : null;
+  });
+
   eleventyConfig.addFilter("notDisabled", (array) => {
     return array.filter(element => element.disabled === false);
   });

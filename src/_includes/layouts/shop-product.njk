@@ -86,6 +86,7 @@
   {% include "partials/header.njk" %}
   <main>
   {% set variants = product | findVariants %}
+  {% set parents = product | findParents %}
   {% set images = product.images %}
   {% set images_count = images | length %}
   {% set anim_fade_time = 1 %}
@@ -139,7 +140,7 @@
               <h3 class="heading">{{ variant_heading }}</h3>
               <div class="radio-label-wrapper">
                 {% for variant in variants %}
-                  <input id="{{ variant.id }}" name="variant-id" type="radio" value="{{ variant.id }}" onclick="showAddToCart()">
+                  <input id="{{ variant.id }}" name="variant-id" type="radio" value="{{ variant.id }}" onclick="showAddToCart([{{ parents | safe }}])">
                   <label class="radio-label text-center round" for="{{ variant.id }}" x-apple-data-detectors="false">{{ variant.name }}</label>
                 {% endfor %}
               </div>
@@ -248,7 +249,7 @@
   </div>
   #}
 
-  <script>document.addEventListener("DOMContentLoaded",function(){showAddToCart();showViewCart();},false);</script>
+  <script>document.addEventListener("DOMContentLoaded",function(){showAddToCart([{{ parents | safe }}]);showViewCart();},false);</script>
   </main>
   {% include "partials/footer.njk" %}
 {% endblock %}
