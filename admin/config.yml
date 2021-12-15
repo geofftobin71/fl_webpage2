@@ -291,6 +291,7 @@ collections:
                   - {label: "Name", name: "name", widget: "string"}
                   - {label: "Price", name: "price", widget: "number", value_type: float, default: 1, min: 1}
                   - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}
+              - {label: "Parents", name: "parents", widget: "relation", collection: "shop", file: "categories", value_field: "categories.*.id", search_fields: ["categories.*.name"], display_fields: ["categories.*.name"], multiple: true, required: false}
               - {label: "Disabled", name: "disabled", widget: "boolean", default: false, required: false}
               - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}
       - label: "Products"
@@ -310,7 +311,6 @@ collections:
               - {label: "Description", name: "description", widget: "text", required: false}
               - {label: "Header Image", name: "header_image", widget: "image", choose_url: false, required: false}
               - {label: "Images", name: "images", widget: "image", choose_url: false, media_library: {config: {multiple: true} }, required: false}
-              - {label: "Parents", name: "parents", widget: "relation", collection: "shop", file: "categories", value_field: "categories.*.id", search_fields: ["categories.*.name"], display_fields: ["categories.*.name"], multiple: true, required: false}
               - {label: "Disabled", name: "disabled", widget: "boolean", default: false, required: false}
               - {label: "ID", name: "id", widget: "id", hint: "Auto generated. Read Only", required: false}
   - label: "Misc"
