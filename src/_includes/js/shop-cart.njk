@@ -23,14 +23,14 @@ function displayCart() {
 	let i = 0;
 	cart.forEach(cart_item => {
 
-	  let product = cart_data.products[cart_item.product_id];
-	  let price = product.variants[cart_item.variant_id];
+	  let product = cart_data.p[cart_item.product_id];
+	  let price = parseInt(product.v[cart_item.variant_id], 16);
 
 	  cart_items += '<div class="vertical flow" style="--flow-space:0.3em">';
-	  cart_items += '<p>' + product.name;
+	  cart_items += '<p>' + product.n;
 	
     /*
-	  if(product.variants.length) {
+	  if(product.v.length) {
 	    variant = getVariant(product, cart_item["variant_id"]);
 	    cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
 	  }
@@ -64,7 +64,7 @@ function removeFromCart(index) {
 
   let i = cart.length;
   while(i--) {
-    const parents = cart_data.pre[cart[i].category_id];
+    const parents = cart_data.P[cart[i].category_id];
     if(parents && parents.length > 0) {
       const cart_parent = cart.find(element => parents.includes(element.category_id));
       if(!cart_parent) { cart.splice(i, 1); ++count; }
