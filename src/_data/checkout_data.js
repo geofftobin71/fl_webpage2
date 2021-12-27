@@ -1,8 +1,10 @@
 delete require.cache[require.resolve('./shop_categories.json')];
 delete require.cache[require.resolve('./shop_products.json')];
+delete require.cache[require.resolve('./delivery_fees.json')];
 
 const shop_categories = require('./shop_categories.json');
 const shop_products = require('./shop_products.json');
+const delivery_fees = require('./delivery_fees.json');
 
 function obfuscate(str) {
     let buf = [];
@@ -22,7 +24,7 @@ module.exports = function() {
 
   const valid_shop_categories = shop_categories.categories.filter(category => category.disabled === false);
 
-  let result = {"p":{}, "P":{} };
+  let result = {"p":{}, "d":{} };
 
   valid_shop_products.forEach(product => {
     const category = shop_categories.categories.find(category => category.id === product.category);
@@ -33,9 +35,9 @@ module.exports = function() {
     result.p[product.id] = { "n": obfuscate(product.name), "v": variants };
   });
 
-  valid_shop_categories.forEach(category => {
-    result.P[category.id] = category.parents;
-  });
+  for (const [key, value] of Object.entries(delivery_fees)) {
+    result.d[key] = value;
+  };
 
   return result;
 };
