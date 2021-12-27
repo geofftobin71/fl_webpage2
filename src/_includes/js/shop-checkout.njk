@@ -1,3 +1,5 @@
+const checkout_data = {{ checkout_data | dump | safe }};
+
 luxon.Settings.defaultZoneName = "Pacific/Auckland";
 
 var DateTime = luxon.DateTime;
@@ -6,9 +8,7 @@ const date_format = "dd MMM yyyy";
 const delivery_date_text_format = "EEE dd MMM yyyy";
 const delivery_date_value_format = "EEEE d MMMM yyyy";
 
-async function displayCheckout() {
-
-  await fetchData();
+function displayCheckout() {
 
   if(cart.length === 0) {
     document.getElementById("empty-cart").style.display = "flex";
@@ -41,47 +41,37 @@ async function displayCheckout() {
 
   let cart_count = cart.length;
   let cart_items = "";
-
-  computeCartTotal();
+  let cart_total = 0;
 
   cart.forEach(cart_item => {
-    let product = getProduct(cart_item["product-id"]);
-    let price = getPrice(product, cart_item["variant-id"]);
+
+	  let product = checkout_data.p[cart_item.product_id];
+	  let price = parseInt(product.v[cart_item.variant_id], 16);
 
     cart_items += '<div class="vertical flow">';
-    cart_items += '<p>' + product["name"];
+    cart_items += '<p>' + product.n;
 
-    if(product["variants"].length) {
+    /*
+    if(product.v.length) {
       variant = getVariant(product, cart_item["variant-id"]);
       cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
     }
+    */
 
     cart_items += '</p>';
 
-    if(product["category"].toLowerCase() === "workshops") {
-      const cart_id = cart_item['cart-id'];
-
-      cart_items += '<div>';
-      cart_items += '<label for="workshop-name-' + cart_id + '"><h4 class="heading">Attendee Name</h4></label>';
-      cart_items += '<input class="input workshop-name" id="workshop-name-' + cart_id + '" name="workshop-attendee-name[' + cart_id + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
-      cart_items += '<p class="caption text-left text-lowercase">Name of the person attending the workshop</p>';
-      cart_items += '</div>';
-      cart_items += '<div>';
-      cart_items += '<label for="workshop-email-' + cart_id + '"><h4 class="heading">Attendee Email</h4></label>';
-      cart_items += '<input class="input workshop-email" id="workshop-email-' + cart_id + '" name="workshop-attendee-email[' + cart_id + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
-      cart_items += '<p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>';
-      cart_items += '</div>';
-    }
-
     cart_items += '</div>';
     cart_items += '<p class="text-right">' + formatMoney(price) + '</p>';
+	
+    cart_total += price;
   });
 
   document.getElementById("cart-count").innerText = cart_count + (cart_count === 1 ? ' item' : ' items');
   document.getElementById("cart-total").innerText = formatMoney(cart_total);
   document.getElementById("cart-total-check").value = cart_total;
 
-  if(cartHasDelivery()) {
+  // if(cartHasDelivery()) {
+  if(true) {
     document.querySelectorAll(".delivery-group").forEach(element => {
       element.style.display = "block";
     });
@@ -102,14 +92,19 @@ async function displayCheckout() {
     if(value) { inputs[i].value = value; }
   };
 
-  disableInvalidDates(delivery_option);
-  updateTotal();
+  // disableInvalidDates(delivery_option);
+  // updateTotal();
 
+  {#
   {% if env.PROD != 'true' %}
   var stripe = Stripe("{{ env.STRIPE_TEST_PUBLIC_KEY }}");
   {% else %}
   var stripe = Stripe("{{ env.STRIPE_LIVE_PUBLIC_KEY }}");
   {% endif %}
+  #}
+
+  {#
+  var stripe = Stripe("{{ env.STRIPE_TEST_PUBLIC_KEY }}");
 
   var elements = stripe.elements({fonts:[
     {
@@ -163,6 +158,7 @@ async function displayCheckout() {
     }
   },false);
   FIXME */
+  #}
 
   var form = document.getElementById("checkout-form");
 
@@ -333,7 +329,7 @@ function selectDeliveryOption(delivery_option) {
 
   if(delivery_option === "pickup") {
     document.getElementById("delivery-date-label").innerText = "Pickup Date";
-    document.getElementById("delivery-date-caption").innerText = "Minimum $20 delivery fee on Saturdays - Orders must be received by 10am for same day pickup";
+    document.getElementById("delivery-date-caption").innerText = "Orders must be received by 10am for same day pickup";
     document.getElementById("delivery-date").setAttribute("data-error","Pickup Date is required");
     document.querySelectorAll(".delivery-address-group").forEach(element => {
       element.style.display = "none";
@@ -346,15 +342,15 @@ function selectDeliveryOption(delivery_option) {
 
   if(delivery_option === "delivery") {
     document.getElementById("delivery-date-label").innerText = "Delivery Date";
-    document.getElementById("delivery-date-caption").innerText = "Minimum $20 delivery fee on Saturdays - Orders must be received by 10am for same day delivery";
+    document.getElementById("delivery-date-caption").innerText = "Orders must be received by 10am for same day delivery - Minimum $20 delivery fee on Saturdays";
     document.getElementById("delivery-date").setAttribute("data-error","Delivery Date is required");
     document.querySelectorAll(".delivery-address-group").forEach(element => {
       element.style.display = "block";
     });
   }
 
-  disableInvalidDates(delivery_option);
-  updateTotal();
+  // disableInvalidDates(delivery_option);
+  // updateTotal();
 }
 
 function updateTotal() {
