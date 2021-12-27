@@ -8,6 +8,8 @@ const date_format = "dd MMM yyyy";
 const delivery_date_text_format = "EEE dd MMM yyyy";
 const delivery_date_value_format = "EEEE d MMMM yyyy";
 
+var cart_total = 0;
+
 function displayCheckout() {
 
   if(cart.length === 0) {
@@ -41,7 +43,6 @@ function displayCheckout() {
 
   let cart_count = cart.length;
   let cart_items = "";
-  let cart_total = 0;
 
   cart.forEach(cart_item => {
 
@@ -93,7 +94,7 @@ function displayCheckout() {
   };
 
   // disableInvalidDates(delivery_option);
-  // updateTotal();
+  updateTotal();
 
   {#
   {% if env.PROD != 'true' %}
@@ -350,7 +351,7 @@ function selectDeliveryOption(delivery_option) {
   }
 
   // disableInvalidDates(delivery_option);
-  // updateTotal();
+  updateTotal();
 }
 
 function updateTotal() {
@@ -370,7 +371,7 @@ function updateTotal() {
   } else {
     if(delivery_suburb && delivery_date) {
       // Default delivery fee by Suburb
-      let delivery_fee = parseFloat(delivery_fees[delivery_suburb]);
+      let delivery_fee = parseFloat(checkout_data.d[delivery_suburb]);
 
       // Flat $20 on Saturday
       if(delivery_date.toLowerCase().startsWith("sat")) {

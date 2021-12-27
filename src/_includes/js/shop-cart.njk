@@ -49,9 +49,9 @@ function displayCart() {
 	  i++;
 	});
 	
-	cart_summary += '<h3 class="heading">Cart Total</h3>';
-	cart_summary += '<p class="color-shade2" style="padding-left:2em">' + cart_count + (cart_count === 1 ? ' item' : ' items') + '</p>';
-	cart_summary += '<p class="text-right">' + formatMoney(cart_total) + '</p>';
+	cart_summary += '<p class="font-size-1 color-shade2 text-lowercase">Cart Total</p>';
+	cart_summary += '<p class="font-size-1 color-shade2" style="padding-left:2em">' + cart_count + (cart_count === 1 ? ' item' : ' items') + '</p>';
+	cart_summary += '<p class="font-size-1 text-right">' + formatMoney(cart_total) + '</p>';
 	
   document.getElementById("items").innerHTML = cart_items;
   document.getElementById("summary").innerHTML = cart_summary;
