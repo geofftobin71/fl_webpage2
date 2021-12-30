@@ -2,38 +2,50 @@
   "monday": {
     "opens_at": "09:30",
     "closes_at": "14:30",
-    "closed": false
+    "closed": false,
+    "delivery": true,
+    "pickup": true
   },
   "tuesday": {
     "opens_at": "09:30",
     "closes_at": "14:30",
-    "closed": false
+    "closed": false,
+    "delivery": true,
+    "pickup": true
   },
   "wednesday": {
     "opens_at": "09:30",
     "closes_at": "14:30",
-    "closed": false
+    "closed": false,
+    "delivery": true,
+    "pickup": true
   },
   "thursday": {
     "opens_at": "09:30",
     "closes_at": "14:30",
-    "closed": false
+    "closed": false,
+    "delivery": true,
+    "pickup": true
   },
   "friday": {
     "opens_at": "09:30",
     "closes_at": "14:30",
-    "closed": false
+    "closed": false,
+    "delivery": true,
+    "pickup": true
   },
   "saturday": {
     "opens_at": "10:00",
     "closes_at": "13:00",
-    "closed": false
+    "closed": false,
+    "delivery": true,
+    "pickup": true
   },
   "sunday": {
     "opens_at": "",
     "closes_at": "",
     "closed": true,
-    "no_delivery": true,
-    "no_pickup": true
+    "delivery": false,
+    "pickup": false
   }
 }

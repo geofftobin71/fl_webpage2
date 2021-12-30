@@ -170,80 +170,80 @@ collections:
           - label: "Monday"
             name: "monday"
             widget: "object"
-            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.no_delivery | ternary('No Delivery','')}} {{fields.no_pickup | ternary('No Pickup','')}}"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.delivery | ternary('Delivery','')}} {{fields.pickup | ternary('Pickup','')}}"
             collapsed: true
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
+              - {label: "Delivery", name: "delivery", widget: "boolean", default:true, required: false}
+              - {label: "Pickup", name: "pickup", widget: "boolean", default:true, required: false}
           - label: "Tuesday"
             name: "tuesday"
             widget: "object"
-            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.no_delivery | ternary('No Delivery','')}} {{fields.no_pickup | ternary('No Pickup','')}}"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.delivery | ternary('Delivery','')}} {{fields.pickup | ternary('Pickup','')}}"
             collapsed: true
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
+              - {label: "Delivery", name: "delivery", widget: "boolean", default:true, required: false}
+              - {label: "Pickup", name: "pickup", widget: "boolean", default:true, required: false}
           - label: "Wednesday"
             name: "wednesday"
             widget: "object"
-            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.no_delivery | ternary('No Delivery','')}} {{fields.no_pickup | ternary('No Pickup','')}}"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.delivery | ternary('Delivery','')}} {{fields.pickup | ternary('Pickup','')}}"
             collapsed: true
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
+              - {label: "Delivery", name: "delivery", widget: "boolean", default:true, required: false}
+              - {label: "Pickup", name: "pickup", widget: "boolean", default:true, required: false}
           - label: "Thursday"
             name: "thursday"
             widget: "object"
-            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.no_delivery | ternary('No Delivery','')}} {{fields.no_pickup | ternary('No Pickup','')}}"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.delivery | ternary('Delivery','')}} {{fields.pickup | ternary('Pickup','')}}"
             collapsed: true
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
+              - {label: "Delivery", name: "delivery", widget: "boolean", default:true, required: false}
+              - {label: "Pickup", name: "pickup", widget: "boolean", default:true, required: false}
           - label: "Friday"
             name: "friday"
             widget: "object"
-            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.no_delivery | ternary('No Delivery','')}} {{fields.no_pickup | ternary('No Pickup','')}}"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.delivery | ternary('Delivery','')}} {{fields.pickup | ternary('Pickup','')}}"
             collapsed: true
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
+              - {label: "Delivery", name: "delivery", widget: "boolean", default:true, required: false}
+              - {label: "Pickup", name: "pickup", widget: "boolean", default:true, required: false}
           - label: "Saturday"
             name: "saturday"
             widget: "object"
-            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.no_delivery | ternary('No Delivery','')}} {{fields.no_pickup | ternary('No Pickup','')}}"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.delivery | ternary('Delivery','')}} {{fields.pickup | ternary('Pickup','')}}"
             collapsed: true
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
+              - {label: "Delivery", name: "delivery", widget: "boolean", default:true, required: false}
+              - {label: "Pickup", name: "pickup", widget: "boolean", default:true, required: false}
           - label: "Sunday"
             name: "sunday"
             widget: "object"
-            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.no_delivery | ternary('No Delivery','')}} {{fields.no_pickup | ternary('No Pickup','')}}"
+            summary: "{{fields.opens_at}} {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.delivery | ternary('Delivery','')}} {{fields.pickup | ternary('Pickup','')}}"
             collapsed: true
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
+              - {label: "Delivery", name: "delivery", widget: "boolean", default:true, required: false}
+              - {label: "Pickup", name: "pickup", widget: "boolean", default:true, required: false}
       - label: "Special Shop Hours"
         name: "special-shop-hours"
         file: "src/_data/special_shop_hours.json"
@@ -254,14 +254,14 @@ collections:
             label_singular: "Date"
             name: "special_shop_hours"
             widget: "list"
-            summary: "{{fields.date}} : {{fields.opens_at}} - {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.no_delivery | ternary('No Delivery','')}} {{fields.no_pickup | ternary('No Pickup','')}}"
+            summary: "{{fields.date}} : {{fields.opens_at}} - {{fields.closes_at}} {{fields.closed | ternary('Closed','')}} {{fields.delivery | ternary('Delivery','')}} {{fields.pickup | ternary('Pickup','')}}"
             fields:
               - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false}
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closed", name: "closed", widget: "boolean", required: false}
-              - {label: "No Delivery", name: "no_delivery", widget: "boolean", required: false}
-              - {label: "No Pickup", name: "no_pickup", widget: "boolean", required: false}
+              - {label: "Delivery", name: "delivery", widget: "boolean", default: false, required: false}
+              - {label: "Pickup", name: "pickup", widget: "boolean", default: false, required: false}
   - label: "Shop"
     name: "shop"
     delete: false

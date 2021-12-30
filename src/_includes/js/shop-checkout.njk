@@ -4,7 +4,7 @@ luxon.Settings.defaultZoneName = "Pacific/Auckland";
 
 var DateTime = luxon.DateTime;
 
-const date_format = "dd MMM yyyy";
+const date_format = "yyyy-MM-dd";
 const delivery_date_text_format = "EEE dd MMM yyyy";
 const delivery_date_value_format = "EEEE d MMMM yyyy";
 
@@ -20,7 +20,7 @@ function displayCheckout() {
   let delivery_date_select = document.getElementById("delivery-date");
 
   let day = DateTime.now();
-  for(let i = 0; i < 14; ++i) {
+  for(let i = 0; i < 15; ++i) {
     let text = day.toFormat(delivery_date_text_format);
     let value = day.toFormat(delivery_date_value_format);
     let option = new Option(text, value);
@@ -47,7 +47,7 @@ function displayCheckout() {
   cart.forEach(cart_item => {
 
 	  let product = checkout_data.p[cart_item.product_id];
-	  let price = parseInt(product.v[cart_item.variant_id], 16);
+	  let price = parseFloat(parseInt(product.v[cart_item.variant_id], 16)) / 100.0;
 
     cart_items += '<div class="vertical flow">';
     cart_items += '<p>' + product.n;
@@ -93,7 +93,7 @@ function displayCheckout() {
     if(value) { inputs[i].value = value; }
   };
 
-  // disableInvalidDates(delivery_option);
+  disableInvalidDates(delivery_option);
   updateTotal();
 
   {#
@@ -255,58 +255,48 @@ function displayCheckout() {
 
 function disableInvalidDates(delivery_option) {
   if(delivery_option === "none") { return; }
+
+  const regular_shop_hours = checkout_data.rsh;
+  const special_shop_hours = checkout_data.ssh;
+
   document.querySelectorAll(".delivery-date-option").forEach(element => {
 
     element.disabled = false;
 
     if(delivery_option === "delivery") {
-      non_delivery_dates.forEach(date => {
-        let non_delivery_date = DateTime.fromFormat(date, date_format);
-        let element_date = DateTime.fromFormat(element.value, delivery_date_value_format);
-        if(element_date.equals(non_delivery_date)) {
-          element.disabled = true;
-        }
-      });
 
-      for(let dayName in shop_hours) {
-        if(shop_hours[dayName].toLowerCase().startsWith("closed")) {
+      for(let dayName in regular_shop_hours) {
+        if(!regular_shop_hours[dayName].delivery) {
           if(element.value.toLowerCase().startsWith(dayName.substr(0,3).toLowerCase())) {
             element.disabled = true;
           }
         }
       }
 
-      special_delivery_dates.forEach(date => {
-        let special_date = DateTime.fromFormat(date, date_format);
+      special_shop_hours.forEach(item => {
+        let special_date = DateTime.fromFormat(item.date, date_format);
         let element_date = DateTime.fromFormat(element.value, delivery_date_value_format);
         if(element_date.equals(special_date)) {
-          element.disabled = false;
+          element.disabled = !item.delivery;
         }
       });
     }
 
     if(delivery_option === "pickup") {
-      shop_closed_dates.forEach(date => {
-        let closed_date = DateTime.fromFormat(date, date_format);
-        let element_date = DateTime.fromFormat(element.value, delivery_date_value_format);
-        if(element_date.equals(closed_date)) {
-          element.disabled = true;
-        }
-      });
 
-      for(let dayName in shop_hours) {
-        if(shop_hours[dayName].toLowerCase().startsWith("closed")) {
+      for(let dayName in regular_shop_hours) {
+        if(!regular_shop_hours[dayName].pickup) {
           if(element.value.toLowerCase().startsWith(dayName.substr(0,3).toLowerCase())) {
             element.disabled = true;
           }
         }
       }
 
-      special_shop_open_dates.forEach(date => {
-        let special_date = DateTime.fromFormat(date, date_format);
+      special_shop_hours.forEach(item => {
+        let special_date = DateTime.fromFormat(item.date, date_format);
         let element_date = DateTime.fromFormat(element.value, delivery_date_value_format);
         if(element_date.equals(special_date)) {
-          element.disabled = false;
+          element.disabled = !item.pickup;
         }
       });
     }
@@ -322,7 +312,7 @@ function disableInvalidDates(delivery_option) {
 
   var delivery_date = document.getElementById("delivery-date");
   var opt = delivery_date.options[delivery_date.selectedIndex];
-  if(opt.disabled) {
+  if(opt && opt.disabled) {
     opt.selected = false;
     delivery_date.options[0].selected = true;
   }
@@ -353,7 +343,7 @@ function selectDeliveryOption(delivery_option) {
     });
   }
 
-  // disableInvalidDates(delivery_option);
+  disableInvalidDates(delivery_option);
   updateTotal();
 }
 
