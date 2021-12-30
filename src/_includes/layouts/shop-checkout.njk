@@ -88,26 +88,26 @@
 
           <div>
             <label for="delivery-name"><p class="heading">Recipient Name</p></label>
-            <input class="delivery-group input" id="delivery-name" name="delivery-name" type="text" autocomplete="name" data-error="Recipient Name is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <input class="delivery-group input" id="delivery-name" name="delivery-name" type="text" autocomplete="name" data-error="Recipient Name is required" onfocus="hideError(this)" onblur="cacheValue(this)">
             <p class="caption text-left text-lowercase">Name of the person receiving the flowers</p>
           </div>
 
           <div class="delivery-address-group">
             <label for="delivery-phone"><p id="delivery-phone-label" class="heading">Recipient Phone</p></label>
-            <input class="delivery-address-group input" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Recipient Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <input class="delivery-address-group input" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Recipient Phone is required" onfocus="hideError(this)" onblur="cacheValue(this)">
             <p id="delivery-phone-caption" class="caption text-left text-lowercase">In case we need to contact the recipient to make alternative delivery arrangements</p>
           </div>
 
           <div class="delivery-address-group">
             <label for="delivery-address"><p class="heading">Delivery Address</p></label>
-            <input class="delivery-address-group input" id="delivery-address" name="delivery-address" type="text" autocomplete="address-line1" data-error="Delivery Address is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <input class="delivery-address-group input" id="delivery-address" name="delivery-address" type="text" autocomplete="address-line1" data-error="Delivery Address is required" onfocus="hideError(this)" onblur="cacheValue(this)">
             <p class="caption text-left text-lowercase">Street address for delivery - Please include appartment number, office level etc</p>
           </div>
 
           <div class="delivery-address-group">
             <label for="delivery-suburb-select"><p class="heading">Delivery Suburb</p></label>
             <div class="select" id="delivery-suburb-select">
-              <select id="delivery-suburb" class="delivery-address-group" name="delivery-suburb" data-error="Delivery Suburb is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateTotal()">
+              <select id="delivery-suburb" class="delivery-address-group" name="delivery-suburb" data-error="Delivery Suburb is required" onfocus="hideError(this)" onblur="cacheValue(this)" onchange="updateTotal()">
                 <option default disabled selected hidden value="">please choose...</option>
                 {% for suburb, fee in delivery_fees -%}
                   {% if suburb != "pickup in store" %}
@@ -123,7 +123,7 @@
           <div>
             <label for="delivery-date-select"><p id="delivery-date-label" class="heading">Delivery Date</p></label>
             <div class="select" id="delivery-date-select">
-              <select id="delivery-date" class="delivery-group" name="delivery-date" data-error="Delivery Date is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateTotal()">
+              <select id="delivery-date" class="delivery-group" name="delivery-date" data-error="Delivery Date is required" onfocus="hideError(this)" onblur="cacheValue(this)" onchange="updateTotal()">
                 <option default disabled selected hidden value="">please choose...</option>
               </select>
               <span class="focus"></span>
@@ -136,7 +136,7 @@
         <h2 class="delivery-group heading text-center">Gift tag Message</h2>
         <p class="delivery-group caption text-center text-lowercase" style="margin-top:0">(optional)</p>
         <div class="delivery-group shop-panel">
-          <textarea maxlength="500" class="delivery-group input" id="gift-tag-message" name="gift-tag-message" placeholder="If you would like to send the recipient a message along with the flowers, please enter it here." rows="6" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
+          <textarea maxlength="500" class="delivery-group input" id="gift-tag-message" name="gift-tag-message" placeholder="If you would like to send the recipient a message along with the flowers, please enter it here." rows="6" onfocus="hideError(this)" onblur="cacheValue(this)"></textarea>
           <p class="caption text-lowercase">Max 500 chars</p>
         </div>
         <p class="delivery-group font-size-1"></p>
@@ -144,7 +144,7 @@
         <h2 class="delivery-group heading text-center">Special Requests</h2>
         <p class="delivery-group caption text-center text-lowercase" style="margin-top:0">(optional)</p>
         <div class="delivery-group shop-panel">
-          <textarea maxlength="500" class="delivery-group input" id="special-requests" name="special-requests" placeholder="Please enter any special order or delivery instructions. If you would like to request a specific variety or colour of flowers, please give at least 48 hours notice. We cannot guarantee all floral varieties or colours due to seasonal availability and demand. We will let you know if we are unable to supply your request." rows="6" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
+          <textarea maxlength="500" class="delivery-group input" id="special-requests" name="special-requests" placeholder="Please enter any special order or delivery instructions. If you would like to request a specific variety or colour of flowers, please give at least 48 hours notice. We cannot guarantee all floral varieties or colours due to seasonal availability and demand. We will let you know if we are unable to supply your request." rows="6" onfocus="hideError(this)" onblur="cacheValue(this)"></textarea>
           <p class="caption text-lowercase">Max 500 chars</p>
         </div>
         <p class="delivery-group font-size-1"></p>
@@ -173,26 +173,26 @@
         <div class="flow shop-panel">
           <div>
             <label for="cardholder-name"><p class="heading">Your Name</p></label>
-            <input class="input" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" data-error="Your Name is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <input class="input" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" data-error="Your Name is required" onfocus="hideError(this)" onblur="cacheValue(this)">
             <p class="caption text-left text-lowercase">In case we need to contact you regarding your order</p>
           </div>
 
           <div>
             <label for="cardholder-phone"><p class="heading">Your Phone</p></label>
-            <input class="input" id="cardholder-phone" name="cardholder-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Your Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <input class="input" id="cardholder-phone" name="cardholder-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Your Phone is required" onfocus="hideError(this)" onblur="cacheValue(this)">
             <p class="caption text-left text-lowercase">In case we need to contact you regarding your order</p>
           </div>
 
           <div>
             <label for="cardholder-email"><p class="heading">Your Email</p></label>
-            <input class="input" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email" data-error="Your Email is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <input class="input" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email" data-error="Your Email is required" onfocus="hideError(this)" onblur="cacheValue(this)">
             <p class="caption text-left text-lowercase">We will send your receipt to this address</p>
           </div>
 
           {#
           <div>
             <label for="card-input"><p class="heading">Credit Card</p></label>
-            <div id="card-input" class="input" onfocus="hideError()"></div>
+            <div id="card-input" class="input" onfocus="hideError(this)"></div>
           </div>
           #}
         </div>

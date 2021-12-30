@@ -36,7 +36,7 @@ module.exports = function() {
   });
 
   for (const [key, value] of Object.entries(delivery_fees)) {
-    result.d[key] = value;
+    result.d[obfuscate(key)] = (value * 100).toString(16);
   };
 
   return result;

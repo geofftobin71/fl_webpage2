@@ -32,7 +32,9 @@ function showError(message) {
   }
 }
 
-function hideError() {
+function hideError(e) {
+  if(e) { e.style.border = "1px solid #818D89"; }
+
   const error_msg = document.getElementById("error-msg");
   if(error_msg) {
     error_msg.style.visibility = "hidden";

@@ -173,6 +173,7 @@ function displayCheckout() {
       if(window.getComputedStyle(inputs[i]).display !== "none") {
         if(inputs[i].value.trim().length === 0) {
           showError(inputs[i].dataset.error || "Credit Card Number is required");
+          inputs[i].style.border = "2px solid red";
           enableCheckoutForm();
           return false;
         }
@@ -184,6 +185,8 @@ function displayCheckout() {
       document.getElementById("checkout-form").style.display = "none";
       return false;
     }
+
+    // TODO - Check yesterdays date
 
     /*
     const delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
@@ -354,6 +357,22 @@ function selectDeliveryOption(delivery_option) {
   updateTotal();
 }
 
+function obfuscate(str) {
+    let buf = [];
+    for (var i = str.length - 1; i >= 0; i--) {
+      buf.unshift(['&#', str[i].charCodeAt(), ';'].join(''));
+    }
+    return buf.join('');
+}
+
+{#
+function deobfuscate(str) {
+  return str.replace(/&#(\d+);/g, function(match, dec) {
+    return String.fromCharCode(dec);
+  });
+}
+#}
+
 function updateTotal() {
   const delivery_suburb = document.getElementById("delivery-suburb").value;
   const delivery_date = document.getElementById("delivery-date").value;
@@ -371,7 +390,7 @@ function updateTotal() {
   } else {
     if(delivery_suburb && delivery_date) {
       // Default delivery fee by Suburb
-      let delivery_fee = parseFloat(checkout_data.d[delivery_suburb]);
+      let delivery_fee = parseFloat(parseInt(checkout_data.d[obfuscate(delivery_suburb)],16)) / 100.0;
 
       // Flat $20 on Saturday
       if(delivery_date.toLowerCase().startsWith("sat")) {
