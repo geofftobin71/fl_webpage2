@@ -18,9 +18,10 @@ exports.handler = async (event, context) => {
   }
 
   // let body = JSON.parse(event.body);
+  const params = querystring.parse(event.body);
 
   return {
     statusCode: 200,
-    body: JSON.stringify(event, null, 2),
+    body: JSON.stringify(params, null, 2),
   };
 };
