@@ -8,9 +8,19 @@ const delivery_fees = require('./data/delivery_fees.json');
 
 const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
 
-exports.handler = async () => {
+exports.handler = async (event, context) => {
+
+  if(event.httpMethod !== 'POST' || !event.body) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ status: 'Bad Request' })
+    }
+  }
+
+  let body = JSON.parse(event.body);
+
   return {
     statusCode: 200,
-    body: JSON.stringify(shop_products),
+    body: JSON.stringify(body, null, 2),
   };
 };
