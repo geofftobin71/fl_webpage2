@@ -17,10 +17,10 @@ exports.handler = async (event, context) => {
     }
   }
 
-  let body = JSON.parse(event.body);
+  // let body = JSON.parse(event.body);
 
   return {
     statusCode: 200,
-    body: JSON.stringify(body, null, 2),
+    body: JSON.stringify(event.body, null, 2),
   };
 };
