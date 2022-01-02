@@ -51,11 +51,17 @@ exports.handler = async (event, context) => {
   const cardholder_name = getParam(params.cardholder_name);
   const cardholder_email = getParam(params.cardholder_email);
   const cardholder_phone = getParam(params.cardholder_phone);
+  const cart_total_check = getParam(params['cart-total-check']);
 
   const cart = JSON.parse(params.cart);
 
+  const test = {
+    a: delivery_name,
+    b: cart_total_check
+  };
+
   return {
     statusCode: 200,
-    body: JSON.stringify(params, null, 2),
+    body: JSON.stringify(test, null, 2),
   };
 };
