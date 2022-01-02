@@ -54,7 +54,7 @@ exports.handler = async (event, context) => {
   const cart_total_check = getParam(params['cart-total-check']);
   const delivery_total_check = getParam(params['delivery-total-check']);
 
-  const cart = JSON['parse(params.cart']);
+  const cart = JSON.parse(params['cart']);
 
   const test = {
     a: delivery_name,
