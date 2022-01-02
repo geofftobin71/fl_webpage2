@@ -40,24 +40,26 @@ exports.handler = async (event, context) => {
 
   const params = querystring.parse(event.body);
 
-  const delivery_option = getParam(params.delivery_option);
-  const delivery_name = getParam(params.delivery_name);
-  const delivery_phone = getParam(params.delivery_phone);
-  const delivery_address = getParam(params.delivery_address);
-  const delivery_suburb = getParam(params.delivery_suburb);
-  const delivery_date = getParam(params.delivery_date);
-  const gift_tag_message = getParam(params.gift_tag_message);
-  const special_requests = getParam(params.special_requests);
-  const cardholder_name = getParam(params.cardholder_name);
-  const cardholder_email = getParam(params.cardholder_email);
-  const cardholder_phone = getParam(params.cardholder_phone);
+  const delivery_option = getParam(params['delivery-option']);
+  const delivery_name = getParam(params['delivery-name']);
+  const delivery_phone = getParam(params['delivery-phone']);
+  const delivery_address = getParam(params['delivery-address']);
+  const delivery_suburb = getParam(params['delivery-suburb']);
+  const delivery_date = getParam(params['delivery-date']);
+  const gift_tag_message = getParam(params['gift-tag-message']);
+  const special_requests = getParam(params['special-requests']);
+  const cardholder_name = getParam(params['cardholder-name']);
+  const cardholder_email = getParam(params['cardholder-email']);
+  const cardholder_phone = getParam(params['cardholder-phone']);
   const cart_total_check = getParam(params['cart-total-check']);
+  const delivery_total_check = getParam(params['delivery-total-check']);
 
-  const cart = JSON.parse(params.cart);
+  const cart = JSON['parse(params.cart']);
 
   const test = {
     a: delivery_name,
-    b: cart_total_check
+    b: cart_total_check,
+    c: params
   };
 
   return {
