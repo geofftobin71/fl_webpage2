@@ -18,11 +18,12 @@ exports.handler = async (event, context) => {
     }
   }
 
-  // let body = JSON.parse(event.body);
   const params = querystring.parse(event.body);
+
+  const cart = JSON.parse(params.cart);
 
   return {
     statusCode: 200,
-    body: JSON.stringify(params, null, 2),
+    body: JSON.stringify(cart, null, 2),
   };
 };
