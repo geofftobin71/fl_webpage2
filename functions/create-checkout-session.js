@@ -7,6 +7,7 @@ const shop_products = require('./data/shop_products.json');
 const delivery_fees = require('./data/delivery_fees.json');
 
 const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
+const querystring = require('querystring');
 
 exports.handler = async (event, context) => {
 
