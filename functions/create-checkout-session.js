@@ -79,7 +79,7 @@ exports.handler = async (event, context) => {
   var cart_total = 0.0;
   var delivery_fee = 0.0;
 
-  cart.forEach(cart_item) => {
+  cart.forEach(cart_item => {
     const product = shop_products.products.find(element => element.id === cart_item.product_id);
     const category = shop_categories.categories.find(element => element.id === cart_item.category_id);
     const variant = category.variants.find(element => element.id === cart_item.variant_id);
@@ -103,7 +103,7 @@ exports.handler = async (event, context) => {
     line_items.push(line_item);
 
     cart_total += price;
-  }
+  });
 
   if(delivery_option === 'pickup') {
     shipping_rates = [delivery_ids['pickup']];
