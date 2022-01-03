@@ -26,11 +26,11 @@ function obfuscate(str) {
 
 function escape(htmlStr) {
   if(!htmlStr) { return null; }
-  return htmlStr.replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");        
+  return htmlStr.replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');        
 }
 
 function titleCase(str) {
@@ -43,7 +43,7 @@ function getParam(str) {
   return (str ? escape(str.trim()) : null);
 }
 
-exports.handler = async (event, context): {
+exports.handler = async (event, context) => {
 
   if(event.httpMethod !== 'POST' || !event.body) {
     return {
@@ -95,7 +95,7 @@ exports.handler = async (event, context): {
           }
         },
         unit_amount: parseInt(price * 100.0),
-        currency: "nzd"
+        currency: 'nzd'
       },
       quantity: 1
     };
