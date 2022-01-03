@@ -149,17 +149,17 @@ exports.handler = async (event, context) => {
 
   const metadata = {
     timestamp: order_date.toFormat(date_format),
-    delivery-option: delivery_option,
-    delivery-name: delivery_name,
-    delivery-phone: delivery_phone,
-    delivery-address: delivery_address,
-    delivery-suburb: titleCase(delivery_suburb),
-    delivery-date: delivery_date,
-    gift-tag-message: gift_tag_message,
-    special-requests: special_requests,
-    cardholder-name: cardholder_name,
-    cardholder-email: cardholder_email,
-    cardholder-phone: cardholder_phone,
+    delivery_option: delivery_option,
+    delivery_name: delivery_name,
+    delivery_phone: delivery_phone,
+    delivery_address: delivery_address,
+    delivery_suburb: titleCase(delivery_suburb),
+    delivery_date: delivery_date,
+    gift_tag_message: gift_tag_message,
+    special_requests: special_requests,
+    cardholder_name: cardholder_name,
+    cardholder_email: cardholder_email,
+    cardholder_phone: cardholder_phone,
   };
 
   const session = await stripe.checkout.sessions.create({
