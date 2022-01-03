@@ -79,7 +79,7 @@ exports.handler = async (event, context) => {
   var cart_total = 0.0;
   var delivery_fee = 0.0;
 
-  cart.forEach(cart_item => {
+  cart.forEach(cart_item) => {
     const product = shop_products.products.find(element => element.id === cart_item.product_id);
     const category = shop_categories.categories.find(element => element.id === cart_item.category_id);
     const variant = category.variants.find(element => element.id === cart_item.variant_id);
@@ -105,77 +105,77 @@ exports.handler = async (event, context) => {
     cart_total += price;
   }
 
-    if(delivery_option === 'pickup') {
-      shipping_rates = [delivery_ids['pickup']];
-    }
+  if(delivery_option === 'pickup') {
+    shipping_rates = [delivery_ids['pickup']];
+  }
 
-    if(delivery_option === 'delivery') {
-      delivery_fee = parseFloat(delivery_fees[delivery_suburb.toLowerCase()]);
+  if(delivery_option === 'delivery') {
+    delivery_fee = parseFloat(delivery_fees[delivery_suburb.toLowerCase()]);
 
-      // Flat rate $20 on Saturday
-      if(delivery_date.startsWith('Sat')) {
-        if(delivery_fee < 20.0) {
-          delivery_fee = 20.0;
-        }
-      }
-
-      shipping_rates = [delivery_ids[(delivery_fee * 100.0).toString()]];
-    }
-
-    if(cart_total !== cart_total_check) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ status: 'Cart Total Mismatch' })
+    // Flat rate $20 on Saturday
+    if(delivery_date.startsWith('Sat')) {
+      if(delivery_fee < 20.0) {
+        delivery_fee = 20.0;
       }
     }
 
-    if(delivery_total !== delivery_total_check) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ status: 'Delivery Total Mismatch' })
-      }
+    shipping_rates = [delivery_ids[(delivery_fee * 100.0).toString()]];
+  }
+
+  if(cart_total !== cart_total_check) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ status: 'Cart Total Mismatch' })
     }
+  }
 
-    const shipping = {
-      name: delivery_name,
-      phone: delivery_phone,
-      address: {
-        line1: delivery_address,
-        line2: titleCase(delivery_suburb),
-        city: 'Wellington',
-        country: 'NZ'
-      }
-    };
+  if(delivery_total !== delivery_total_check) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ status: 'Delivery Total Mismatch' })
+    }
+  }
 
-    const metadata = {
-      timestamp: order_date.toFormat(date_format),
-      delivery-option: delivery_option,
-      delivery-name: delivery_name,
-      delivery-phone: delivery_phone,
-      delivery-address: delivery_address,
-      delivery-suburb: titleCase(delivery_suburb),
-      delivery-date: delivery_date,
-      gift-tag-message: gift_tag_message,
-      special-requests: special_requests,
-      cardholder-name: cardholder_name,
-      cardholder-email: cardholder_email,
-      cardholder-phone: cardholder_phone,
-    };
+  const shipping = {
+    name: delivery_name,
+    phone: delivery_phone,
+    address: {
+      line1: delivery_address,
+      line2: titleCase(delivery_suburb),
+      city: 'Wellington',
+      country: 'NZ'
+    }
+  };
 
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      payment_method_types: ['card'],
-      line_items: line_items,
-      shipping_rates: shipping_rates,
-      metadata: metadata,
-      payment_intent_data: {
-        receipt_email: cardholder_email,
-        shipping: shipping
-      },
-      customer_email: cardholder_email,
-      success_url: `${process.env.URL}/thankyou-for-your-order?email=${obf_email}`,
-      cancel_url: `${process.env.URL}/checkout/`
-    });
+  const metadata = {
+    timestamp: order_date.toFormat(date_format),
+    delivery-option: delivery_option,
+    delivery-name: delivery_name,
+    delivery-phone: delivery_phone,
+    delivery-address: delivery_address,
+    delivery-suburb: titleCase(delivery_suburb),
+    delivery-date: delivery_date,
+    gift-tag-message: gift_tag_message,
+    special-requests: special_requests,
+    cardholder-name: cardholder_name,
+    cardholder-email: cardholder_email,
+    cardholder-phone: cardholder_phone,
+  };
+
+  const session = await stripe.checkout.sessions.create({
+    mode: 'payment',
+    payment_method_types: ['card'],
+    line_items: line_items,
+    shipping_rates: shipping_rates,
+    metadata: metadata,
+    payment_intent_data: {
+      receipt_email: cardholder_email,
+      shipping: shipping
+    },
+    customer_email: cardholder_email,
+    success_url: `${process.env.URL}/thankyou-for-your-order?email=${obf_email}`,
+    cancel_url: `${process.env.URL}/checkout/`
+  });
 
   return {
     statusCode: 302,
