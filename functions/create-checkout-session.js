@@ -8,13 +8,24 @@ const shop_products = require('./data/shop_products.json');
 const delivery_fees = require('./data/delivery_fees.json');
 const site = require('./data/site.json');
 
+const { Settings, DateTime } = require('luxon'); 
 const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
 const querystring = require('querystring');
 
-const date_format = "g:ia l j F Y"; // FIXME
+Settings.defaultZoneName = 'Pacific/Auckland';
+
+const date_format = 'h:mma cccc d LLLL yyyy';
 
 var cart_total = 0.0;
 var delivery_fee = 0.0;
+
+function obfuscate(str) {
+  let buf = [];
+  for (var i = str.length - 1; i >= 0; i--) {
+    buf.unshift(['%', parseInt(str[i].charCodeAt(),16)].join(''));
+  }
+  return buf.join('');
+}
 
 function escape(htmlStr) {
   if(!htmlStr) { return null; }
@@ -51,19 +62,40 @@ exports.handler = async (event, context) => {
   const cardholder_name = getParam(params['cardholder-name']);
   const cardholder_email = getParam(params['cardholder-email']);
   const cardholder_phone = getParam(params['cardholder-phone']);
-  const cart_total_check = getParam(params['cart-total-check']);
-  const delivery_total_check = getParam(params['delivery-total-check']);
+  const cart_total_check = parseFloat(getParam(params['cart-total-check']));
+  const delivery_total_check = parseFloat(getParam(params['delivery-total-check']));
 
   const cart = JSON.parse(params['cart']);
 
-  const test = {
-    a: delivery_name,
-    b: cart_total_check,
-    c: params
-  };
+  const order_date = DateTime.now();
+
+  let items;
+  let shipping_rates;
+  let metadata;
+  let shipping;
+
+  const obf_email = obfuscate(cardholder_email);
+
+  console.log(obf_email);
+
+  const session = await stripe.checkout.sessions.create({
+    mode: 'payment',
+    payment_method_types: ['card'],
+    line_items: items,
+    shipping_rates: shipping_rates,
+    metadata: metadata,
+    payment_intent_data: [
+      receipt_email: cardholder_email,
+      shipping: shipping
+    ],
+    customer_email: cardholder_email,
+    success_url: `${process.env.URL}/thankyou-for-your-order?session-id={CHECKOUT_SESSION_ID}&email=${obf_email}`,
+    cancel_url: `${process.env.URL}/checkout/`
+  });
 
   return {
-    statusCode: 200,
-    body: JSON.stringify(test, null, 2),
-  };
+    statusCode: 302,
+    headers: { Location: session.url },
+    body: ''
+  }
 };
