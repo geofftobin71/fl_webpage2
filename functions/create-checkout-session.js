@@ -1,11 +1,13 @@
 delete require.cache[require.resolve('./data/shop_categories.json')];
 delete require.cache[require.resolve('./data/shop_products.json')];
 delete require.cache[require.resolve('./data/delivery_fees.json')];
+delete require.cache[require.resolve('./data/delivery_ids.json')];
 delete require.cache[require.resolve('./data/site.json')];
 
 const shop_categories = require('./data/shop_categories.json');
 const shop_products = require('./data/shop_products.json');
 const delivery_fees = require('./data/delivery_fees.json');
+const delivery_ids = require('./data/delivery_ids.json');
 const site = require('./data/site.json');
 
 const { Settings, DateTime } = require('luxon'); 
