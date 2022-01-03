@@ -22,7 +22,7 @@ var delivery_fee = 0.0;
 function obfuscate(str) {
   let buf = [];
   for (var i = str.length - 1; i >= 0; i--) {
-    buf.unshift(['%', parseInt(str[i].charCodeAt(),16)].join(''));
+    buf.unshift(['%', (str[i].charCodeAt()).toString(16)].join(''));
   }
   return buf.join('');
 }
