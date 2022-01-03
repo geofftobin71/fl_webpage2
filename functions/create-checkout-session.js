@@ -37,7 +37,7 @@ function escape(htmlStr) {
 }
 
 function getParam(str) {
-  return str ? escape(str.trim()) : null;
+  return (str ? escape(str.trim()) : null);
 }
 
 exports.handler = async (event, context) => {
