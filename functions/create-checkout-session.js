@@ -76,8 +76,12 @@ exports.handler = async (event, context) => {
 
   const obf_email = obfuscate(cardholder_email);
 
-  console.log(obf_email);
+  return {
+    statusCode: 200,
+    body: obf_email
+  }
 
+  /*
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',
     payment_method_types: ['card'],
@@ -98,4 +102,5 @@ exports.handler = async (event, context) => {
     headers: { Location: session.url },
     body: ''
   }
+  */
 };
