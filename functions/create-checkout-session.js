@@ -20,7 +20,6 @@ var cart_total = 0.0;
 var delivery_fee = 0.0;
 
 function obfuscate(str) {
-  return str;
   let buf = [];
   for (var i = str.length - 1; i >= 0; i--) {
     buf.unshift(['%', parseInt(str[i].charCodeAt(),16)].join(''));
@@ -85,10 +84,10 @@ exports.handler = async (event, context) => {
     line_items: items,
     shipping_rates: shipping_rates,
     metadata: metadata,
-    payment_intent_data: [
+    payment_intent_data: {
       receipt_email: cardholder_email,
       shipping: shipping
-    ],
+    },
     customer_email: cardholder_email,
     success_url: `${process.env.URL}/thankyou-for-your-order?session-id={CHECKOUT_SESSION_ID}&email=${obf_email}`,
     cancel_url: `${process.env.URL}/checkout/`
