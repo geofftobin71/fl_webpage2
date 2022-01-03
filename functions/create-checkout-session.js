@@ -20,6 +20,7 @@ var cart_total = 0.0;
 var delivery_fee = 0.0;
 
 function obfuscate(str) {
+  return str;
   let buf = [];
   for (var i = str.length - 1; i >= 0; i--) {
     buf.unshift(['%', parseInt(str[i].charCodeAt(),16)].join(''));
