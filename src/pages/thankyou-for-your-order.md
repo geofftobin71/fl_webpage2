@@ -5,6 +5,5 @@ subheading: "We have received your order and have sent a confirmation email to:"
 sitemap:
   ignore: true
 ---
-<p id="email" class="text-center"></p>
+<p id="email" class="text-center font-size-1"></p>
 <br>
-<p id="session-id" class="text-center small"></p>

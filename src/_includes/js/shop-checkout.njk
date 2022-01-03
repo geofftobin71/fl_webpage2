@@ -44,6 +44,8 @@ function displayCheckout() {
   let cart_count = cart.length;
   let cart_items = "";
 
+  console.log(cart);
+
   cart.forEach(cart_item => {
 
 	  let product = checkout_data.p[cart_item.product_id];
