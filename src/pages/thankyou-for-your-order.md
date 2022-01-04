@@ -1,7 +1,7 @@
 ---
 title: Thankyou for your Order
 layout: layouts/feedback-page.njk
-subheading: "We have received your order and have sent a confirmation email to:"
+subheading: "We have received your order and sent a confirmation email to:"
 sitemap:
   ignore: true
 ---

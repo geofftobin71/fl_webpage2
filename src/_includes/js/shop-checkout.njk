@@ -44,8 +44,6 @@ function displayCheckout() {
   let cart_count = cart.length;
   let cart_items = "";
 
-  console.log(cart);
-
   cart.forEach(cart_item => {
 
 	  let product = checkout_data.p[cart_item.product_id];
@@ -98,71 +96,6 @@ function displayCheckout() {
   disableInvalidDates(delivery_option);
   updateTotal();
 
-  {#
-  {% if env.PROD != 'true' %}
-  var stripe = Stripe("{{ env.STRIPE_TEST_PUBLIC_KEY }}");
-  {% else %}
-  var stripe = Stripe("{{ env.STRIPE_LIVE_PUBLIC_KEY }}");
-  {% endif %}
-  #}
-
-  {#
-  var stripe = Stripe("{{ env.STRIPE_TEST_PUBLIC_KEY }}");
-
-  var elements = stripe.elements({fonts:[
-    {
-      family: "Quicksand",
-      weight: "normal",
-      src: "url(https://floriade.co.nz/fonts/quicksand-medium-webfont.woff)",
-      display: "swap"
-    },
-    {
-      family: "Kollektif",
-      weight: "normal",
-      src: "url(https://floriade.co.nz/fonts/kollektif-webfont.woff)",
-      display: "swap"
-    }
-  ]});
-
-  var card = null;
-  /* FIXME
-  var card = elements.create("card", {
-    hidePostalCode: true,
-    style: {
-      base: {
-        fontFamily: "Quicksand, sans-serif",
-        fontWeight: "normal",
-        fontSize: "16px",
-        lineHeight: "2em",
-        color: "#333333",
-        backgroundColor: "#F0F0F0",
-        ":focus": {
-          backgroundColor: "#FAFAFA",
-        },
-        ":-webkit-autofill": {
-          backgroundColor: "#CDDAD5",
-        },
-        "::placeholder": {
-          color: "#777",
-        },
-      },
-    }
-  });
-  FIXME */
-
-  // FIXME card.mount("#card-input");
-
-  /* FIXME
-  card.addEventListener("change", function(event) {
-    if(event.error) {
-      showError(event.error.message);
-    } else {
-      hideError();
-    }
-  },false);
-  FIXME */
-  #}
-
   var form = document.getElementById("checkout-form");
 
   form.addEventListener("submit", async function(event) {
@@ -182,7 +115,7 @@ function displayCheckout() {
       }
     };
 
-    if(cart.length === 0) {
+    if(cart.length == 0) {
       document.getElementById("empty-cart").style.display = "flex";
       document.getElementById("checkout-form").style.display = "none";
       return false;
@@ -190,65 +123,8 @@ function displayCheckout() {
 
     // TODO - Check yesterdays date
 
-    /*
-    const delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
-    const delivery_name = document.getElementById("delivery-name").value;
-    const delivery_phone = document.getElementById("delivery-phone").value;
-    const delivery_address = document.getElementById("delivery-address").value;
-    const delivery_suburb = document.getElementById("delivery-suburb").value;
-    const delivery_date = document.getElementById("delivery-date").value;
-    const cart_total_check = document.getElementById("cart-total-check").value;
-    const delivery_total_check = document.getElementById("delivery-total-check").value;
-    const gift_tag_message = document.getElementById("gift-tag-message").value;
-    const special_requests = document.getElementById("special-requests").value;
-    const cardholder_name = document.getElementById("cardholder-name").value;
-    const cardholder_email = document.getElementById("cardholder-email").value;
-    const cardholder_phone = document.getElementById("cardholder-phone").value;
-    const workshop_attendee_name = [...document.querySelectorAll(".workshop-name")].map(s => s.value);
-    const workshop_attendee_email = [...document.querySelectorAll(".workshop-email")].map(s => s.value);
-
-    fetch("/php/create-payment-intent.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        "cart": cart,
-        "cart-total-check": cart_total_check,
-        "delivery-total-check": delivery_total_check,
-        "delivery-option": delivery_option,
-        "delivery-name": delivery_name,
-        "delivery-phone": delivery_phone,
-        "delivery-address": delivery_address,
-        "delivery-suburb": delivery_suburb,
-        "delivery-date": delivery_date,
-        "gift-tag-message": gift_tag_message,
-        "special-requests": special_requests,
-        "cardholder-name": cardholder_name,
-        "cardholder-email": cardholder_email,
-        "cardholder-phone": cardholder_phone,
-        "workshop-attendee-name": workshop_attendee_name,
-        "workshop-attendee-email": workshop_attendee_email
-      })
-    })
-      .then(response => {
-        if(!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response.json();
-      })
-      .then(json => {
-        if(json.error) {
-          throw Error(json.error);
-        }
-        pay(stripe, card, json.clientSecret, form);
-      })
-      .catch(error => {
-        showError(error.message);
-      });
-  */
-
-        form.submit();
+    localStorage.clear();
+    form.submit();
 
   },false);
 
@@ -437,48 +313,3 @@ function disableCheckoutForm() {
 function cacheValue(e) {
   localStorage.setItem("floriade-" + e.id, e.value);
 }
-
-function pay(stripe, card, clientSecret, form) {
-  disableCheckoutForm();
-
-  // FIXME
-  document.getElementById("payment-intent-id").value = 'pi_' + uniqueId(24);
-  document.getElementById("card-brand").value = 'Visa';
-  document.getElementById("card-month").value = '09';
-  document.getElementById("card-year").value = '2022';
-  document.getElementById("card-last4").value = '4242';
-  localStorage.clear();
-  form.submit();
-  // FIXME
-
-  /* FIXME
-  stripe.confirmCardPayment(
-    clientSecret, 
-    { 
-      payment_method: { 
-        card: card,
-        billing_details: {
-          name: document.getElementById("cardholder-name").value,
-          email: document.getElementById("cardholder-email").value,
-          phone: document.getElementById("cardholder-phone").value
-        }
-      }
-    })
-    .then(function(result) {
-      enableCheckoutForm();
-      if (result.error) {
-        showError(result.error.message);
-      } else {
-        hideError();
-        document.getElementById("payment-intent-id").value = result.paymentIntent.id;
-        document.getElementById("card-brand").value = result.paymentIntent.charges.data[0].payment_method_details.card.brand;
-        document.getElementById("card-month").value = result.paymentIntent.charges.data[0].payment_method_details.card.exp_month;
-        document.getElementById("card-year").value = result.paymentIntent.charges.data[0].payment_method_details.card.exp_year;
-        document.getElementById("card-last4").value = result.paymentIntent.charges.data[0].payment_method_details.card.last4;
-        localStorage.clear();
-        form.submit();
-      }
-    });
-    */
-}
-
