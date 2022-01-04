@@ -131,7 +131,7 @@ exports.handler = async (event, context) => {
     }
   }
 
-  if(delivery_total !== delivery_total_check) {
+  if(delivery_fee !== delivery_total_check) {
     return {
       statusCode: 400,
       body: JSON.stringify({ status: 'Delivery Total Mismatch' })
