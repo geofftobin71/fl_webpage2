@@ -7,3 +7,4 @@ sitemap:
 ---
 <p id="email" class="text-center font-size-1"></p>
 <br>
+<script>localStorage.clear();</script>
