@@ -56,6 +56,11 @@ exports.handler = async (event, context) => {
 
   const params = querystring.parse(event.body);
 
+  return {
+    statusCode: 200,
+    body: JSON.stringify(params)
+  }
+
   const delivery_option = getParam(params['delivery-option']);
   const delivery_name = getParam(params['delivery-name']) ?? 'Floriade';
   const delivery_phone = getParam(params['delivery-phone']);
