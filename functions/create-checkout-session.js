@@ -54,6 +54,8 @@ exports.handler = async (event, context) => {
     }
   }
 
+  console.log(event.body);
+
   const params = querystring.parse(event.body);
 
   const delivery_option = getParam(params['delivery-option']);
