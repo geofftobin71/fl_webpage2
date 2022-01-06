@@ -128,8 +128,29 @@ function displayCheckout() {
 
     // form.submit();
 
+    const stripe = Stripe('{{ env.STRIPE_TEST_PUBLIC_KEY }}');
+
     const form_data = new FormData(event.target);
 
+    fetch('/.netlify/functions/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(form_data))
+     })
+      .then(res => res.json())
+      .then(session => {
+        return stripe.redirectToCheckout({
+          sessionId: session.id
+        });
+      })
+      .then(result => {
+        if(result.error) {
+          alert(result.error.message);
+        }
+      })
+      .catch(error => console.error(error));
+
+    /*
     const res = await fetch('/.netlify/functions/create-checkout-session', {
       method: 'POST',
       headers: {
@@ -140,13 +161,12 @@ function displayCheckout() {
 
     const response = await res.json();
 
-    const stripe = Stripe('{{ env.STRIPE_TEST_PUBLIC_KEY }}');
-
     const { error } = await stripe.redirectToCheckout({
       sessionId: response.session_id
     });
 
     if(error) { console.error(error); }
+    */
 
   },false);
 
