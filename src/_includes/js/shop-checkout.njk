@@ -126,51 +126,43 @@ function displayCheckout() {
       return false;
     }
 
-    // form.submit();
+    enableCheckoutForm();
 
     const stripe_key = '{{ env.STRIPE_TEST_PUBLIC_KEY }}';
     const stripe = Stripe(stripe_key);
 
-    const form_data = new FormData(event.target);
+    const session_id = localStorage.getItem("floriade-checkout-session-id");
 
-    fetch('/.netlify/functions/create-checkout-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.fromEntries(form_data))
-     })
-      .then(res => res.json())
-      .then(session => {
-        console.log(JSON.stringify(session));
-        return stripe.redirectToCheckout({ sessionId: session.id });
-      })
-      .then(result => {
-        if(result.error) {
-          alert(result.error.message);
-        }
-      })
-      .catch(error => console.error(error));
+    if(session_id) {
+      stripe.redirectToCheckout({ sessionId: session_id })
+        .then(result => {
+          if(result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(error => console.error(error));
+    } else {
+      const form_data = new FormData(event.target);
 
-    /*
-    const res = await fetch('/.netlify/functions/create-checkout-session', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(Object.fromEntries(form_data))
-    }); // .then((res) => res.json());
-
-    const response = await res.json();
-
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: response.session_id
-    });
-
-    if(error) { console.error(error); }
-    */
+      fetch('/.netlify/functions/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(form_data))
+       })
+        .then(res => res.json())
+        .then(session => {
+          localStorage.setItem("floriade-checkout-session-id", session.id);
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(result => {
+          if(result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(error => console.error(error));
+    }
 
   },false);
-
-  enableCheckoutForm();
 }
 
 function disableInvalidDates(delivery_option) {
