@@ -13,8 +13,6 @@ exports.handler = async ({ body, headers }) => {
     // only do stuff if this is a successful Stripe Checkout purchase
     if (stripeEvent.type === 'checkout.session.completed') {
       const eventObject = stripeEvent.data.object;
-      const items = eventObject.display_items;
-      const shippingDetails = eventObject.shipping;
 
       // Send and email to our fulfillment provider using Nodemailer
       var transporter = nodemailer.createTransport({
@@ -32,7 +30,7 @@ exports.handler = async ({ body, headers }) => {
       transporter.sendMail({
         from: '"Floriade" <no-reply@mailgen.js>',
         to: `"${name}" <${email}>`,
-        subject: `New purchase from ${shippingDetails.name}`,
+        subject: `New purchase from ${name}`,
         text: JSON.stringify(eventObject, null, 2),
       }, function (err) {
         if(err) {
