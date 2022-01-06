@@ -246,6 +246,7 @@
   {% include "js/shop-checkout.njk" %}
   {% endset %}
 
+  <script src="https://js.stripe.com/v3/"></script>
   <script>
     {{ js | jsmin | safe }}
   </script>

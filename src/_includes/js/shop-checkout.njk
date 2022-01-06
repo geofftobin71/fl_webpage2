@@ -141,8 +141,7 @@ function displayCheckout() {
       .then(res => res.json())
       .then(session => {
         console.log(JSON.stringify(session));
-        // return stripe.redirectToCheckout({ sessionId: session.id });
-        return {};
+        return stripe.redirectToCheckout({ sessionId: session.id });
       })
       .then(result => {
         if(result.error) {
