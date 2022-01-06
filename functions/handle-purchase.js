@@ -26,6 +26,9 @@ exports.handler = async ({ body, headers }) => {
         }
       });
 
+        console.log(transporter ? "OK" : "failed");
+        console.log(JSON.stringify(eventObject, null, 2));
+
       const name = 'Geoff Tobin';
       const email = 'geofftobin71@gmail.com';
 
