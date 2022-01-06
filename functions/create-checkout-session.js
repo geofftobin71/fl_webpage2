@@ -180,8 +180,17 @@ exports.handler = async (event, context) => {
   });
 
   return {
+    statusCode: 200,
+    body: JSON.stringify({
+      session_id: session.id
+    })
+  }
+
+  /*
+  return {
     statusCode: 302,
     headers: { Location: session.url },
     body: ''
   }
+  */
 };

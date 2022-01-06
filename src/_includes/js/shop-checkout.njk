@@ -123,7 +123,24 @@ function displayCheckout() {
 
     // TODO - Check yesterdays date
 
-    form.submit();
+    // form.submit();
+
+    const form_data = FormData(form);
+
+    const response = await fetch('/.netlify/functions/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(Object.fromEntries(form_data)),
+    }).then((res) => res.json());
+
+    const stripe = Stripe('{{ env.STRIPE_TEST_PUBLIC_KEY }}');
+    const { error } = await stripe.redirectToCheckout({
+      sessionId: response.session_id,
+    });
+
+    if(error) { console.error(error); }
 
   },false);
 
