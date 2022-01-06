@@ -115,13 +115,19 @@ function displayCheckout() {
       }
     };
 
+    let delivery_date = document.getElementById("delivery-date");
+    let opt = delivery_date.options[delivery_date.selectedIndex];
+    let selected_date = DateTime.fromFormat(opt.value, delivery_date_value_format);
+
+    console.log(selected_date);
+    console.log(DateTime.now());
+    console.log(selected_date < DateTime.now());
+
     if(cart.length == 0) {
       document.getElementById("empty-cart").style.display = "flex";
       document.getElementById("checkout-form").style.display = "none";
       return false;
     }
-
-    // TODO - Check yesterdays date
 
     // form.submit();
 
