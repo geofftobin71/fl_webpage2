@@ -144,7 +144,7 @@ function displayCheckout() {
       .catch(error => console.error(error));
 */
 
-    const response = await fetch('/.netlify/functions/create-checkout-session', {
+    const response = await fetch('https://floriade.netlify.app/.netlify/functions/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -152,11 +152,15 @@ function displayCheckout() {
       body: JSON.stringify(Object.fromEntries(form_data))
     }).then((res) => res.json());
 
+    console.log(JSON.stringify(response));
+
+/*
     const { error } = await stripe.redirectToCheckout({
       sessionId: response.session_id
     });
 
     if(error) { console.error(error); }
+    */
 
   },false);
 
