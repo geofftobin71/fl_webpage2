@@ -47,12 +47,14 @@ function getParam(str) {
 
 exports.handler = async (event, context) => {
 
+  /*
   if(event.httpMethod !== 'POST' || !event.body) {
     return {
       statusCode: 400,
       body: JSON.stringify({ status: 'Bad Request' })
     }
   }
+  */
 
   const params = querystring.parse(event.body);
 
