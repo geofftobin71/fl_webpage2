@@ -44,6 +44,8 @@ exports.handler = async ({ body, headers }) => {
           }
         }
 
+        console.log("Mail Sent");
+
         return {
           statusCode: 200,
           body: JSON.stringify({ received: true })
