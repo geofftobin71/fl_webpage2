@@ -12,7 +12,6 @@ const site = require('./data/site.json');
 
 const { Settings, DateTime } = require('luxon'); 
 const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
-const querystring = require('querystring');
 
 Settings.defaultZoneName = 'Pacific/Auckland';
 
@@ -54,7 +53,6 @@ exports.handler = async (event, context) => {
     }
   }
 
-  // const params = querystring.parse(event.body);
   const params = JSON.parse(event.body);
 
   const delivery_option = getParam(params['delivery-option']);

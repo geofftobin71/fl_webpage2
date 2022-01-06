@@ -140,17 +140,13 @@ function displayCheckout() {
 
     const response = await res.json();
 
-    console.log(JSON.stringify(response));
-
     const stripe = Stripe('{{ env.STRIPE_TEST_PUBLIC_KEY }}');
 
-    /*
     const { error } = await stripe.redirectToCheckout({
       sessionId: response.session_id
     });
 
     if(error) { console.error(error); }
-    */
 
   },false);
 
