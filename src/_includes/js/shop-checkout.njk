@@ -71,7 +71,6 @@ function displayCheckout() {
   document.getElementById("cart-total").innerText = formatMoney(cart_total);
   document.getElementById("cart-total-check").value = cart_total;
 
-  // if(cartHasDelivery()) {
   if(true) {
     document.querySelectorAll(".delivery-group").forEach(element => {
       element.style.display = "block";
@@ -93,6 +92,12 @@ function displayCheckout() {
     if(value) { inputs[i].value = value; }
   };
 
+  let delivery_date = document.getElementById("delivery-date");
+  let opt = delivery_date.options[delivery_date.selectedIndex];
+  if(!opt) {
+    document.getElementById("delivery-date").options[0].selected = true;
+  }
+
   disableInvalidDates(delivery_option);
   updateTotal();
 
@@ -102,14 +107,6 @@ function displayCheckout() {
     event.preventDefault();
 
     disableCheckoutForm();
-
-    let delivery_date = document.getElementById("delivery-date");
-    let opt = delivery_date.options[delivery_date.selectedIndex];
-    let selected_date = DateTime.fromFormat(opt.value, delivery_date_value_format);
-
-    console.log(selected_date);
-    console.log(DateTime.now());
-    console.log(selected_date < DateTime.now());
 
     const inputs = form.querySelectorAll("input,select");
     for(let i = 0; i < inputs.length; i++) {
@@ -131,9 +128,8 @@ function displayCheckout() {
 
     // form.submit();
 
-    const form_data = FormData(form);
+    const form_data = new FormData(form);
 
-    /*
     const response = await fetch('/.netlify/functions/create-checkout-session', {
       method: 'POST',
       headers: {
@@ -148,7 +144,6 @@ function displayCheckout() {
     });
 
     if(error) { console.error(error); }
-    */
 
   },false);
 
