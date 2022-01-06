@@ -128,7 +128,8 @@ function displayCheckout() {
 
     // form.submit();
 
-    const stripe = Stripe('{{ env.STRIPE_TEST_PUBLIC_KEY }}');
+    const stripe_key = '{{ env.STRIPE_TEST_PUBLIC_KEY }}';
+    const stripe = Stripe(stripe_key);
 
     const form_data = new FormData(event.target);
 
@@ -139,6 +140,7 @@ function displayCheckout() {
      })
       .then(res => res.json())
       .then(session => {
+        console.log(JSON.stringify(session));
         return stripe.redirectToCheckout({
           sessionId: session.id
         });
