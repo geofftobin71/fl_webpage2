@@ -130,20 +130,6 @@ function displayCheckout() {
 
     const form_data = new FormData(event.target);
 
-/*
-    fetch('/.netlify/functions/create-checkout-session', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(Object.fromEntries(form_data)),
-      }).then((res) => res.json())
-      .then(response => stripe.redirectToCheckout({sessionId: response.session_id}))
-      .catch(error => console.error(error));
-*/
-
-    console.log('A');
-
     const res = await fetch('/.netlify/functions/create-checkout-session', {
       method: 'POST',
       headers: {
@@ -154,17 +140,13 @@ function displayCheckout() {
 
     const response = await res.json();
 
-    console.log(JSON.stringify(response));
-
     const stripe = Stripe('{{ env.STRIPE_TEST_PUBLIC_KEY }}');
 
-/*
     const { error } = await stripe.redirectToCheckout({
       sessionId: response.session_id
     });
 
     if(error) { console.error(error); }
-    */
 
   },false);
 
