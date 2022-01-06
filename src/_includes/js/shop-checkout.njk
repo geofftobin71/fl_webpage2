@@ -131,6 +131,7 @@ function displayCheckout() {
     const stripe_key = '{{ env.STRIPE_TEST_PUBLIC_KEY }}';
     const stripe = Stripe(stripe_key);
 
+    /*
     const session_id = localStorage.getItem("floriade-checkout-session-id");
 
     if(session_id) {
@@ -142,6 +143,7 @@ function displayCheckout() {
         })
         .catch(error => console.error(error));
     } else {
+    */
       const form_data = new FormData(event.target);
 
       fetch('/.netlify/functions/create-checkout-session', {
@@ -160,7 +162,7 @@ function displayCheckout() {
           }
         })
         .catch(error => console.error(error));
-    }
+    // }
 
   },false);
 
