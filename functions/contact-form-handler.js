@@ -67,6 +67,8 @@ exports.handler = (event, context) => {
   }
 
   fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: 'post' })
+    .then(res = > console.log(res));
+  /*
     .then(res => res.json())
     .then(json => {
       // console.log(json);
@@ -142,4 +144,5 @@ exports.handler = (event, context) => {
     .catch(err => {
       console.error(err);
     });
+  */
 }
