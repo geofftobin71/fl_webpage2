@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
 
-exports.handler = (event, context, callback) => {
+exports.handler = async (event, context, callback) => {
   try {
     // check the webhook to make sure it’s valid
     const stripeEvent = stripe.webhooks.constructEvent(
