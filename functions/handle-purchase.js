@@ -44,18 +44,13 @@ exports.handler = async ({ body, headers }) => {
             body: JSON.stringify({
               error: err
             })
-          }
+          };
         }
+      });
 
         console.log("Mail Sent");
 
         */
-
-        return {
-          statusCode: 200,
-          body: JSON.stringify({ received: true })
-        }
-      });
     }
 
     return {
