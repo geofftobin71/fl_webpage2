@@ -22,7 +22,7 @@ exports.handler = (event, context) => {
 
   let body = JSON.parse(event.body)
 
-  // console.log(body);
+  console.log(body);
 
   const name = body.name.trim();
   const email = body.email.trim();
