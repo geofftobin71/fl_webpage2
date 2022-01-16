@@ -62,35 +62,11 @@ exports.handler = async (event, context) => {
   if(body.password) {
     return {
       statusCode: 200,
-      headers: {
-        // Required for CORS support to work
-        'Access-Control-Allow-Origin': '*',
-        // Required for cookies, authorization headers with HTTPS
-        'Access-Control-Allow-Credentials': true
-      },
       body: JSON.stringify({})
     }
   }
 
   return fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: 'post' })
-    .then(res => res.json())
-    .then(text => {
-      console.log(text);
-
-      return {
-        statusCode: 200,
-        headers: {
-          // Required for CORS support to work
-          'Access-Control-Allow-Origin': '*',
-          // Required for cookies, authorization headers with HTTPS
-          'Access-Control-Allow-Credentials': true
-        },
-        body: JSON.stringify({
-          messageSent: true
-        })
-      };
-    });
-  /*
     .then(res => res.json())
     .then(json => {
       // console.log(json);
@@ -105,7 +81,7 @@ exports.handler = async (event, context) => {
         html_body = html_body.replace('%message%', escape(message));
         html_body = juice(html_body);
 
-// console.log(html_body);
+        // console.log(html_body);
 
         const txt_template = fs.readFileSync('email/contact-thankyou.txt', 'utf8');
 
@@ -115,7 +91,7 @@ exports.handler = async (event, context) => {
         txt_body = txt_body.replace('%message%', message);
         txt_body = juice(txt_body);
 
-// console.log(txt_body);
+        // console.log(txt_body);
 
         var transporter = nodemailer.createTransport({
           host: "smtp.mailtrap.io",
@@ -148,29 +124,22 @@ exports.handler = async (event, context) => {
 
           return {
             statusCode: 200,
-            headers: {
-              // Required for CORS support to work
-              'Access-Control-Allow-Origin': '*',
-                // Required for cookies, authorization headers with HTTPS
-                'Access-Control-Allow-Credentials': true
-            },
-  body: JSON.stringify({
-    messageSent: true
-  })
-}
-});
+            body: JSON.stringify({
+              messageSent: true
+            })
+          }
+        });
 
-} else {
-  return {
-    statusCode: 400,
-    body: JSON.stringify({
-      error: 'recaptcha failed'
+      } else {
+        return {
+          statusCode: 400,
+          body: JSON.stringify({
+            error: 'recaptcha failed'
+          })
+        }
+      }
     })
-  }
-}
-})
-  .catch(err => {
-    console.error(err);
-  });
-*/
+    .catch(err => {
+      console.error(err);
+    });
 }
