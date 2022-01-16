@@ -11,13 +11,13 @@ function escape(htmlStr) {
     .replace(/'/g, "&#39;");        
 }
 
-exports.handler = async (event, context) => {
+exports.handler = (event, context, callback) => {
 
   if(event.httpMethod !== 'POST' || !event.body) {
-    return {
+    return callback(null, {
       statusCode: 400,
       body: JSON.stringify({ status: 'Bad Request' })
-    };
+    });
   }
 
   let body = JSON.parse(event.body)
@@ -30,43 +30,43 @@ exports.handler = async (event, context) => {
 
   // Bail if name is missing
   if(!name) {
-    return {
+    return callback(null, {
       statusCode: 400,
       body: JSON.stringify({
         error: 'missing name'
       })
-    }
+    })
   }
 
   // Bail if email is missing
   if(!email) {
-    return {
+    return callback(null, {
       statusCode: 400,
       body: JSON.stringify({
         error: 'missing email'
       })
-    }
+    })
   }
 
   // Bail if message is missing
   if(!message) {
-    return {
+    return callback(null, {
       statusCode: 400,
       body: JSON.stringify({
         error: 'missing message'
       })
-    }
+    })
   }
 
   // Bail if password is filled in (honeypot)
   if(body.password) {
-    return {
+    return callback(null, {
       statusCode: 200,
       body: JSON.stringify({})
-    }
+    })
   }
 
-  return fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: 'post' })
+  fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: 'post' })
     .then(res => res.json())
     .then(json => {
       // console.log(json);
@@ -112,31 +112,31 @@ exports.handler = async (event, context) => {
           if(err) {
             console.error(err);
 
-            return {
+            return callback(null, {
               statusCode: 400,
               body: JSON.stringify({
                 error: err
               })
-            }
+            })
           }
 
           // console.log('Message sent successfully.');
 
-          return {
+          return callback(null, {
             statusCode: 200,
             body: JSON.stringify({
               messageSent: true
             })
-          }
+          })
         });
 
       } else {
-        return {
+        return callback(null, {
           statusCode: 400,
           body: JSON.stringify({
             error: 'recaptcha failed'
           })
-        }
+        })
       }
     })
     .catch(err => {
