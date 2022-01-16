@@ -11,7 +11,7 @@ function escape(htmlStr) {
     .replace(/'/g, "&#39;");        
 }
 
-exports.handler = (event, context) => {
+exports.handler = async (event, context) => {
 
   if(event.httpMethod !== 'POST' || !event.body) {
     return {
