@@ -1,14 +1,14 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 const fetch = require('node-fetch');
 const juice = require('juice');
 const fs = require('fs');
 
 function escape(htmlStr) {
   return htmlStr.replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");        
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");        
 }
 
 exports.handler = (event, context, callback) => {
