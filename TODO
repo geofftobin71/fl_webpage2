@@ -1,9 +1,6 @@
 Next:
 Checkout webhook - send order email / receipt email
-Reuse checkout session id
-Deprecate callback from functions/*
 Is photographers.json necessary ?
-Checkerboard section
 
 Fix:
 Gallery histogram
