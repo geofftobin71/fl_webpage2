@@ -22,7 +22,20 @@ exports.handler = async (event, context) => {
 
   let body = JSON.parse(event.body)
 
-  // console.log(body);
+  console.log(body);
+
+      return {
+        statusCode: 200,
+        headers: {
+          // Required for CORS support to work
+          'Access-Control-Allow-Origin': '*',
+          // Required for cookies, authorization headers with HTTPS
+          'Access-Control-Allow-Credentials': true
+        },
+        body: JSON.stringify({
+          messageSent: true
+        })
+      }
 
   const name = body.name.trim();
   const email = body.email.trim();
