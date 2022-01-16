@@ -34,7 +34,7 @@ exports.handler = async (event, context, callback) => {
         from: '"Floriade" <no-reply@mailgen.js>',
         to: '"Floriade" <no-reply@mailgen.js>',
         subject: `New purchase from ${name}`,
-        text: 'TEST', // JSON.stringify(session, null, 2),
+        text: JSON.stringify(session, null, 2) + "\n\n" + JSON.stringify(items, null, 2),
       }, function (err) {
         if(err) {
           console.error(err);
@@ -48,7 +48,7 @@ exports.handler = async (event, context, callback) => {
         }
       });
 
-      console.log("Mail Sent");
+      // console.log("Mail Sent");
     }
 
     return callback(null, {
@@ -56,7 +56,7 @@ exports.handler = async (event, context, callback) => {
       body: JSON.stringify({ received: true })
     });
   } catch (err) {
-    console.log(`Stripe webhook failed with ${err}`);
+    console.error(`Stripe webhook failed with ${err}`);
 
     return callback(null, {
       statusCode: 400,
