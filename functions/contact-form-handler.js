@@ -22,20 +22,7 @@ exports.handler = async (event, context) => {
 
   let body = JSON.parse(event.body)
 
-  console.log(body);
-
-      return {
-        statusCode: 200,
-        headers: {
-          // Required for CORS support to work
-          'Access-Control-Allow-Origin': '*',
-          // Required for cookies, authorization headers with HTTPS
-          'Access-Control-Allow-Credentials': true
-        },
-        body: JSON.stringify({
-          messageSent: true
-        })
-      }
+  // console.log(body);
 
   const name = body.name.trim();
   const email = body.email.trim();
@@ -101,7 +88,7 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({
           messageSent: true
         })
-      }
+      };
     });
   /*
     .then(res => res.json())
@@ -186,4 +173,4 @@ exports.handler = async (event, context) => {
     console.error(err);
   });
 */
-            }
+}
