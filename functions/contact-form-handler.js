@@ -62,6 +62,12 @@ exports.handler = (event, context) => {
   if(body.password) {
     return {
       statusCode: 200,
+      headers: {
+        // Required for CORS support to work
+        'Access-Control-Allow-Origin': '*',
+        // Required for cookies, authorization headers with HTTPS
+        'Access-Control-Allow-Credentials': true
+      },
       body: JSON.stringify({})
     }
   }
@@ -73,6 +79,12 @@ exports.handler = (event, context) => {
 
       return {
         statusCode: 200,
+        headers: {
+          // Required for CORS support to work
+          'Access-Control-Allow-Origin': '*',
+          // Required for cookies, authorization headers with HTTPS
+          'Access-Control-Allow-Credentials': true
+        },
         body: JSON.stringify({
           messageSent: true
         })
@@ -136,23 +148,29 @@ exports.handler = (event, context) => {
 
           return {
             statusCode: 200,
-            body: JSON.stringify({
-              messageSent: true
-            })
-          }
-        });
+            headers: {
+              // Required for CORS support to work
+              'Access-Control-Allow-Origin': '*',
+                // Required for cookies, authorization headers with HTTPS
+                'Access-Control-Allow-Credentials': true
+            },
+  body: JSON.stringify({
+    messageSent: true
+  })
+}
+});
 
-      } else {
-        return {
-          statusCode: 400,
-          body: JSON.stringify({
-            error: 'recaptcha failed'
-          })
-        }
-      }
+} else {
+  return {
+    statusCode: 400,
+    body: JSON.stringify({
+      error: 'recaptcha failed'
     })
-    .catch(err => {
-      console.error(err);
-    });
-    */
-        }
+  }
+}
+})
+  .catch(err => {
+    console.error(err);
+  });
+*/
+            }
