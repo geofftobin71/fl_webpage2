@@ -14,6 +14,9 @@ exports.handler = async ({ body, headers }) => {
     if (stripeEvent.type === 'checkout.session.completed') {
       const eventObject = stripeEvent.data.object;
 
+      console.log(JSON.stringify(eventObject, null, 2));
+
+      /*
       // Send and email to our fulfillment provider using Nodemailer
       var transporter = nodemailer.createTransport({
         host: "smtp.mailtrap.io",
@@ -29,7 +32,7 @@ exports.handler = async ({ body, headers }) => {
 
       transporter.sendMail({
         from: '"Floriade" <no-reply@mailgen.js>',
-        to: `"${name}" <${email}>`,
+        to: '"Floriade" <no-reply@mailgen.js>',
         subject: `New purchase from ${name}`,
         text: JSON.stringify(eventObject, null, 2),
       }, function (err) {
@@ -45,6 +48,8 @@ exports.handler = async ({ body, headers }) => {
         }
 
         console.log("Mail Sent");
+
+        */
 
         return {
           statusCode: 200,

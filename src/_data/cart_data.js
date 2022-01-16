@@ -28,7 +28,7 @@ module.exports = function() {
     const category = shop_categories.categories.find(category => category.id === product.category);
     let variants = {};
     category.variants.forEach(variant => {
-      variants[variant.id] = variant.price.toString(16);
+      variants[variant.id] = (variant.price * 100).toString(16);
     });
     result.p[product.id] = { "n": obfuscate(product.name), "v": variants };
   });

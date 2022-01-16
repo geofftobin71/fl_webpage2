@@ -111,7 +111,7 @@ exports.handler = (event, context, callback) => {
         });
 
         // Send Confirmation Email
-        
+
         transporter.sendMail({
           from: '"Floriade" <no-reply@mailgen.js>',
           to: `"${name}" <${email}>`,
@@ -129,15 +129,6 @@ exports.handler = (event, context, callback) => {
               })
             })
           }
-
-          // console.log('Message sent successfully.');
-
-          return callback(null, {
-            statusCode: 200,
-            body: JSON.stringify({
-              messageSent: true
-            })
-          })
         });
 
         // Send Message
@@ -159,14 +150,14 @@ exports.handler = (event, context, callback) => {
               })
             })
           }
+        });
 
-          // console.log('Message sent successfully.');
+        // console.log('Message sent successfully.');
 
-          return callback(null, {
-            statusCode: 200,
-            body: JSON.stringify({
-              messageSent: true
-            })
+        return callback(null, {
+          statusCode: 200,
+          body: JSON.stringify({
+            messageSent: true
           })
         });
 

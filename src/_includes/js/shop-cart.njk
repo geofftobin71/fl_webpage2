@@ -24,7 +24,7 @@ function displayCart() {
 	cart.forEach(cart_item => {
 
 	  let product = cart_data.p[cart_item.product_id];
-	  let price = parseInt(product.v[cart_item.variant_id], 16);
+	  let price = parseFloat(parseInt(product.v[cart_item.variant_id], 16)) / 100.0;
 
 	  cart_items += '<div class="vertical flow" style="--flow-space:0.3em">';
 	  cart_items += '<p>' + product.n;
