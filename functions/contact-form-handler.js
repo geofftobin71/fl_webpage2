@@ -22,7 +22,7 @@ exports.handler = (event, context) => {
 
   let body = JSON.parse(event.body)
 
-  console.log(body);
+  // console.log(body);
 
   const name = body.name.trim();
   const email = body.email.trim();
@@ -67,7 +67,17 @@ exports.handler = (event, context) => {
   }
 
   fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: 'post' })
-    .then(res => console.log(res));
+    .then(res => res.text())
+    .then(text => {
+      console.log(text);
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          messageSent: true
+        })
+      }
+    });
   /*
     .then(res => res.json())
     .then(json => {
@@ -83,7 +93,7 @@ exports.handler = (event, context) => {
         html_body = html_body.replace('%message%', escape(message));
         html_body = juice(html_body);
 
-        // console.log(html_body);
+// console.log(html_body);
 
         const txt_template = fs.readFileSync('email/contact-thankyou.txt', 'utf8');
 
@@ -93,7 +103,7 @@ exports.handler = (event, context) => {
         txt_body = txt_body.replace('%message%', message);
         txt_body = juice(txt_body);
 
-        // console.log(txt_body);
+// console.log(txt_body);
 
         var transporter = nodemailer.createTransport({
           host: "smtp.mailtrap.io",
@@ -144,5 +154,5 @@ exports.handler = (event, context) => {
     .catch(err => {
       console.error(err);
     });
-  */
-}
+    */
+        }
