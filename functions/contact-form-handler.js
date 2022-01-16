@@ -72,8 +72,8 @@ exports.handler = async (event, context) => {
     }
   }
 
-  fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: 'post' })
-    .then(res => res.text())
+  return fetch('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET_KEY + '&response=' + body.gRecaptchaResponse, { method: 'post' })
+    .then(res => res.json())
     .then(text => {
       console.log(text);
 
