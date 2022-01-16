@@ -12,9 +12,10 @@ exports.handler = async (event, context, callback) => {
 
     // only do stuff if this is a successful Stripe Checkout purchase
     if (stripeEvent.type === 'checkout.session.completed') {
-      const session = stripeEvent.data.object;
+      const object = stripeEvent.data.object;
 
-      const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
+      const session = await stripe.checkout.sessions.retrieve(object.id, {expand: ['payment_intent']});
+      const lineItems = await stripe.checkout.sessions.listLineItems(object.id, {limit: 100, expand: ['data.price.product']});
       const items = lineItems.data;
 
       // Send and email to our fulfillment provider using Nodemailer
