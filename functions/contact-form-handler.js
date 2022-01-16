@@ -73,32 +73,33 @@ exports.handler = (event, context, callback) => {
 
       if((json.success) && (json.action === 'contactform') && (Number(json.score) > 0.5)) {
 
-        const html_template = fs.readFileSync('email/contact-thankyou.html', 'utf8');
+        const thankyou_html_template = fs.readFileSync('email/contact-thankyou.html', 'utf8');
 
-        let html_body = html_template;
-        html_body = html_body.replace('%email_heading%', escape(body.heading));
-        html_body = html_body.replace('%name%', escape(name));
-        html_body = html_body.replace('%message%', escape(message));
-        html_body = juice(html_body);
+        let thankyou_html_body = thankyou_html_template;
+        thankyou_html_body = thankyou_html_body.replace('%email_heading%', escape(body.heading));
+        thankyou_html_body = thankyou_html_body.replace('%name%', escape(name));
+        thankyou_html_body = thankyou_html_body.replace('%message%', escape(message));
+        thankyou_html_body = juice(thankyou_html_body);
 
-        // console.log(html_body);
+        const thankyou_txt_template = fs.readFileSync('email/contact-thankyou.txt', 'utf8');
 
-        const txt_template = fs.readFileSync('email/contact-thankyou.txt', 'utf8');
+        let thankyou_txt_body = thankyou_txt_template;
+        thankyou_txt_body = thankyou_txt_body.replace('%email_heading%', body.heading);
+        thankyou_txt_body = thankyou_txt_body.replace('%name%', name);
+        thankyou_txt_body = thankyou_txt_body.replace('%message%', message);
 
-        let txt_body = txt_template;
-        txt_body = txt_body.replace('%email_heading%', body.heading);
-        txt_body = txt_body.replace('%name%', name);
-        txt_body = txt_body.replace('%message%', message);
-        // txt_body = juice(txt_body);
+        const message_html_template = fs.readFileSync('email/contact-message.html', 'utf8');
 
-        const msg_template = fs.readFileSync('email/contact-message.txt', 'utf8');
+        let message_html_body = message_html_template;
+        message_html_body = message_html_body.replace('%name%', escape(name));
+        message_html_body = message_html_body.replace('%message%', escape(message));
+        message_html_body = juice(message_html_body);
 
-        let msg_body = msg_template;
-        msg_body = msg_body.replace('%name%', name);
-        msg_body = msg_body.replace('%message%', message);
-        // msg_body = juice(msg_body);
+        const message_txt_template = fs.readFileSync('email/contact-message.txt', 'utf8');
 
-        // console.log(txt_body);
+        let message_txt_body = message_txt_template;
+        message_txt_body = message_txt_body.replace('%name%', name);
+        message_txt_body = message_txt_body.replace('%message%', message);
 
         var transporter = nodemailer.createTransport({
           host: "smtp.mailtrap.io",
@@ -115,8 +116,8 @@ exports.handler = (event, context, callback) => {
           from: '"Floriade" <no-reply@mailgen.js>',
           to: `"${name}" <${email}>`,
           subject: body.subject,
-          html: html_body,
-          text: txt_body,
+          html: thankyou_html_body,
+          text: thankyou_txt_body,
         }, function (err) {
           if(err) {
             console.error(err);
@@ -145,7 +146,8 @@ exports.handler = (event, context, callback) => {
           from: `"${name}" <${email}>`,
           to: '"Floriade" <no-reply@mailgen.js>',
           subject: body.subject,
-          text: msg_body,
+          html: message_html_body,
+          text: message_txt_body,
         }, function (err) {
           if(err) {
             console.error(err);
