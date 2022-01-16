@@ -89,7 +89,14 @@ exports.handler = (event, context, callback) => {
         txt_body = txt_body.replace('%email_heading%', body.heading);
         txt_body = txt_body.replace('%name%', name);
         txt_body = txt_body.replace('%message%', message);
-        txt_body = juice(txt_body);
+        // txt_body = juice(txt_body);
+
+        const msg_template = fs.readFileSync('email/contact-message.txt', 'utf8');
+
+        let msg_body = msg_template;
+        msg_body = msg_body.replace('%name%', name);
+        msg_body = msg_body.replace('%message%', message);
+        // msg_body = juice(msg_body);
 
         // console.log(txt_body);
 
@@ -102,12 +109,43 @@ exports.handler = (event, context, callback) => {
           }
         });
 
+        // Send Confirmation Email
+        
         transporter.sendMail({
           from: '"Floriade" <no-reply@mailgen.js>',
           to: `"${name}" <${email}>`,
           subject: body.subject,
           html: html_body,
           text: txt_body,
+        }, function (err) {
+          if(err) {
+            console.error(err);
+
+            return callback(null, {
+              statusCode: 400,
+              body: JSON.stringify({
+                error: err
+              })
+            })
+          }
+
+          // console.log('Message sent successfully.');
+
+          return callback(null, {
+            statusCode: 200,
+            body: JSON.stringify({
+              messageSent: true
+            })
+          })
+        });
+
+        // Send Message
+
+        transporter.sendMail({
+          from: `"${name}" <${email}>`,
+          to: '"Floriade" <no-reply@mailgen.js>',
+          subject: body.subject,
+          text: msg_body,
         }, function (err) {
           if(err) {
             console.error(err);
