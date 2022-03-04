@@ -21,7 +21,7 @@
     "closed": true,
     "delivery": true,
     "pickup": true,
-    "closed_message": "Online orders only"
+    "closed_message": ""
   },
   "thursday": {
     "opens_at": "09:30",
