@@ -175,9 +175,10 @@ collections:
             fields:
               - {label: "Opens at", name: "opens_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
               - {label: "Closes at", name: "closes_at", widget: "datetime", format: "HH:mm", date_format: false, time_format: "h:mma", default: "", required: false}
-              - {label: "Closed", name: "closed", widget: "boolean", required: false}
-              - {label: "Delivery", name: "delivery", widget: "boolean", default:true, required: false}
-              - {label: "Pickup", name: "pickup", widget: "boolean", default:true, required: false}
+              - {label: "Closed", name: "closed", widget: "boolean", hint: "Shop is Closed today", required: false}
+              - {label: "Closed Message", name: "closed_message", widget: "string", default: "Online orders only", required: false}
+              - {label: "Delivery", name: "delivery", widget: "boolean", hint: "Deliveries are available today", default:true, required: false}
+              - {label: "Pickup", name: "pickup", widget: "boolean", hint: "Pickups are available today", default:true, required: false}
           - label: "Tuesday"
             name: "tuesday"
             widget: "object"
