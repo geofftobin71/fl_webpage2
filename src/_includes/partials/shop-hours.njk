@@ -6,19 +6,19 @@
     {% set ssh = special_shop_hours.special_shop_hours | findSpecialDay(day.toFormat("yyyy-LL-dd")) %}
     {% if ssh %}
       {% if ssh.closed %}
-        <tr><td>{{ day.weekdayLong }}&nbsp;</td><td><i><b>&nbsp;Closed {{ day.toFormat("dd LLL") }}</b></i></td></tr>
+        <tr><td>{{ day.weekdayLong }}&nbsp;</td><td><i><b>&nbsp;{{ ssh.closed_message or rsh.closed_message or "Closed" }}{# {{ day.toFormat("dd LLL") }} #}</b></i></td></tr>
       {% elseif (ssh.opens_at | length) or (ssh.closes_at | length) %}
         <tr><td>{{ day.weekdayLong }}&nbsp;</td><td><i><b>&nbsp;{{ (ssh.opens_at or rsh.opens_at) | twelveHourTime | lower }} - {{ (ssh.closes_at or rsh.closes_at) | twelveHourTime | lower }} {{ day.toFormat("dd LLL") }}</b></i></td></tr>
       {% else %}
         {% if rsh.closed %}
-          <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;Closed</td></tr>
+          <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ rsh.closed_message or "Closed" }}</td></tr>
         {% else %}
           <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ rsh.opens_at | twelveHourTime | lower }} - {{ rsh.closes_at | twelveHourTime | lower }}</td></tr>
         {% endif %}
       {% endif %}
     {% else %}
       {% if rsh.closed %}
-        <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;Closed</td></tr>
+        <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ rsh.closed_message or "Closed" }}</td></tr>
       {% else %}
         <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ rsh.opens_at | twelveHourTime | lower }} - {{ rsh.closes_at | twelveHourTime | lower }}</td></tr>
       {% endif %}
