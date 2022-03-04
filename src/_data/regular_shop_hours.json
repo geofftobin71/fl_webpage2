@@ -2,9 +2,10 @@
   "monday": {
     "opens_at": "09:30",
     "closes_at": "14:30",
-    "closed": false,
+    "closed": true,
     "delivery": true,
-    "pickup": true
+    "pickup": true,
+    "closed_message": "Online orders only"
   },
   "tuesday": {
     "opens_at": "09:30",
